@@ -13,17 +13,17 @@ module.exports = function(grunt){
 				},
 			}
 		},
-		jshint: {
-		    options: {
-		        jshintrc: '.jshintrc',
-		        reporter: require('jshint-stylish'),
-		        ignores: ['public/scripts/libs/*']
-		    },
-		    all: [
-		        'Gruntfile.js',
-		        'public/scripts/{,*/}*.js',
-		    ]
-		},
+		// jshint: {
+		//     options: {
+		//         jshintrc: '.jshintrc',
+		//         reporter: require('jshint-stylish'),
+		//         ignores: ['public/scripts/libs/*']
+		//     },
+		//     all: [
+		//         'Gruntfile.js',
+		//         'public/scripts/{,*/}*.js',
+		//     ]
+		// },
 		mocha: {
             urls: ['http://localhost:8001/test.html'],
 			options: {
@@ -101,7 +101,6 @@ module.exports = function(grunt){
 	]);
 
 	grunt.registerTask('default', [
-		'jshint',
 		'server'
 	]);
 
