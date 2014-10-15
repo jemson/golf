@@ -1,4 +1,4 @@
-define([
+	define([
 	'marionette',
 	'config/settings'
 ], function(Marionette){
@@ -21,7 +21,8 @@ define([
 
 	App.on('start', function() {
 		require([
-
+			// 'modules/header/home_app',
+			// "apps/calendar/calendar_app"
 		], function(){
 
 			if (Backbone.history) {
