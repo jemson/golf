@@ -3,7 +3,7 @@
 // helpers folder
 // variables.scss, mixins.scss, helpers.scss
 
-// @import "helpers/classes";
+@import "helpers/classes";
 
 // base folder
 @import "base/normalize";
@@ -45,7 +45,7 @@
   // @import "foundation/components/progress-bars";
   // @import "foundation/components/range-slider";
   // @import "foundation/components/reveal";
-  // @import "foundation/components/side-nav";
+  // @import "components/side-nav";
   // @import "foundation/components/split-buttons";
   // @import "foundation/components/sub-nav";
   // @import "foundation/components/switches";
@@ -53,7 +53,7 @@
   // @import "foundation/components/tabs";
   // @import "foundation/components/thumbs";
   // @import "foundation/components/tooltips";
-  // @import "foundation/components/top-bar";
+  @import "components/top-bar";
   // @import "foundation/components/type";
   // @import "foundation/components/offcanvas";
 
