@@ -8,7 +8,8 @@
 	App.addRegions({
 		headerRegion: '#header-region',
 		navRegion: '#nav-region',
-		mainRegion:'#main-region'
+		mainRegion:'#main-region',
+		calendarRegion: '#calendar-region'
 	});
 
 	App.on('before:start', function(){
@@ -16,7 +17,7 @@
 	});
 
 	App.addInitializer(function(){
-		require(['modules/header/header_app','modules/nav/nav_app']);
+		require(['modules/header/header_app','modules/nav/nav_app', 'modules/calendar/calendar_app']);
 	});
 
 	App.on('start', function() {

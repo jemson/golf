@@ -4,7 +4,7 @@ define([
 
 	App.module("NavApp", function(NavApp, App, Backbone, Marionette, $, _){
 	
-		this.startWithParent = false;
+		// this.startWithParent = false;
 		
 		var API = {
 			showNav: function(){
