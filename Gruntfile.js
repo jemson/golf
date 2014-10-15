@@ -2,6 +2,7 @@
 
 module.exports = function(grunt){
 
+
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
@@ -56,5 +57,4 @@ module.exports = function(grunt){
   grunt.registerTask('default', [
     'server'
   ]);
-
 };

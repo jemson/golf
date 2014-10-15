@@ -1,4 +1,4 @@
-define([
+	define([
 	'marionette',
 	'config/settings'
 ], function(Marionette){
@@ -21,7 +21,7 @@ define([
 
 	App.on('start', function() {
 		require([
-
+			
 		], function(){
 
 			if (Backbone.history) {

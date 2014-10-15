@@ -2,6 +2,7 @@
 
 // helpers folder
 // variables.scss, mixins.scss, helpers.scss
+
 // @import "helpers/classes";
 
 // base folder
@@ -13,6 +14,8 @@
 
 // components
 @import "components/visibility";
+@import "modules/nav";
+@import "modules/header";
 
 // pages
 
