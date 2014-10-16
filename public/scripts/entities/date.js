@@ -97,20 +97,9 @@ define(["app"], function(App){
 			},
 
 			getDates: function(){
-				var date = new Entities.DateCollection([
-					{ date: 31 },
-					{ date: 28 },
-					{ date: 31 },
-					{ date: 30 },
-					{ date: 31 },
-					{ date: 30 },
-					{ date: 31 },
-					{ date: 31 },
-					{ date: 30 },
-					{ date: 31 },
-					{ date: 30 },
-					{ date: 31 },
-				]);
+				var date = new Entities.DateCollection(
+					[ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,]
+				);
 
 				return date;
 			},

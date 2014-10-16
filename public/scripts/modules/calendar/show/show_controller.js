@@ -61,24 +61,20 @@ define([
 
 			getMonths: function(){
 				var that = this;
-				var months = this.date.getMonth();
-				var year = this.date.getFullYear();
-				var day = this.date.getDay();
-				var days = this.day.at(day).get("day");
-				var exact = this.date.getDate();
-				var pick = this.mo.at(months).get("month");
+				var days = this.day.at(that.date.getDay()).get("day");
+				var pick = this.mo.at(that.date.getMonth()).get("month");
 
 				month = [];
 				this.mo.each(function(model){
 					if (model.get("month") == pick) {
 						that.emptyMonth.set({
 							month: model.get("month"),
-							year: year,
-							day: day,
-							date: exact,
-							number: months,
+							year: that.date.getFullYear(),
+							day: that.date.getDay(),
+							date: that.date.getDate(),
+							number: that.date.getMonth(),
 							isSelected: true,
-							originalMonth: months,
+							originalMonth: that.date.getMonth(),
 						});	
 					}
 				});

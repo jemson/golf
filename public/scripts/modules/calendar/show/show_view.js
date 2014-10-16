@@ -32,12 +32,15 @@ define([
 
 		Show.Date = Marionette.ItemView.extend({
 			initialize: function(options){
-				console.log(options.test);
+				this.dayNumber = options.test
+				// this.templateHelpers.numberOfDays(options)
 			},
-			template: _.template('test'),
-			className: '',
+			template: _.template('<%= numberOfDays()%>'),
+			// className: '',
 			templateHelpers: {
-
+				numberOfDays: function(options){
+					
+				}
 			}
 		});
 	});
