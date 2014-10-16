@@ -62,36 +62,17 @@ define(["app"], function(App){
 			},
 
 			getMonths: function(){
-				var months = new Entities.DateCollection([
-					{ month: "Jan" },
-					{ month: "Feb" },
-					{ month: "Mar" },
-					{ month: "Apr" },
-					{ month: "May" },
-					{ month: "Jun" },
-					{ month: "Jul" },
-					{ month: "Aug" },
-					{ month: "Sep" },
-					{ month: "Oct" },
-					{ month: "Nov" },
-					{ month: "Dec" },
-					// "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"  
-
-				]);
+				var months = new Entities.Date({ 
+					month: ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]
+				});
 
 				return months;
 			},
 
 			getDays:function(){
-				var day = new Entities.DateCollection([
-					{ day: "Sun" },
-					{ day: "Mon" },
-					{ day: "Tue" },
-					{ day: "Wed" },
-					{ day: "Thu" },
-					{ day: "Fri" },
-					{ day: "Sat" },
-				]);
+				var day = new Entities.Date({
+					day: ["Sun", "Mon", "Tue" , "Wed", "Thu", "Fri", "Sat"] 
+				});
 
 				return day;
 			},

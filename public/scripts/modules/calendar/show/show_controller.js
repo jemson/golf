@@ -60,58 +60,59 @@ define([
 				this.listenTo(this.bodyView, "childview:day:click", this.selectedDate);
 			},
 
+			//get current month
 			getMonths: function(){
-				var that = this;
-				var days = this.day.at(that.date.getDay()).get("day");
-				var pick = this.mo.at(that.date.getMonth()).get("month");
-
-				month = [];
-				this.mo.each(function(model){
-					if (model.get("month") == pick) {
-						that.emptyMonth.set({
-							month: model.get("month"),
-							year: that.date.getFullYear(),
-							day: that.date.getDay(),
-							date: that.date.getDate(),
-							number: that.date.getMonth(),
-							isSelected: true,
-							originalMonth: that.date.getMonth(),
-						});	
-					}
+				var days = this.day.get("day")[this.date.getDay()];
+				var pick = this.mo.get('month')[this.date.getMonth()];
+				
+				this.emptyMonth.set({
+					month: pick,
+					year: this.date.getFullYear(),
+					day: this.date.getDay(),
+					date: this.date.getDate(),
+					number: this.date.getMonth(),
+					isSelected: true,
 				});
 			},
 
+			//setting of number of days and indention
 			numberOfDays: function(){
-
-				var date = this.dates.get('date')[this.date.getMonth()]
-				this.dates.set({
-					date: date
-				});
-				this.addDiv();
-
-			},
-
-			//add li in front to match the exact date
-			addDiv: function(){
-
 				var year = this.emptyMonth.get('year');
 				var months = this.emptyMonth.get('number');
-				var date = new Date(year,months,1);
-				var day = date.getDay();
+				
+				var no_of_indent = new Date(year,months,1).getDay();
+				var no_of_day = this.dates.get('date')[this.date.getMonth()];
+				
+				this.dates.set({
+					no_of_day: no_of_day,
+					no_of_indent: no_of_indent
+				});
+			},
 
-				console.log(day);
-				console.log(date);
+			//changing of months
+			triggerMonth: function(integer, model){
+				var newMonth = this.date.getMonth() + integer;
+				var year = this.date.getFullYear();
 
-				var liString = "";
-
-				for ( var i = 0; i < day; i++ ) {
-					liString += "<td> </td>"
+				if ( newMonth == 12 ) {
+					newMonth = 0;
+				} else if ( newMonth == -1) {
+					newMonth = 11;
 				}
 
-				// remove li's from dom that match this criteria
-				$(".calendar td:not(.calendar-td)").remove();
-				// add li to indent the day
-				$("tr.calendar").prepend(liString);
+				this.emptyMonth.set({
+					month: this.mo.get("month")[newMonth],
+					year: year,
+					number: newMonth
+				});
+
+				if (model.get('month') == 'Dec' || model.get('month') == 'Jan') {
+					var number = model.get('number') + integer;
+					var month = this.date.setMonth(number);
+				}
+
+				this.date.setMonth(newMonth);	
+				this.numberOfDays();	
 			},
 
 		});

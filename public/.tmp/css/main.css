@@ -3966,4 +3966,23 @@ th.hide-for-touch {
   width: 35px;
   height: 35px;
   text-align: center;
+  background-color: #E6E6E6;
+  cursor: pointer;
+}
+
+/* line 20, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.calendar-arrow {
+  padding-right: 20px;
+  cursor: pointer;
+  color: #A4A4A4;
+}
+
+/* line 25, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.calendar-head {
+  font-size: 14px;
+  font-weight: 800;
+  color: #585858;
+  font-family: helvetica;
+  text-align: center;
+  width: 200px;
 }

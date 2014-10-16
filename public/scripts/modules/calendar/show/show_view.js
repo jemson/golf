@@ -15,39 +15,61 @@ define([
 
 		Show.Calendar = Marionette.ItemView.extend({
 			template: HeaderTemplate,
+			className: 'row',
 			events:{
-				"click [data-left]": "left",
-				"click [data-right]": "right"
+				"click [data-render]": "changeMonth",
 			},
 			modelEvents: {
 				"change": "render"
 			},
-			left:function(){
-				this.trigger("calendar:month:change", -1, this.model);
+			changeMonth: function(e){
+				var monthTrigger = $(e.currentTarget).data('render');
+				this.trigger("calendar:month:change", monthTrigger, this.model);
 			},
-		 	right:function(){
-				this.trigger("calendar:month:change", 1, this.model);
-			}
 		});
 
 		Show.Date = Marionette.ItemView.extend({
 			template: _.template('<%= numberOfDays()%>'),
 			className: 'row',
+			events: {
+				'click [data-date]': 'getDate'
+			},
 			templateHelpers: {
 				numberOfDays: function(){
 					var day = '<table border="1" >';
-					day += "<tr class='calendar'>";
-					for (var i = 1; i <= this.date; i++) {
-						day += "<td class='calendar-td'>" + i + "</td>";
-						if ( i % 7 === 0 ){
+					day += "<tr>" + this.prependDays();
+
+					for (var i = 1; i <= this.no_of_day; i++) {
+						
+						day += '<td class="calendar-td" data-date="'+i+'">' + i + '</td>';
+						
+						if ( (i+this.no_of_indent) % 7 === 0 ){
 							day += "</tr>";
 							day += "<tr>";
 						}
 					}
 					day += "</tr>";
 					return day + '</table>';
+				},
+
+				prependDays: function() {
+					var liString = "";
+
+					for ( var i = 0; i < this.no_of_indent; i++ ) {
+						liString += "<td> </td>"
+					}
+
+					return liString;
 				}
-			}
+			},
+			getDate: function(e){
+				var date = $(e.currentTarget).data('date');
+				this.trigger('calendar:date', date);
+			},
+			modelEvents: {
+				"change": "render"
+			},
+			
 		});
 	});
 
