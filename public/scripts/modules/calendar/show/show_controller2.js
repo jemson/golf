@@ -18,8 +18,7 @@ define([
 						this.emptyMonth = App.request("dates:entities:emptyMonth");
 
 						this.emptyDate = App.request("dates:entities:emptyDates");
-						console.log(this.emptyDate);
-
+						
 						this.date = new Date();
 						this.getMonths();
 						this.getDates();
@@ -74,195 +73,195 @@ define([
 						this.listenTo(this.bodyView, "childview:day:click", this.selectedDate);
 					},
 
-					getMonths: function(){
-						var that = this;
-						var months = this.date.getMonth();
-						var year = this.date.getFullYear();
-						var day = this.date.getDay();
-						var days = this.day.at(day).get("day");
-						var exact = this.date.getDate();
-						var pick = this.mo.at(months).get("month");
+					// getMonths: function(){
+					// 	var that = this;
+					// 	var months = this.date.getMonth();
+					// 	var year = this.date.getFullYear();
+					// 	var day = this.date.getDay();
+					// 	var days = this.day.at(day).get("day");
+					// 	var exact = this.date.getDate();
+					// 	var pick = this.mo.at(months).get("month");
 
-						month = [];
-						console.log(this.mo);
-						this.mo.each(function(model){
-							if (model.get("month") == pick) {
+					// 	month = [];
+					// 	console.log(this.mo);
+					// 	this.mo.each(function(model){
+					// 		if (model.get("month") == pick) {
 
-								// If now month = selected month, then add model value of isNowMonth: true
+					// 			// If now month = selected month, then add model value of isNowMonth: true
 
-								// Tried to get automatic default of true of current month
-								that.emptyMonth.set({
-									month: model.get("month"),
-									year: year,
-									day: day,
-									date: exact,
-									number: months,
-									isSelected: true,
-									originalMonth: months,
-								});
+					// 			// Tried to get automatic default of true of current month
+					// 			that.emptyMonth.set({
+					// 				month: model.get("month"),
+					// 				year: year,
+					// 				day: day,
+					// 				date: exact,
+					// 				number: months,
+					// 				isSelected: true,
+					// 				originalMonth: months,
+					// 			});
 								
-							}
+					// 		}
 
-						});
-					},
+					// 	});
+					// },
 
-					// Handler for day changes from other locations
-					dateChangeHandler: function(date){
-						this.removeCurrentSelected();
-						var day = this.getDayFromDate(date);
-						var month = date.getMonth();
-						this.setNewSelected(day);
-						this.changeMonthfromDate(month, date);
+					// // Handler for day changes from other locations
+					// dateChangeHandler: function(date){
+					// 	this.removeCurrentSelected();
+					// 	var day = this.getDayFromDate(date);
+					// 	var month = date.getMonth();
+					// 	this.setNewSelected(day);
+					// 	this.changeMonthfromDate(month, date);
 
-					},
+					// },
 
-					// Removes {isSelected:true} from a model in the current collection
-					removeCurrentSelected: function(){
-						var oldDate = this.getOldSelectedDate();
-						if ( oldDate ) oldDate.set({isSelected: false});
-					},
+					// // Removes {isSelected:true} from a model in the current collection
+					// removeCurrentSelected: function(){
+					// 	var oldDate = this.getOldSelectedDate();
+					// 	if ( oldDate ) oldDate.set({isSelected: false});
+					// },
 
-					//{selected day from false -> true
-					getOldSelectedDate: function(){
-						return this.emptyDate.findWhere({isSelected: true});
-					},
+					// //{selected day from false -> true
+					// getOldSelectedDate: function(){
+					// 	return this.emptyDate.findWhere({isSelected: true});
+					// },
 
-					getDayFromDate: function(date){
-						return this.emptyDate.findWhere( {date:date.getDate()} );
-					},
+					// getDayFromDate: function(date){
+					// 	return this.emptyDate.findWhere( {date:date.getDate()} );
+					// },
 
-					setNewSelected: function(day){
-						if ( day ) day.set({isSelected: true})
-					},
-					//}
+					// setNewSelected: function(day){
+					// 	if ( day ) day.set({isSelected: true})
+					// },
+					// //}
 					
-					//change on active day
-					changeSelectedDate: function(iv){
+					// //change on active day
+					// changeSelectedDate: function(iv){
 						
-						var oldDate = this.emptyDate.findWhere({isSelected: true});
+					// 	var oldDate = this.emptyDate.findWhere({isSelected: true});
 
-						if ( oldDate ) {
-							oldDate.set({isSelected: false});
-						}
-						iv.model.set({isSelected: true});
-					},
+					// 	if ( oldDate ) {
+					// 		oldDate.set({isSelected: false});
+					// 	}
+					// 	iv.model.set({isSelected: true});
+					// },
 
-					//date selector					
-					selectedDate: function(iv){
-						this.triggerPickdate(iv);
-					},
+					// //date selector					
+					// selectedDate: function(iv){
+					// 	this.triggerPickdate(iv);
+					// },
 
-					//attributes by the calendar
-					triggerPickdate:function(iv){
+					// //attributes by the calendar
+					// triggerPickdate:function(iv){
 
-						var exactdate = iv.model.get("date");
-						var year = this.emptyMonth.get('year');
-						var months = this.emptyMonth.get('number');
+					// 	var exactdate = iv.model.get("date");
+					// 	var year = this.emptyMonth.get('year');
+					// 	var months = this.emptyMonth.get('number');
 
-						// Day Switcher Event trigger
-						App.vent.trigger("date:change", new Date(year,months,exactdate));
+					// 	// Day Switcher Event trigger
+					// 	App.vent.trigger("date:change", new Date(year,months,exactdate));
 
-					},
+					// },
 
-					changeMonthfromDate:function(month, date){
-						var changeMonth = this.mo.at(month).get("month");
+					// changeMonthfromDate:function(month, date){
+					// 	var changeMonth = this.mo.at(month).get("month");
 						
-						this.emptyMonth.set({
-							month: changeMonth, 
-							number: month
-						});
-						this.addLi();
-					},
+					// 	this.emptyMonth.set({
+					// 		month: changeMonth, 
+					// 		number: month
+					// 	});
+					// 	this.addLi();
+					// },
 
-					changeMonth: function(integer, model){
+					// changeMonth: function(integer, model){
 
-						var that = this;
-						var months = this.date.getMonth();
-						var newMonth = months + integer;
-						var year = this.date.getFullYear();
+					// 	var that = this;
+					// 	var months = this.date.getMonth();
+					// 	var newMonth = months + integer;
+					// 	var year = this.date.getFullYear();
 
-						console.log(months, newMonth);
+					// 	console.log(months, newMonth);
 
-						if ( newMonth == 12 ) {
-							newMonth = 0;
-						} else if ( newMonth == -1) {
-							newMonth = 11;
-						}
+					// 	if ( newMonth == 12 ) {
+					// 		newMonth = 0;
+					// 	} else if ( newMonth == -1) {
+					// 		newMonth = 11;
+					// 	}
 
-						var pick = this.mo.at(newMonth).get("month");
+					// 	var pick = this.mo.at(newMonth).get("month");
 
-						this.mo.each(function(model){
-							if (model.get("month") == pick) {
-								that.emptyMonth.set({
-									month: model.get("month"),
-									year: year,
-									number: newMonth
-								});
-							}
-						});
+					// 	this.mo.each(function(model){
+					// 		if (model.get("month") == pick) {
+					// 			that.emptyMonth.set({
+					// 				month: model.get("month"),
+					// 				year: year,
+					// 				number: newMonth
+					// 			});
+					// 		}
+					// 	});
 
-						if (model.get('month') == 'Dec' || model.get('month') == 'Jan') {
-							var number = model.get('number') + integer;
-							// console.log(number);
-							var month = this.date.setMonth(number);
-							// console.log(month);
-						}
-						this.date.setMonth(newMonth);
-					},
+					// 	if (model.get('month') == 'Dec' || model.get('month') == 'Jan') {
+					// 		var number = model.get('number') + integer;
+					// 		// console.log(number);
+					// 		var month = this.date.setMonth(number);
+					// 		// console.log(month);
+					// 	}
+					// 	this.date.setMonth(newMonth);
+					// },
 
-					//add li in front to match the exact date
-					addLi: function(){
+					// //add li in front to match the exact date
+					// addLi: function(){
 
-						var year = this.emptyMonth.get('year');
-						var months = this.emptyMonth.get('number');
-						var date = new Date(year,months,1);
-						var day = date.getDay();
+					// 	var year = this.emptyMonth.get('year');
+					// 	var months = this.emptyMonth.get('number');
+					// 	var date = new Date(year,months,1);
+					// 	var day = date.getDay();
 
-						var liString = "";
+					// 	var liString = "";
 
-						for ( var i = 0; i < day; i++ ) {
-							liString += "<li></li>"
-						}
+					// 	for ( var i = 0; i < day; i++ ) {
+					// 		liString += "<li></li>"
+					// 	}
 
-						// remove li's from dom that match this criteria
-						$(".calendar-dates li:not(.date-li)").remove();
-						// add li to indent the day
-						$(".calendar-dates").prepend(liString);
-					},
+					// 	// remove li's from dom that match this criteria
+					// 	$(".calendar-dates li:not(.date-li)").remove();
+					// 	// add li to indent the day
+					// 	$(".calendar-dates").prepend(liString);
+					// },
 
-					//getting the exact number of days in a month
-					getDates: function(){	
-						var that = this;		
-						var months = this.emptyMonth.get("number");
-						var pick = this.dates.at(months).get("date");
-						month = [];
+					// //getting the exact number of days in a month
+					// getDates: function(){	
+					// 	var that = this;		
+					// 	var months = this.emptyMonth.get("number");
+					// 	var pick = this.dates.at(months).get("date");
+					// 	month = [];
 
-						if ( this.emptyMonth.get("originalMonth") == this.emptyMonth.get("number") ) {
-							for (var i = 1; i < Number(pick)+1; i++) {
-								if ( this.date.getDate() == i) {
-									var list = {
-										date: i,
-										isSelected: true,
-									}
-								} else {
-									var list = {
-										date: i
-									}
-								}
-								month.push(list);
-							}							
-						} else {
-							for (var i = 1; i < Number(pick)+1; i++) {
-								var list = {
-									date: i
-								}
-								month.push(list);
-							}		
-						}
+					// 	if ( this.emptyMonth.get("originalMonth") == this.emptyMonth.get("number") ) {
+					// 		for (var i = 1; i < Number(pick)+1; i++) {
+					// 			if ( this.date.getDate() == i) {
+					// 				var list = {
+					// 					date: i,
+					// 					isSelected: true,
+					// 				}
+					// 			} else {
+					// 				var list = {
+					// 					date: i
+					// 				}
+					// 			}
+					// 			month.push(list);
+					// 		}							
+					// 	} else {
+					// 		for (var i = 1; i < Number(pick)+1; i++) {
+					// 			var list = {
+					// 				date: i
+					// 			}
+					// 			month.push(list);
+					// 		}		
+					// 	}
 
-						this.emptyDate.reset();
-						this.emptyDate.add(month);
-					},
+					// 	this.emptyDate.reset();
+					// 	this.emptyDate.add(month);
+					// },
 				});
 			});
 	return App.CalendarApp.Show;

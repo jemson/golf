@@ -3944,3 +3944,26 @@ th.hide-for-touch {
     width: 30px;
   }
 }
+/* line 1, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.date-body {
+  width: 250px;
+}
+
+/* line 4, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.date-span {
+  font-size: 11px;
+}
+
+/* line 8, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.day-span {
+  font-size: 11px;
+  margin: 0px 9px 0px 0px;
+  text-align: center;
+}
+
+/* line 13, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.calendar-td {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+}

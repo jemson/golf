@@ -31,19 +31,25 @@ define([
 		});
 
 		Show.Date = Marionette.ItemView.extend({
-			initialize: function(options){
-				this.dayNumber = options.test
-				// this.templateHelpers.numberOfDays(options)
-			},
 			template: _.template('<%= numberOfDays()%>'),
-			// className: '',
+			className: 'row',
 			templateHelpers: {
-				numberOfDays: function(options){
-					
+				numberOfDays: function(){
+					var day = '<table border="1" >';
+					day += "<tr class='calendar'>";
+					for (var i = 1; i <= this.date; i++) {
+						day += "<td class='calendar-td'>" + i + "</td>";
+						if ( i % 7 === 0 ){
+							day += "</tr>";
+							day += "<tr>";
+						}
+					}
+					day += "</tr>";
+					return day + '</table>';
 				}
 			}
 		});
 	});
 
 	return App.CalendarApp.Show; 
-})
+});

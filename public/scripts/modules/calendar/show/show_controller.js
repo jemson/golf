@@ -21,6 +21,7 @@ define([
 				
 				this.date = new Date();
 				this.getMonths();
+				this.numberOfDays();
 				
 
 				this.listenTo(this.layout, "show", function(){
@@ -41,7 +42,7 @@ define([
 			},
 
 			getDatesView:function(){
-				return new View.Date({test:31});
+				return new View.Date({model:this.dates});
 			},
 
 			calendarHead: function(){
@@ -78,6 +79,39 @@ define([
 						});	
 					}
 				});
+			},
+
+			numberOfDays: function(){
+
+				var date = this.dates.get('date')[this.date.getMonth()]
+				this.dates.set({
+					date: date
+				});
+				this.addDiv();
+
+			},
+
+			//add li in front to match the exact date
+			addDiv: function(){
+
+				var year = this.emptyMonth.get('year');
+				var months = this.emptyMonth.get('number');
+				var date = new Date(year,months,1);
+				var day = date.getDay();
+
+				console.log(day);
+				console.log(date);
+
+				var liString = "";
+
+				for ( var i = 0; i < day; i++ ) {
+					liString += "<td> </td>"
+				}
+
+				// remove li's from dom that match this criteria
+				$(".calendar td:not(.calendar-td)").remove();
+				// add li to indent the day
+				$("tr.calendar").prepend(liString);
 			},
 
 		});
