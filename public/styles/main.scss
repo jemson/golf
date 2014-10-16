@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* Use Compass (http://compass-style.org/index/mixins/) for mixins */
+@import "compass" ;
+
 // helpers folder
 // variables.scss, mixins.scss, helpers.scss
 
@@ -14,9 +17,13 @@
 
 // components
 @import "components/visibility";
+
+// modules
 @import "modules/nav";
 @import "modules/header";
 @import "modules/schedule";
+@import "modules/modal";
+
 // pages
 
 // vendors
