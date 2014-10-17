@@ -29,7 +29,7 @@ define([
 					this.calendarBody();
 				});
 
-				App.calendarRegion.show(this.layout);
+				App.dialogRegion.show(this.layout);
 
 			},
 
@@ -85,7 +85,8 @@ define([
 				
 				this.dates.set({
 					no_of_day: no_of_day,
-					no_of_indent: no_of_indent
+					no_of_indent: no_of_indent,
+					exact_date: this.emptyMonth.get('date')
 				});
 			},
 

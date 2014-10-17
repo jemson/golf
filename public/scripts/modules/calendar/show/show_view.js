@@ -29,6 +29,9 @@ define([
 		});
 
 		Show.Date = Marionette.ItemView.extend({
+			initialize: function(){
+				console.log(this.model);
+			},
 			template: _.template('<%= numberOfDays()%>'),
 			className: 'row',
 			events: {

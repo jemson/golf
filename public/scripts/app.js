@@ -9,7 +9,7 @@
 		headerRegion: '#header-region',
 		navRegion: '#nav-region',
 		mainRegion:'#main-region',
-		calendarRegion: '#calendar-region'
+		dialogRegion:'#dialog-region'
 	});
 
 	App.on('before:start', function(){
@@ -17,12 +17,12 @@
 	});
 
 	App.addInitializer(function(){
-		require(['modules/header/header_app','modules/nav/nav_app', 'modules/calendar/calendar_app']);
+		require(['modules/header/header_app', 'modules/nav/nav_app', 'modules/login/login_app', 'modules/calendar/calendar_app']);
 	});
 
 	App.on('start', function() {
 		require([
-			
+			'modules/schedule/schedule_app'	
 		], function(){
 
 			if (Backbone.history) {
