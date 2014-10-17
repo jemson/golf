@@ -29,14 +29,8 @@ define([
 		});
 
 		Show.Date = Marionette.ItemView.extend({
-			initialize: function(){
-				console.log(this.model);
-			},
 			template: _.template('<%= numberOfDays()%>'),
 			className: 'row',
-			events: {
-				'click [data-date]': 'getDate'
-			},
 			templateHelpers: {
 				numberOfDays: function(){
 					var day = '<table border="1" >';
@@ -69,9 +63,12 @@ define([
 					return liString;
 				}
 			},
+			events: {
+				'click [data-date]': 'getDate'
+			},
 			getDate: function(e){
 				var date = $(e.currentTarget).data('date');
-				this.trigger('calendar:date', date);
+				this.trigger('calendar:date', {date: date});
 			},
 			modelEvents: {
 				"change": "render"

@@ -7,7 +7,6 @@ define([
 	App.module("CalendarApp.Show", function(Show, App, Backbone, Marionette, $, _){
 	Show.Controller = Marionette.Controller.extend({
 			initialize: function(options){
-				console.log(options.region);
 				this.layout = this.getLayoutView();
 
 				this.mo = App.request("dates:entities:months");
@@ -53,16 +52,15 @@ define([
 				this.listenTo(headerView, "calendar:month:change", this.triggerMonth);
 			},
 
-			calendarBody: function(){
+			calendarBody: function() {
 				this.bodyView = this.getDatesView();
 				this.layout.calendarBody.show(this.bodyView);
 
-				this.listenTo(this.bodyView, "childview:day:click", this.changeSelectedDate);
-				this.listenTo(this.bodyView, "childview:day:click", this.selectedDate);
+				this.listenTo(this.bodyView, 'calendar:date', this.numberOfDays)
 			},
 
 			//get current month
-			getMonths: function(){
+			getMonths: function() {
 				var days = this.day.get("day")[this.date.getDay()];
 				var pick = this.mo.get('month')[this.date.getMonth()];
 				
@@ -77,22 +75,24 @@ define([
 			},
 
 			//setting of number of days and indention
-			numberOfDays: function(){
-				var year = this.emptyMonth.get('year');
-				var months = this.emptyMonth.get('number');
+			numberOfDays: function(options) {
+				var data = options || {};
+				var exact_date =  data.date || this.emptyMonth.get('date');
 				
-				var no_of_indent = new Date(year,months,1).getDay();
+				var no_of_indent = new Date(this.emptyMonth.get('year'), this.emptyMonth.get('number'),1).getDay();
 				var no_of_day = this.dates.get('date')[this.date.getMonth()];
 				
 				this.dates.set({
 					no_of_day: no_of_day,
 					no_of_indent: no_of_indent,
-					exact_date: this.emptyMonth.get('date')
+					exact_date: exact_date
 				});
+
+				console.log(this.dates);
 			},
 
 			//changing of months
-			triggerMonth: function(integer, model){
+			triggerMonth: function(integer, model) {
 				var newMonth = this.date.getMonth() + integer;
 				var year = this.date.getFullYear();
 

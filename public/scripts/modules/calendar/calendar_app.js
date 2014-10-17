@@ -4,8 +4,6 @@ define([
 
 	App.module("CalendarApp", function(CalendarApp, App, Backbone, Marionette, $, _){
 
-		// this.startWithParent = false;
-
 		var API = {
 			loadCalendar: function(options){
 				require(["modules/calendar/show/show_controller"], function(){
@@ -13,10 +11,6 @@ define([
 				});
 			}
 		};
-
-		// App.addInitializer(function(){
-		// 	API.loadCalendar();
-		// });
 
 		App.commands.setHandler("calendar:load", function(options){
 			API.loadCalendar(options);
