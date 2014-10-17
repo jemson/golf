@@ -7,6 +7,7 @@ define([
 	App.module("CalendarApp.Show", function(Show, App, Backbone, Marionette, $, _){
 	Show.Controller = Marionette.Controller.extend({
 			initialize: function(options){
+				console.log(options.region);
 				this.layout = this.getLayoutView();
 
 				this.mo = App.request("dates:entities:months");
@@ -29,7 +30,7 @@ define([
 					this.calendarBody();
 				});
 
-				App.dialogRegion.show(this.layout);
+				options.region.show(this.layout);
 
 			},
 

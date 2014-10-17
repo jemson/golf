@@ -17,12 +17,13 @@
 	});
 
 	App.addInitializer(function(){
-		require(['modules/header/header_app', 'modules/nav/nav_app', 'modules/login/login_app', 'modules/calendar/calendar_app']);
+		require(['modules/header/header_app', 'modules/nav/nav_app', 'modules/login/login_app']);
 	});
 
 	App.on('start', function() {
 		require([
-			'modules/schedule/schedule_app'	
+			'modules/schedule/schedule_app'	,
+			'modules/calendar/calendar_app'
 		], function(){
 
 			if (Backbone.history) {

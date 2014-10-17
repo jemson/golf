@@ -4052,47 +4052,66 @@ th.hide-for-touch {
     width: 30px;
   }
 }
-/* line 1, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+/* line 6, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
 .date-body {
   width: 250px;
 }
 
-/* line 4, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+/* line 9, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
 .date-span {
   font-size: 11px;
 }
 
-/* line 8, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+/* line 12, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
 .day-span {
   font-size: 11px;
   margin: 0px 9px 0px 0px;
   text-align: center;
 }
 
-/* line 13, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+/* line 17, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
 .calendar-td {
   width: 35px;
   height: 35px;
-  text-align: center;
   background-color: #E6E6E6;
   cursor: pointer;
+  text-align: center;
+  font-family: helvetica;
 }
 
-/* line 20, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+/* line 24, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
 .calendar-arrow {
   padding-right: 20px;
   cursor: pointer;
   color: #A4A4A4;
+  text-align: center;
+  font-family: helvetica;
 }
 
-/* line 25, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+/* line 30, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
 .calendar-head {
   font-size: 14px;
   font-weight: 800;
   color: #585858;
-  font-family: helvetica;
   text-align: center;
+  font-family: helvetica;
   width: 200px;
+}
+
+/* line 37, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.picked-date {
+  color: whitesmoke;
+  background-color: black;
+  cursor: pointer;
+  text-align: center;
+  font-family: helvetica;
+}
+
+/* line 43, c:/xampp/htdocs/golf/public/styles/modules/_calendar.scss */
+.calendar-postion {
+  position: absolute;
+  right: 0;
+  top: 10%;
 }
 
 /* line 1, c:/xampp/htdocs/golf/public/styles/modules/_schedule.scss */

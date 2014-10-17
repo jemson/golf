@@ -4,7 +4,7 @@ define([
 
 	App.module("CalendarApp", function(CalendarApp, App, Backbone, Marionette, $, _){
 
-		this.startWithParent = false;
+		// this.startWithParent = false;
 
 		var API = {
 			loadCalendar: function(options){
@@ -14,13 +14,13 @@ define([
 			}
 		};
 
-		App.addInitializer(function(){
-			API.loadCalendar();
-		});
-
-		// App.commands.setHandler("calendar:load", function(options){
-		// 	API.loadCalendar(options);
+		// App.addInitializer(function(){
+		// 	API.loadCalendar();
 		// });
+
+		App.commands.setHandler("calendar:load", function(options){
+			API.loadCalendar(options);
+		});
 
 	});
 

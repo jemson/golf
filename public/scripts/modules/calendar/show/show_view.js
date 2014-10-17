@@ -43,8 +43,12 @@ define([
 					day += "<tr>" + this.prependDays();
 
 					for (var i = 1; i <= this.no_of_day; i++) {
-						
-						day += '<td class="calendar-td" data-date="'+i+'">' + i + '</td>';
+
+						if ( this.exact_date == i) {
+							day += '<td class="picked-date" data-date="'+i+'">' + i + '</td>';
+						} else {
+							day += '<td class="calendar-td" data-date="'+i+'">' + i + '</td>';	
+						}
 						
 						if ( (i+this.no_of_indent) % 7 === 0 ){
 							day += "</tr>";
