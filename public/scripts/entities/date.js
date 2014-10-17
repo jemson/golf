@@ -55,31 +55,11 @@ define(["app"], function(App){
 		});
 
 		var API = {
-			getDate: function(options){
-				var day = new Entities.Day(options);
-
-				return day;
-			},
-
-			getMonths: function(){
-				var months = new Entities.Date({ 
-					month: ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]
-				});
-
-				return months;
-			},
-
-			getDays:function(){
-				var day = new Entities.Date({
-					day: ["Sun", "Mon", "Tue" , "Wed", "Thu", "Fri", "Sat"] 
-				});
-
-				return day;
-			},
-
-			getDates: function(){
+			getComponent: function(){
 				var date = new Entities.Date({
-					date: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,]
+					date: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,],
+					day: ["Sun", "Mon", "Tue" , "Wed", "Thu", "Fri", "Sat"],
+					month: ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"]
 				});
 
 				return date;
@@ -91,12 +71,6 @@ define(["app"], function(App){
 				return emptyDate;
 			},
 
-			newEmptyDates: function(){
-				var emptyDates = new Entities.DateCollection();
-
-				return emptyDates;
-			},
-
 		};
 
 		/*
@@ -106,24 +80,12 @@ define(["app"], function(App){
 		date:entities:name:of:request if we're requesting a collection
 		*/
 
-		App.reqres.setHandler("dates:entities:months", function(){
-			return API.getMonths();
-		});
-
-		App.reqres.setHandler("dates:entities:day", function(){
-			return API.getDays();
-		});
-
 		App.reqres.setHandler("dates:entities:date", function(){
-			return API.getDates();
+			return API.getComponent();
 		});
 
 		App.reqres.setHandler("dates:entities:emptyMonth", function(){
 			return API.newEmptyDate();
-		});
-
-		App.reqres.setHandler("dates:entities:emptyDates", function(){
-			return API.newEmptyDates();
 		});
 
 		App.reqres.setHandler("date:entity", function(options){

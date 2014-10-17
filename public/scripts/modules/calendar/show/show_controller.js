@@ -9,11 +9,7 @@ define([
 			initialize: function(options){
 				this.layout = this.getLayoutView();
 
-				this.mo = App.request("dates:entities:months");
-
 				this.dates = App.request("dates:entities:date");
-
-				this.day = App.request("dates:entities:day");
 
 				this.emptyMonth = App.request("dates:entities:emptyMonth");
 
@@ -61,8 +57,8 @@ define([
 
 			//get current month
 			getMonths: function() {
-				var days = this.day.get("day")[this.date.getDay()];
-				var pick = this.mo.get('month')[this.date.getMonth()];
+				var days = this.dates.get("day")[this.date.getDay()];
+				var pick = this.dates.get('month')[this.date.getMonth()];
 				
 				this.emptyMonth.set({
 					month: pick,
@@ -103,7 +99,7 @@ define([
 				}
 
 				this.emptyMonth.set({
-					month: this.mo.get("month")[newMonth],
+					month: this.dates.get("month")[newMonth],
 					year: year,
 					number: newMonth
 				});
