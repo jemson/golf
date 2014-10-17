@@ -58,13 +58,13 @@ define([
 				var days = this.dates.get("day")[this.date.getDay()];
 				var pick = this.dates.get('month')[this.date.getMonth()];
 
-				console.log(pick);
 				this.dates.set({
 					month_name: pick,
 					year: this.date.getFullYear(),
 					exact_date: this.date.getDate(),
 					number_of_month: this.date.getMonth(),
 					isSelected: true,
+					exact_month: this.date.getMonth(),
 				});
 			},
 
@@ -72,7 +72,7 @@ define([
 			numberOfDays: function(options) {
 				var data = options || {};
 				var exact_date =  data.date || this.dates.get('exact_date');
-				
+
 				var no_of_indent = new Date(this.dates.get('year'), this.dates.get('number_of_month'),1).getDay();
 				var no_of_day = this.dates.get('date')[this.date.getMonth()];
 				
@@ -106,14 +106,26 @@ define([
 					break;
 				}
 
+				//if month is change exact date is change
+				switch ( model.get('exact_month') == newMonth ) {
+					case true:
+						var exact_date = this.date.getDate();
+					break;
+					case false:
+						var exact_date = 0;
+					break;
+				}
+
+				// console.log(newMonth == this.date.getDate());
 				this.dates.set({
 					month_name: this.dates.get("month")[newMonth],
 					year: year,
-					number_of_month: newMonth
+					number_of_month: newMonth,
+					exact_date: exact_date,
 				});
 
 				this.date.setMonth(newMonth);	
-				this.numberOfDays();	
+				this.numberOfDays({integer: integer});
 			},
 
 		});
