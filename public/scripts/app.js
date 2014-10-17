@@ -23,6 +23,7 @@
 	App.on('start', function() {
 		require([
 			'modules/schedule/schedule_app'	,
+			'modules/dashboard/dashboard_app'	,
 			'modules/calendar/calendar_app'
 		], function(){
 

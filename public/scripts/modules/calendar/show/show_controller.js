@@ -106,6 +106,7 @@ define([
 					break;
 				}
 
+				console.log(this.date.getMonth());
 				//if month is change exact date is change
 				switch ( model.get('exact_month') == newMonth ) {
 					case true:
