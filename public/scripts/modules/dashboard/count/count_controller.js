@@ -3,9 +3,9 @@ define([
 	"modules/dashboard/count/count_view",
 ], function(App, View){
 
-		App.module("CountApp.Show", function(Show, App, Backbone, Marionette, $, _){
+		App.module("CountApp.Count", function(Count, App, Backbone, Marionette, $, _){
 	
-			Show.Controller = Marionette.Controller.extend({
+			Count.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
 					
@@ -22,6 +22,6 @@ define([
 		
 		});
 	
-		return App.CountApp.Show;
+		return App.CountApp.Count;
 		
 });

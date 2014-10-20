@@ -1,11 +1,11 @@
 define([
 	"app",
-	"modules/dashboard/day/day_view",
+	"modules/dashboard/schedule/schedule_view",
 ], function(App, View){
 
-		App.module("DayApp.Day", function(Day, App, Backbone, Marionette, $, _){
+		App.module("ScheduleApp.Schedule", function(Schedule, App, Backbone, Marionette, $, _){
 	
-			Day.Controller = Marionette.Controller.extend({
+			Schedule.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
 					
@@ -17,7 +17,10 @@ define([
 				getLayoutView: function(){
 					return new View.Layout();					
 				},
+
 			});
+		
 		});
-		return App.DayApp.Day;
+	
+		return App.ScheduleApp.Schedule;
 });

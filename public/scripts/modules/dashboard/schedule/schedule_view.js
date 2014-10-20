@@ -3,14 +3,14 @@ define([
 	"text!modules/dashboard/schedule/templates/layout.html",
 ], function(App, LayoutTemplate){
 
-	App.module("ScheduleApp.Show", function(Show, App, Backbone, Marionette, $, _){
+	App.module("ScheduleApp.Schedule", function(Schedule, App, Backbone, Marionette, $, _){
 
-		Show.Layout = Marionette.LayoutView.extend({
+		Schedule.Layout = Marionette.LayoutView.extend({
 			className: 'row',
-			template: _.template('Count View'),
+			template: _.template('Schedule View'),
 		});
 
 	});
 
-	return App.ScheduleApp.Show;
+	return App.ScheduleApp.Schedule;
 });

@@ -3,14 +3,14 @@ define([
 	"text!modules/dashboard/day/templates/layout.html",
 ], function(App, LayoutTemplate){
 
-	App.module("DayApp.Show", function(Show, App, Backbone, Marionette, $, _){
+	App.module("DayApp.Day", function(Day, App, Backbone, Marionette, $, _){
 
-		Show.Layout = Marionette.LayoutView.extend({
+		Day.Layout = Marionette.LayoutView.extend({
 			className: 'row',
-			template: _.template('Count View'),
+			template: _.template('Day View'),
 		});
 
 	});
 
-	return App.DayApp.Show;
+	return App.DayApp.Day;
 });

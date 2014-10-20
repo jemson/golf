@@ -3,9 +3,9 @@ define([
 	"modules/dashboard/next/next_view",
 ], function(App, View){
 
-		App.module("NextApp.Show", function(Show, App, Backbone, Marionette, $, _){
+		App.module("NextApp.Next", function(Next, App, Backbone, Marionette, $, _){
 	
-			Show.Controller = Marionette.Controller.extend({
+			Next.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
 					
@@ -22,6 +22,6 @@ define([
 		
 		});
 	
-		return App.NextApp.Show;
+		return App.NextApp.Next;
 		
 });

@@ -23,18 +23,38 @@ define([
 				},
 
 				dayRegion: function(){
+					var options = {};
+					options.region = this.layout.dayRegion
+					require(['modules/dashboard/day/day_controller'], function(Day){
+						new Day.Controller(options);
+					});
 					console.log("day region");
 				},
 
-				countRegion: function(){
+				countRegion: function(region){
+					var options = {};
+					options.region = this.layout.countRegion
+					require(['modules/dashboard/count/count_controller'], function(Count){
+						new Count.Controller(options);
+					});
 					console.log("count region");
 				},
 
 				nextRegion: function(){
+					var options = {};
+					options.region = this.layout.nextRegion
+					require(['modules/dashboard/next/next_controller'], function(Next){
+						new Next.Controller(options);
+					});
 					console.log("next region");
 				},
 
 				scheduleRegion: function(){
+					var options = {};
+					options.region = this.layout.scheduleRegion
+					require(['modules/dashboard/schedule/schedule_controller'], function(Schedule){
+						new Schedule.Controller(options);
+					});
 					console.log("schedule region");
 				},
 

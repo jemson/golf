@@ -3,14 +3,14 @@ define([
 	"text!modules/dashboard/count/templates/layout.html",
 ], function(App, LayoutTemplate){
 
-	App.module("CountApp.Show", function(Show, App, Backbone, Marionette, $, _){
+	App.module("CountApp.Count", function(Count, App, Backbone, Marionette, $, _){
 
-		Show.Layout = Marionette.LayoutView.extend({
+		Count.Layout = Marionette.LayoutView.extend({
 			className: 'row',
 			template: _.template('Count View'),
 		});
 
 	});
 
-	return App.CountApp.Show;
+	return App.CountApp.Count;
 });

@@ -3,14 +3,14 @@ define([
 	"text!modules/dashboard/next/templates/layout.html",
 ], function(App, LayoutTemplate){
 
-	App.module("NextApp.Show", function(Show, App, Backbone, Marionette, $, _){
+	App.module("NextApp.Next", function(Next, App, Backbone, Marionette, $, _){
 
-		Show.Layout = Marionette.LayoutView.extend({
+		Next.Layout = Marionette.LayoutView.extend({
 			className: 'row',
-			template: _.template('Count View'),
+			template: _.template('Next View'),
 		});
 
 	});
 
-	return App.NextApp.Show;
+	return App.NextApp.Next;
 });
