@@ -8,6 +8,7 @@ define([
 			Count.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
+					this.collection = options.collection;
 					
 					this.layout = this.getLayoutView();
 					options.region.show(this.layout);
@@ -15,7 +16,7 @@ define([
 				},
 
 				getLayoutView: function(){
-					return new View.Layout();					
+					return new View.Layout({collection:this.collection});					
 				},
 
 			});

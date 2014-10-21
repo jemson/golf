@@ -25,9 +25,9 @@ define([
 				this.model.changeDay(integer);
 				var date = this.model.get('date')
 					month = this.dates;
-					no_of_indent = new Date(this.dates.get('year'), this.dates.get('number_of_month'),1).getDay();
+					no_of_indent = new Date(date.getFullYear(), date.getMonth(),1).getDay();
 
-				this.dates.set({
+				month.set({
 					exact_date: date.getDate(),
 					number_of_month: date.getMonth(),
 					exact_month: date.getMonth(),

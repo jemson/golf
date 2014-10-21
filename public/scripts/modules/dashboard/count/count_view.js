@@ -7,7 +7,13 @@ define([
 
 		Count.Layout = Marionette.LayoutView.extend({
 			className: 'row',
-			template: _.template('Count View'),
+			template: LayoutTemplate,
+			serializeData: function(){
+				return {
+					// reservationCount: this.collection.countReservations(),
+					// availableCount: this.collection.countAvailableReservations(),
+				}
+			}
 		});
 
 	});
