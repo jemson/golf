@@ -4256,6 +4256,61 @@ th.hide-for-touch {
   opacity: 1;
 }
 
+/* line 9, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.dashboard-first {
+  width: 30%;
+  margin: 0px 0px 0px 30px;
+}
+
+/* line 14, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.dashboard-second {
+  width: 45%;
+  border: 1px solid black;
+  margin: 50px 0px 0px 60px;
+}
+
+/* line 20, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.dashboard-third {
+  width: 20%;
+  position: absolute;
+  right: 0;
+  top: 10%;
+}
+
+/* line 27, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.day-module {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: #999999;
+  margin: auto;
+  text-align: center;
+}
+
+/* line 36, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.schedule-module {
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #999;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+/* line 47, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.count-module .strong {
+  font-size: 14px;
+  text-align: center;
+}
+/* line 52, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.count-module .large-number {
+  font-size: 5px;
+  text-align: center;
+}
+/* line 56, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.count-module .large-number.lighter {
+  color: #ccc;
+}
+
 /* line 216, c:/xampp/htdocs/golf/public/styles/components/_buttons.scss */
 button, .button {
   border-style: solid;

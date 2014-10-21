@@ -6,7 +6,7 @@ define([
 	App.module("DayApp.Day", function(Day, App, Backbone, Marionette, $, _){
 
 		Day.Layout = Marionette.LayoutView.extend({
-			className: 'row',
+			className: 'row day-module',
 			template: LayoutTemplate,
 			events: {
 				"click [data-change]": "dayChange",
