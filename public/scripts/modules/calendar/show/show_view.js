@@ -33,8 +33,14 @@ define([
 			className: 'row',
 			templateHelpers: {
 				numberOfDays: function(){
+					var liString = "";
+
+					for ( var i = 0; i < this.no_of_indent; i++ ) {
+						liString += '<td class="calendar-indent"> </td>'
+					}
+
 					var day = '<table border="1" >';
-					day += "<tr>" + this.prependDays();
+					day += "<tr>" + liString;
 
 					for (var i = 1; i <= this.no_of_day; i++) {
 
@@ -52,23 +58,13 @@ define([
 					day += "</tr>";
 					return day + '</table>';
 				},
-
-				prependDays: function() {
-					var liString = "";
-
-					for ( var i = 0; i < this.no_of_indent; i++ ) {
-						liString += "<td> </td>"
-					}
-
-					return liString;
-				}
 			},
 			events: {
 				'click [data-date]': 'getDate'
 			},
 			getDate: function(e){
 				var date = $(e.currentTarget).data('date');
-				this.trigger('calendar:date', {date: date});
+				this.trigger('calendar:date', {date: date, model: this});
 			},
 			modelEvents: {
 				"change": "render"

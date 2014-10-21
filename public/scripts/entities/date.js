@@ -35,6 +35,13 @@ define(["app"], function(App){
 				this.setDate(date);				
 			},
 
+			changeDayCalendar: function(options){
+				var model = options.model
+					date = new Date(model.get('year'), model.get('number_of_month'), model.get('exact_date'))
+
+				this.setDate(date);
+			},
+
 			getDayName: function(dayNumber){
 				return this.longDayNames[dayNumber];
 			},
@@ -55,6 +62,12 @@ define(["app"], function(App){
 		});
 
 		var API = {
+			getDate: function(options){
+				var day = new Entities.Day(options);
+
+				return day;
+			},
+
 			getComponent: function(){
 				var date = new Entities.Date({
 					date: [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,],

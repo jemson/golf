@@ -21,6 +21,12 @@
 	cursor: pointer;
 	@include center;
 }
+.calendar-indent {
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	@include center;
+}
 .calendar-arrow {
 	padding-right: 20px;
 	cursor: pointer;

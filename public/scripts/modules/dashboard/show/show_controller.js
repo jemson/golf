@@ -1,6 +1,7 @@
 define([
 	"app",
 	"modules/dashboard/show/show_view",
+	"entities/date",
 ], function(App, View){
 
 		App.module("DashBoardApp.Show", function(Show, App, Backbone, Marionette, $, _){
@@ -8,36 +9,40 @@ define([
 			Show.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
-					
+					var data = {
+						date: new Date(),
+					}
+
 					this.layout = this.getLayoutView();
+					this.dates = App.request("dates:entities:date");
+					this.day = App.request("date:entity", data);
 
 					this.listenTo(this.layout, 'show', function(){
 						this.dayRegion();
 						this.countRegion();
-						this.nextRegion();
-						this.scheduleRegion();
+						// this.nextRegion();
+						// this.scheduleRegion();
 						this.calendarRegion();
-					})
+					});
 					App.mainRegion.show(this.layout);
-
 				},
 
 				dayRegion: function(){
 					var options = {};
-					options.region = this.layout.dayRegion
+					options.region = this.layout.dayRegion;
+					options.model = this.day;
+					options.dates = this.dates;
 					require(['modules/dashboard/day/day_controller'], function(Day){
 						new Day.Controller(options);
 					});
-					console.log("day region");
 				},
 
 				countRegion: function(region){
 					var options = {};
-					options.region = this.layout.countRegion
+					options.region = this.layout.countRegion;
 					require(['modules/dashboard/count/count_controller'], function(Count){
 						new Count.Controller(options);
 					});
-					console.log("count region");
 				},
 
 				nextRegion: function(){
@@ -46,7 +51,6 @@ define([
 					require(['modules/dashboard/next/next_controller'], function(Next){
 						new Next.Controller(options);
 					});
-					console.log("next region");
 				},
 
 				scheduleRegion: function(){
@@ -55,11 +59,16 @@ define([
 					require(['modules/dashboard/schedule/schedule_controller'], function(Schedule){
 						new Schedule.Controller(options);
 					});
-					console.log("schedule region");
 				},
 
 				calendarRegion: function(){
-					App.execute('calendar:load', { region: this.layout.calendarRegion } );
+					var options = {};
+					options.region = this.layout.calendarRegion;
+					options.model = this.dates;
+					options.day = this.day;
+					require(['modules/calendar/show/show_controller'], function(Show){
+						new Show.Controller(options);
+					});
 				},
 
 				getLayoutView: function(){

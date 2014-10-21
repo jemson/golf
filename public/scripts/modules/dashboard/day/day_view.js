@@ -7,7 +7,17 @@ define([
 
 		Day.Layout = Marionette.LayoutView.extend({
 			className: 'row',
-			template: _.template('Day View'),
+			template: LayoutTemplate,
+			events: {
+				"click [data-change]": "dayChange",
+			},
+			dayChange: function(e){
+				var monthTrigger = $(e.currentTarget).data('change');
+				this.trigger("day:change", monthTrigger);
+			},
+			modelEvents: {
+				"change": "render"
+			},
 		});
 
 	});

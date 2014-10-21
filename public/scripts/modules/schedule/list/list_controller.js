@@ -2,7 +2,8 @@ define([
 	'app',
 	'modules/schedule/list/list_view',
 	'components/modal/modal_controller',
-	'entities/reservation'
+	"entities/date",
+	'entities/reservation',
 ], function(App, View, Modal){
 
 	App.module('ScheduleApp.List', function(List, App, Backbone, Marionette, $, _){
@@ -10,6 +11,7 @@ define([
 		List.Controller = Marionette.Controller.extend({
 
 			initialize: function(){
+				this.dates = App.request("dates:entities:date");
 				
 				this.reservationCollection = App.request('reservations:entities:empty');
 
@@ -34,7 +36,13 @@ define([
 			},
 
 			calendarRegion: function(){
-				App.execute('calendar:load', { region: this.layout.calendarRegion } );
+				var options = {};
+					options.region = this.layout.calendarRegion;
+					options.model = this.dates;
+					
+					require(['modules/calendar/show/show_controller'], function(Show){
+						new Show.Controller(options);
+					});
 			},
 
 			getLayoutView: function(){

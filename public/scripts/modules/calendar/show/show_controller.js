@@ -8,15 +8,13 @@ define([
 	Show.Controller = Marionette.Controller.extend({
 			initialize: function(options){
 				this.layout = this.getLayoutView();
+				this.day = options.day;
 
-				this.dates = App.request("dates:entities:date");
+				this.dates = options.model;
 
-				this.emptyDate = App.request("dates:entities:emptyDates");
-				
 				this.date = new Date();
 				this.getMonths();
 				this.numberOfDays();
-				
 
 				this.listenTo(this.layout, "show", function(){
 					this.calendarHead();
@@ -24,7 +22,6 @@ define([
 				});
 
 				options.region.show(this.layout);
-
 			},
 
 			getLayoutView: function(){
@@ -75,12 +72,16 @@ define([
 
 				var no_of_indent = new Date(this.dates.get('year'), this.dates.get('number_of_month'),1).getDay();
 				var no_of_day = this.dates.get('date')[this.date.getMonth()];
-				
+
 				this.dates.set({
 					no_of_day: no_of_day,
 					no_of_indent: no_of_indent,
 					exact_date: exact_date
 				});
+
+				if ( data.date ) {
+					this.day.changeDayCalendar(options.model)
+				}
 			},
 
 			//changing of months
@@ -94,30 +95,20 @@ define([
 						newMonth = 0;
 					break;
 					case -1:
-						newMonth = 11
+						newMonth = 11;
 					break;
 				}
 
-				//if Dec or Jan was hit add year
-				switch ( model.get('month_name') ) {
-					case 'Dec' || 'Jan':
-						var number = model.get('number_of_month') + integer;
-						var month = this.date.setMonth(number);
-					break;
-				}
-
-				console.log(this.date.getMonth());
 				//if month is change exact date is change
 				switch ( model.get('exact_month') == newMonth ) {
 					case true:
 						var exact_date = this.date.getDate();
 					break;
 					case false:
-						var exact_date = 0;
+						var exact_date = 1;
 					break;
 				}
 
-				// console.log(newMonth == this.date.getDate());
 				this.dates.set({
 					month_name: this.dates.get("month")[newMonth],
 					year: year,
@@ -125,7 +116,19 @@ define([
 					exact_date: exact_date,
 				});
 
-				this.date.setMonth(newMonth);	
+				// if Dec or Jan was hit change year
+				switch ( model.get('month_name') ) {
+					case 'Dec':
+						var number = model.get('number_of_month') + integer;
+						var month = this.date.setMonth(number);
+					break;
+					case 'Jan':
+						var number = model.get('number_of_month') + integer;
+						var month = this.date.setMonth(number);
+					break;
+				}
+
+				this.date.setMonth(newMonth);
 				this.numberOfDays({integer: integer});
 			},
 
