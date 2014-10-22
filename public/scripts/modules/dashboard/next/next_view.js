@@ -6,8 +6,8 @@ define([
 	App.module("NextApp.Next", function(Next, App, Backbone, Marionette, $, _){
 
 		Next.Layout = Marionette.LayoutView.extend({
-			className: 'row',
-			template: _.template('Next View'),
+			className: 'row next-module',
+			template: LayoutTemplate,
 			templateHelpers: {
 				timeToNextFlight: function(){
 					var d = new Date(),

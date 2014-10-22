@@ -13,7 +13,6 @@
 
 .dashboard-second {
 	width: 45%;
-	border: 1px solid black;
 	margin: 50px 0px 0px 60px;
 }
 
@@ -34,6 +33,7 @@
 }
 
 .schedule-module {
+	margin: 0px 0px 0px 0px;
 	border: 1px solid #ccc;
 	background-color: #ffffff;
 	color: #999;
@@ -42,7 +42,7 @@
 }
 
 .count-module {
-	@extend module;
+	@include module;
 
 	.strong {
 		font-size:14px;
@@ -57,5 +57,34 @@
 			color:#ccc;
 
 		}
+	}
+}
+.next-module {
+	@include module;
+
+	.strong {
+		font-size:14px;
+		text-align:center;
+	}
+
+	.large-number {
+		font-size:16px;
+		text-align:center;
+
+		&.lighter {
+			color:#ccc;
+
+		}
+	}
+
+	.btn {
+		height: 40px;
+		width: 120px;
+		border-radius: 4px;
+		font-size: 12px;
+		position: absolute;
+		right: 0;
+		left: 50%;
+		padding: 14px;
 	}
 }

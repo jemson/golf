@@ -11,6 +11,35 @@ define(["app"], function(App){
 		Entities.ReservationsCollection = Backbone.Collection.extend({
 			model: Entities.Reservation,
 			comparator: "time",
+
+			parse: function(response){
+				return response.results;
+			},
+
+			// Filters reservations for isBooked: true and returns count
+			countReservations: function(){
+
+				var matches = this.filter(function(model){
+					return model.get("isBooked") === true;
+				});
+
+				return matches.length;
+			},
+			// Subtracts the size of how many booked reservations from the total amount of reservations
+			countAvailableReservations: function(){
+				return this.length - this.countReservations();
+			},
+			getNextReservation: function(time){
+
+				return this.find(function(reservation){
+					return reservation.get("time") > time && reservation.get("isBooked") === false;
+				});
+			},
+			getReservationsByTime: function(time){
+				return this.filter(function(reservation){
+					return reservation.get("time") > time;
+				});
+			}
 		});
 	
 		var API = {
@@ -48,43 +77,47 @@ define(["app"], function(App){
 					
 			},
 
-			// getReservations: function(options){
-			// 	var now = options.date || new Date(),
-			// 		tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+			getReservations: function(options){
+				console.log(options);
+				var now = options.date || new Date(),
+					tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
 
-			// 	var openTime	= "0600",
-			// 		closeTime	= "1400";
-			// 	var reservations = new Entities.ReservationsCollection();
+					console.log(tmw)
 
-			// 	reservations.fetch();
+				var openTime	= "0600",
+					closeTime	= "1400";
+				var reservations = new Entities.ReservationsCollection();
 
-			// 	var times = [];
-			// 	var time = new Date(2014,5,6,6);
+				// reservations.fetch();
 
-			// 	do {
+				var times = [];
+				var time = new Date(2014,5,6,6);
+				console.log(time);
 
-			// 		var reservationTime = ('0'+time.getHours()).slice(-2)+('0'+time.getMinutes()).slice(-2);
+				do {
 
-			// 		if ( !reservations.findWhere({time:reservationTime}) ) {
-			// 		    times.push({
-			// 		        time: reservationTime,
-			// 		    });						
-			// 		}
+					var reservationTime = ('0'+time.getHours()).slice(-2)+('0'+time.getMinutes()).slice(-2);
 
-			// 	    time.setMinutes(time.getMinutes()+15);
+					if ( !reservations.findWhere({time:reservationTime}) ) {
+					    times.push({
+					        time: reservationTime,
+					    });						
+					}
 
-			// 	} while ( reservationTime < closeTime );
+				    time.setMinutes(time.getMinutes()+15);
 
-			// 	reservations.add(times);
+				} while ( reservationTime < closeTime );
 
-			// 	return reservations;
-			// },
+				reservations.add(times);
 
-			// recreateReservations: function(options){
-			// 	var reservations = new Entities.ReservationsCollection(options.data)
+				return reservations;
+			},
 
-			// 	return reservations;
-			// },
+			recreateReservations: function(options){
+				var reservations = new Entities.ReservationsCollection(options.data)
+
+				return reservations;
+			},
 		};
 	
 		App.reqres.setHandler("reservations:entity", function(){

@@ -1,13 +1,20 @@
 define([
 	"app",
-	"text!modules/dashboard/schedule/templates/layout.html",
-], function(App, LayoutTemplate){
+	"text!modules/dashboard/schedule/templates/reservation.html",
+	"text!modules/dashboard/schedule/templates/reservations.html"
+], function(App, ReservationTemplate, ReservationsTemplate){
 
 	App.module("ScheduleApp.Schedule", function(Schedule, App, Backbone, Marionette, $, _){
 
-		Schedule.Layout = Marionette.LayoutView.extend({
-			className: 'row',
-			template: _.template('Schedule View'),
+		Schedule.Reservation = Marionette.ItemView.extend({
+			template: ReservationTemplate,
+		});
+
+		Schedule.Reservations = Marionette.CompositeView.extend({
+			template: ReservationsTemplate,
+			itemView: Schedule.Reservation,
+			className: "schedule-module",
+			itemViewContainer: "#reservations-list",
 		});
 
 	});

@@ -17,13 +17,13 @@ define([
 					this.layout = this.getLayoutView();
 					this.dates = App.request("dates:entities:date");
 					this.day = App.request("date:entity", data);
-					// this.reservations = App.request("reservation:entities", {date:this.day.get("date")})
-					
+					this.reservations = App.request("reservation:entities", {date:this.day.get("date")});
+
 					this.listenTo(this.layout, 'show', function(){
 						this.dayRegion();
 						this.countRegion();
 						this.nextRegion();
-						// this.scheduleRegion();
+						this.scheduleRegion();
 						this.calendarRegion();
 					});
 					App.mainRegion.show(this.layout);
@@ -57,6 +57,7 @@ define([
 
 				scheduleRegion: function(){
 					var options = {};
+					options.collection = this.reservations;
 					options.region = this.layout.scheduleRegion
 					require(['modules/dashboard/schedule/schedule_controller'], function(Schedule){
 						new Schedule.Controller(options);

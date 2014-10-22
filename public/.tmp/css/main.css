@@ -4265,11 +4265,10 @@ th.hide-for-touch {
 /* line 14, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .dashboard-second {
   width: 45%;
-  border: 1px solid black;
   margin: 50px 0px 0px 60px;
 }
 
-/* line 20, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 19, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .dashboard-third {
   width: 20%;
   position: absolute;
@@ -4277,7 +4276,7 @@ th.hide-for-touch {
   top: 10%;
 }
 
-/* line 27, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 26, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .day-module {
   padding-top: 40px;
   padding-bottom: 20px;
@@ -4287,8 +4286,9 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 36, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 35, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .schedule-module {
+  margin: 0px 0px 0px 0px;
   border: 1px solid #ccc;
   background-color: #ffffff;
   color: #999;
@@ -4296,6 +4296,14 @@ th.hide-for-touch {
   padding: 20px;
 }
 
+/* line 44, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.count-module {
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #999;
+  margin: 10px 0;
+  padding: 20px;
+}
 /* line 47, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .count-module .strong {
   font-size: 14px;
@@ -4309,6 +4317,40 @@ th.hide-for-touch {
 /* line 56, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .count-module .large-number.lighter {
   color: #ccc;
+}
+
+/* line 62, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module {
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #999;
+  margin: 10px 0;
+  padding: 20px;
+}
+/* line 65, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module .strong {
+  font-size: 14px;
+  text-align: center;
+}
+/* line 70, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module .large-number {
+  font-size: 16px;
+  text-align: center;
+}
+/* line 74, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module .large-number.lighter {
+  color: #ccc;
+}
+/* line 80, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module .btn {
+  height: 40px;
+  width: 120px;
+  border-radius: 4px;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  left: 50%;
+  padding: 14px;
 }
 
 /* line 216, c:/xampp/htdocs/golf/public/styles/components/_buttons.scss */
