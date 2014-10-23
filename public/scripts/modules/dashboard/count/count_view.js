@@ -10,8 +10,8 @@ define([
 			template: LayoutTemplate,
 			serializeData: function(){
 				return {
-					// reservationCount: this.collection.countReservations(),
-					// availableCount: this.collection.countAvailableReservations(),
+					reservationCount: this.collection.countReservations(),
+					availableCount: this.collection.countAvailableReservations(),
 				}
 			}
 		});

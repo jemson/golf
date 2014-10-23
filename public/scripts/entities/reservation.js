@@ -30,10 +30,14 @@ define(["app"], function(App){
 				return this.length - this.countReservations();
 			},
 			getNextReservation: function(time){
-
-				return this.find(function(reservation){
-					return reservation.get("time") > time && reservation.get("isBooked") === false;
+				var test = this.find(function(reservation){
+					if (reservation.get("time") > time && reservation.get("isBooked") === false){
+						return reservation
+					} else {
+						return 'none'
+					}
 				});
+				console.log(test);
 			},
 			getReservationsByTime: function(time){
 				return this.filter(function(reservation){
@@ -78,11 +82,8 @@ define(["app"], function(App){
 			},
 
 			getReservations: function(options){
-				console.log(options);
 				var now = options.date || new Date(),
 					tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
-
-					console.log(tmw)
 
 				var openTime	= "0600",
 					closeTime	= "1400";
@@ -92,7 +93,6 @@ define(["app"], function(App){
 
 				var times = [];
 				var time = new Date(2014,5,6,6);
-				console.log(time);
 
 				do {
 

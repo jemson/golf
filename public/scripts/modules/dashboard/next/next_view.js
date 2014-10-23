@@ -33,6 +33,9 @@ define([
 			},
 			triggers: {
 				"click .btn": "save:next:reservation"
+			},
+			modelEvents: {
+				'change' : 'render'
 			}
 		});
 

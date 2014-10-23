@@ -42,6 +42,7 @@ define([
 				countRegion: function(region){
 					var options = {};
 					options.region = this.layout.countRegion;
+					options.collection = this.reservations;
 					require(['modules/dashboard/count/count_controller'], function(Count){
 						new Count.Controller(options);
 					});
@@ -49,7 +50,9 @@ define([
 
 				nextRegion: function(){
 					var options = {};
-					options.region = this.layout.nextRegion
+					options.region = this.layout.nextRegion;
+					options.model = this.day;
+					options.collection = this.reservations;
 					require(['modules/dashboard/next/next_controller'], function(Next){
 						new Next.Controller(options);
 					});

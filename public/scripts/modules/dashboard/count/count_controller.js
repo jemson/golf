@@ -9,7 +9,10 @@ define([
 	
 				initialize: function(options){
 					this.collection = options.collection;
-					
+
+					var test = new Date();
+					test.setHours(16, 30, 0, 0)
+					console.log(test);
 					this.layout = this.getLayoutView();
 					options.region.show(this.layout);
 
