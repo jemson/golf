@@ -25,20 +25,18 @@ define(["app"], function(App){
 
 				return matches.length;
 			},
+
 			// Subtracts the size of how many booked reservations from the total amount of reservations
 			countAvailableReservations: function(){
 				return this.length - this.countReservations();
 			},
+
 			getNextReservation: function(time){
-				var test = this.find(function(reservation){
-					if (reservation.get("time") > time && reservation.get("isBooked") === false){
-						return reservation
-					} else {
-						return 'none'
-					}
+				return this.find(function(reservation){
+					return reservation.get("time") > time && reservation.get("isBooked") === false;
 				});
-				console.log(test);
 			},
+			
 			getReservationsByTime: function(time){
 				return this.filter(function(reservation){
 					return reservation.get("time") > time;

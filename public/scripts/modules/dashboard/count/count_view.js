@@ -6,6 +6,9 @@ define([
 	App.module("CountApp.Count", function(Count, App, Backbone, Marionette, $, _){
 
 		Count.Layout = Marionette.LayoutView.extend({
+			collectionEvents: {
+				'change' : 'render'
+			},
 			className: 'row schedule-module',
 			template: LayoutTemplate,
 			serializeData: function(){

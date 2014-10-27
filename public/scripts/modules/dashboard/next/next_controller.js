@@ -18,6 +18,7 @@ define([
 				this.layout = this.getLayoutView();
 				options.region.show(this.layout);
 
+				this.listenTo(this.layout, "save:next:reservation", this.saveReservation);
 			},
 
 			getLayoutView: function(){
@@ -35,9 +36,8 @@ define([
 			},
 
 			saveReservation: function(iv){
-				iv.model.set({isBooked:true})
-
-				App.execute("next:refresh", {region:this.region, collection: this.collection});
+				//this is where the save is placed
+				iv.model.set({isBooked:true});
 			},
 
 		});

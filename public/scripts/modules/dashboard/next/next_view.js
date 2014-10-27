@@ -6,6 +6,9 @@ define([
 	App.module("NextApp.Next", function(Next, App, Backbone, Marionette, $, _){
 
 		Next.Layout = Marionette.LayoutView.extend({
+			initialize: function(options){
+				console.log(options);
+			},
 			className: 'row next-module',
 			template: LayoutTemplate,
 			templateHelpers: {
@@ -14,11 +17,13 @@ define([
 						dHours = ('0'+d.getHours()).slice(-2),
 						dMinutes = ('0'+d.getMinutes()).slice(-2),
 						time = dHours+dMinutes;
+						// console.log(time);
+						// console.log(this.nextAvailableReservation);
 
 					if ( this.nextAvailableReservation === "Tomorrow") {
 						return "Tomorrow";
 					}
-
+					// console.log(Number(time)+15 > this.nextAvailableReservation);
 					if ( Number(time)+15 > this.nextAvailableReservation ) {
 						return "NOW";
 					} else {
@@ -35,6 +40,9 @@ define([
 				"click .btn": "save:next:reservation"
 			},
 			modelEvents: {
+				'change' : 'render'
+			},
+			collectionEvents: {
 				'change' : 'render'
 			}
 		});
