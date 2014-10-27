@@ -9,10 +9,11 @@ define([
 		Schedule.Reservation = Marionette.ItemView.extend({
 			template: ReservationTemplate,
 			events: {
-				'click [data-test]' : 'test'
+				'click [data-reserve]' : 'reserveSchedule'
 			},
-			test: function(){
-				console.log(this.model);
+			reserveSchedule: function(){
+				this.trigger('reserve:schedule', this);
+				// this.destroy()
 			}
 		});
 
@@ -20,7 +21,9 @@ define([
 			template: ReservationsTemplate,
 			childView: Schedule.Reservation,
 			className: "schedule-module",
-			// itemViewContainer: "#reservations-list",
+			collectionEvents: {
+				'change' : 'render'
+			}
 		});
 
 	});

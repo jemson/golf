@@ -6,9 +6,6 @@ define([
 	App.module("NextApp.Next", function(Next, App, Backbone, Marionette, $, _){
 
 		Next.Layout = Marionette.LayoutView.extend({
-			initialize: function(options){
-				console.log(options);
-			},
 			className: 'row next-module',
 			template: LayoutTemplate,
 			templateHelpers: {

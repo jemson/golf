@@ -25,6 +25,16 @@ define(["app"], function(App){
 
 				return matches.length;
 			},
+			
+
+			scheduleFilter: function(){
+
+				var matches = this.filter(function(model){
+					return model.get("isBooked") === false;
+				});
+
+				return this.reset(matches);
+			},
 
 			// Subtracts the size of how many booked reservations from the total amount of reservations
 			countAvailableReservations: function(){

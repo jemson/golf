@@ -15,14 +15,25 @@ define([
 
 					this.collection = App.request("reservation:entities:recreate", {data:filteredCollection});
 
+					this.collectionFilter()
 					this.layout = this.getLayoutView();
 					options.region.show(this.layout);
-
+					this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule)
 				},
 
 				getLayoutView: function(){
 					return new View.Reservations({collection: this.collection});					
 				},
+
+				collectionFilter: function(){
+					var collection = this.collection.scheduleFilter();
+					this.collection.reset(collection);
+				},
+
+				reserveSchedule: function(iv){
+					iv.model.set({isBooked:true})
+					iv.model.destroy();
+				}
 
 			});
 		

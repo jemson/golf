@@ -19,6 +19,7 @@ define([
 				options.region.show(this.layout);
 
 				this.listenTo(this.layout, "save:next:reservation", this.saveReservation);
+				// this.listenTo(this.collection, 'test', function(){console.log("test");})
 			},
 
 			getLayoutView: function(){
@@ -38,6 +39,7 @@ define([
 			saveReservation: function(iv){
 				//this is where the save is placed
 				iv.model.set({isBooked:true});
+				this.model.trigger('render:layout');
 			},
 
 		});

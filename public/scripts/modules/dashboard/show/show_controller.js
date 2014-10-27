@@ -26,6 +26,11 @@ define([
 						this.scheduleRegion();
 						this.calendarRegion();
 					});
+
+					this.listenTo(this.day, 'render:layout', function(){
+						this.nextRegion();
+						this.scheduleRegion();
+					});
 					App.mainRegion.show(this.layout);
 				},
 
