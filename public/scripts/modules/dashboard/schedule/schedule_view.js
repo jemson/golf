@@ -8,13 +8,7 @@ define([
 
 		Schedule.Reservation = Marionette.ItemView.extend({
 			template: ReservationTemplate,
-			events: {
-				'click [data-reserve]' : 'reserveSchedule'
-			},
-			reserveSchedule: function(){
-				this.trigger('reserve:schedule', this);
-				// this.destroy()
-			}
+			className: "schedule-module",
 		});
 
 		Schedule.Reservations = Marionette.CompositeView.extend({
@@ -23,7 +17,7 @@ define([
 			className: "schedule-module",
 			collectionEvents: {
 				'change' : 'render'
-			}
+			},
 		});
 
 	});

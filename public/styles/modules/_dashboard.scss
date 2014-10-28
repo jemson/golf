@@ -3,7 +3,19 @@
 	background-color:#ffffff;
 	color:#999;
 	margin:10px 0;
-	padding:20px;
+	padding:20px 20px 0px 20px;
+}
+
+@mixin inline {
+	display: inline-block;
+}
+
+@mixin large {
+	font-size: 20px;
+	&.lighter {
+		color:#ccc;
+
+	}
 }
 
 .dashboard-first {
@@ -33,58 +45,54 @@
 }
 
 .schedule-module {
+	text-align: center;
 	margin: 0px 0px 0px 0px;
 	border: 1px solid #ccc;
 	background-color: #ffffff;
 	color: #999;
 	margin: 10px 0;
 	padding: 20px;
-}
-
-.count-module {
-	@include module;
-
-	.strong {
-		font-size:14px;
-		text-align:center;
+	
+	span {
+		font-size: 20px;
+		font-weight: 600;
 	}
+	.count-module {
+		.strong {
+			font-size:96px;
+			@include inline;
+			padding: 15px 0px 0px 0px;
+		}
 
-	.large-number {
-		font-size:5px;
-		text-align:center;
-
-		&.lighter {
-			color:#ccc;
-
+		.large-number {
+			@include large;
+			@include inline;
 		}
 	}
 }
+
 .next-module {
 	@include module;
 
-	.strong {
-		font-size:14px;
-		text-align:center;
+	strong {
+		font-size: 20px;
 	}
 
 	.large-number {
-		font-size:16px;
-		text-align:center;
-
-		&.lighter {
-			color:#ccc;
-
-		}
+		font-size: 32px;
+		color: #606060;
+	}
+	.reservation {
+		margin-top:20px;
+		line-height:32px;
 	}
 
 	.btn {
-		height: 40px;
-		width: 120px;
-		border-radius: 4px;
+		background-color: #81BEF7;
+		border-color: #81BEF7;
+		font-family: Helvetica;
 		font-size: 12px;
-		position: absolute;
-		right: 0;
-		left: 50%;
-		padding: 14px;
+		color: white;
+		float: right;
 	}
 }

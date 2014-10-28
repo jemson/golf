@@ -57,6 +57,7 @@ define([
 					var options = {};
 					options.region = this.layout.nextRegion;
 					options.model = this.day;
+					options.dates = this.dates;
 					options.collection = this.reservations;
 					require(['modules/dashboard/next/next_controller'], function(Next){
 						new Next.Controller(options);

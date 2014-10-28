@@ -4256,19 +4256,19 @@ th.hide-for-touch {
   opacity: 1;
 }
 
-/* line 9, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 21, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .dashboard-first {
   width: 30%;
   margin: 0px 0px 0px 30px;
 }
 
-/* line 14, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 26, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .dashboard-second {
   width: 45%;
   margin: 50px 0px 0px 60px;
 }
 
-/* line 19, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 31, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .dashboard-third {
   width: 20%;
   position: absolute;
@@ -4276,7 +4276,7 @@ th.hide-for-touch {
   top: 10%;
 }
 
-/* line 26, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 38, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .day-module {
   padding-top: 40px;
   padding-bottom: 20px;
@@ -4286,8 +4286,9 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 35, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 47, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .schedule-module {
+  text-align: center;
   margin: 0px 0px 0px 0px;
   border: 1px solid #ccc;
   background-color: #ffffff;
@@ -4295,62 +4296,57 @@ th.hide-for-touch {
   margin: 10px 0;
   padding: 20px;
 }
-
-/* line 44, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
-.count-module {
-  border: 1px solid #ccc;
-  background-color: #ffffff;
-  color: #999;
-  margin: 10px 0;
-  padding: 20px;
-}
-/* line 47, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
-.count-module .strong {
-  font-size: 14px;
-  text-align: center;
-}
-/* line 52, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
-.count-module .large-number {
-  font-size: 5px;
-  text-align: center;
-}
 /* line 56, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
-.count-module .large-number.lighter {
+.schedule-module span {
+  font-size: 20px;
+  font-weight: 600;
+}
+/* line 61, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.schedule-module .count-module .strong {
+  font-size: 96px;
+  display: inline-block;
+  padding: 15px 0px 0px 0px;
+}
+/* line 67, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.schedule-module .count-module .large-number {
+  font-size: 20px;
+  display: inline-block;
+}
+/* line 15, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.schedule-module .count-module .large-number.lighter {
   color: #ccc;
 }
 
-/* line 62, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 74, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .next-module {
   border: 1px solid #ccc;
   background-color: #ffffff;
   color: #999;
   margin: 10px 0;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
 }
-/* line 65, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
-.next-module .strong {
-  font-size: 14px;
-  text-align: center;
+/* line 77, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module strong {
+  font-size: 20px;
 }
-/* line 70, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 81, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .next-module .large-number {
-  font-size: 16px;
-  text-align: center;
+  font-size: 32px;
+  color: #606060;
 }
-/* line 74, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
-.next-module .large-number.lighter {
-  color: #ccc;
+/* line 85, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+.next-module .reservation {
+  margin-top: 20px;
+  line-height: 32px;
 }
-/* line 80, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
+/* line 90, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .next-module .btn {
-  height: 40px;
-  width: 120px;
-  border-radius: 4px;
+  background-color: #81BEF7;
+  border-color: #81BEF7;
+  font-family: Helvetica;
   font-size: 12px;
-  position: absolute;
-  right: 0;
-  left: 50%;
-  padding: 14px;
+  color: white;
+  float: right;
 }
 
 /* line 216, c:/xampp/htdocs/golf/public/styles/components/_buttons.scss */

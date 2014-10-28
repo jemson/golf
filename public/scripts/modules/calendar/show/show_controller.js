@@ -20,7 +20,7 @@ define([
 					this.calendarHead();
 					this.calendarBody();
 				});
-
+				
 				options.region.show(this.layout);
 			},
 

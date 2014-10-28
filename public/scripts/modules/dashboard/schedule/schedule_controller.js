@@ -1,6 +1,7 @@
 define([
 	"app",
 	"modules/dashboard/schedule/schedule_view",
+	"entities/reservation"
 ], function(App, View){
 
 		App.module("ScheduleApp.Schedule", function(Schedule, App, Backbone, Marionette, $, _){
@@ -8,6 +9,8 @@ define([
 			Schedule.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
+					this.optionCollection = options.collection;
+
 					var d = new Date();
 					var time = ('0'+d.getHours()).slice(-2)+('0'+d.getMinutes()).slice(-2);
 					
@@ -17,6 +20,9 @@ define([
 
 					this.collectionFilter()
 					this.layout = this.getLayoutView();
+					// this.listenTo(this.optionCollection, 'collection:change', function(){
+					// 	this.test();
+					// });
 					options.region.show(this.layout);
 					this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule)
 				},
@@ -30,10 +36,13 @@ define([
 					this.collection.reset(collection);
 				},
 
-				reserveSchedule: function(iv){
-					iv.model.set({isBooked:true})
-					iv.model.destroy();
-				}
+				// test: function(){
+				// 	var time = '0600'
+				// 		filteredCollection = _.first(this.optionCollection.getReservationsByTime(time), 10);
+				// 	this.test = App.request("reservation:entities:recreate", {data:filteredCollection});
+				// 	console.log(this.test);
+				// 	// this.collection = this.test;
+				// }
 
 			});
 		
