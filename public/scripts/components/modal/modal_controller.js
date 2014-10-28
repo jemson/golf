@@ -8,7 +8,7 @@ define([
 	
 		Modal.Controller = Marionette.Controller.extend({
 			initialize: function(options){
-
+				var that = this;
 				this.options = _.defaults(options, this.defaults);
 				this.collection = options.collection;
 				this.model = options.model;
@@ -24,10 +24,15 @@ define([
 				
 				App.dialogRegion.show(this.layout);
 				this.listenTo(this.layout, 'modal:escape', this.onEscape);
+				this.listenTo(this.layout, 'modal:save', this.reserveTime);
 				this.layoutTermination();
 				
 			},
 		
+			reserveTime: function(){
+				this.model.trigger('save:reservation');
+			},
+
 			getLayout: function(){
 				return new View.Layout({options: this.options});
 			},

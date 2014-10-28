@@ -8,6 +8,8 @@ define([
 		Show.Layout = Marionette.LayoutView.extend({
 			template: LayoutTemplate,
 			tagName: "nav",
+			className: 'window-height',
+			
 		});
 
 	});

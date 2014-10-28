@@ -10,31 +10,67 @@ define([
 		List.Layout = Marionette.LayoutView.extend({
 			template: LayoutTemplate,
 			tagName: 'main',
+			className: 'text-align-center padding-15',
 			regions: {
+				coursesRegion : '#courses-region',
 				reservationsRegion : '#reservations-region',
-				calendarRegion: '#calendar-region',
-			},
+				calendarRegion: '#calendar-region'
+			}
 		});
 
 		List.ModalTemplate = Marionette.ItemView.extend({
-			template: ModalTemplate
-		})
+			template: ModalTemplate,
+			ui:{
+				input: 'input'
+			},
+			triggers: {
+				// 'click [data-save]': 'save:reservation'
+			}
+		});
+
+		List.Course = Marionette.ItemView.extend({
+			template: _.template('<div data-reservation class="reservation-time cursor-pointer margin-0-auto border-radius-2"><%=holes%> holes</div>'),
+			className: 'padding-10 cursor-pointer text-align-center',
+			templateHelpers: {
+				selected: function(){
+					// return this.isSelected === true ? 'background: #82ca9c;' : 'background: white;';
+				}
+			},
+			events: {
+				'click [data-reservation]': 'showSchedules'
+			},
+			showSchedules: function(){
+				$('.reservation-time').removeClass('background-green');
+				this.$('.reservation-time').addClass('background-green');
+				this.trigger('show:schedules', this);	
+			},
+			modelEvents: {
+				'change:isSelected': 'render'
+			}
+		});
+		
+		List.Courses = Marionette.CollectionView.extend({
+			childView: List.Course,
+			className: 'display-inline-flex'
+		});		
 
 		List.ReservationsItemView = Marionette.ItemView.extend({
 			template: ReservationTemplate,
-			className: 'text-align-center padding-0-10-10 ',
+			className: 'text-align-center padding-0-10-10',
 			templateHelpers: {
-				changeBgColor: function(){
-					// if ( this.isBooked == true ) {
-					// 	return 'background-color:yellow;'		
-					// }					
+				timeOfReservation: function(){
+					var parseDate = new Date(this.time.iso);				
+					var hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours();
+					var minutes = parseDate.getMinutes() < 10 ? ( parseDate.getMinutes() + '0' ) : parseDate.getMinutes();
+					var newTime = hours + ':' + minutes;
+					return newTime;
 				},
-				changeText: function(){
-					// if ( this.isBooked == true ) {
-					// 	return 'PAID';						
-					// } else {
-					// 	return this.time;
-					// }
+				changeBgColor: function(){
+					if ( this.isReserved === true ) {
+						return 'background-color: yellow;';						
+					} else {
+						return 'background: #82ca9c;';
+					}
 				},						
 			},
 			events: {
@@ -48,7 +84,7 @@ define([
 				this.trigger('show:dialog', this);
 			},
 			modelEvents: {
-				'change:isBooked':'render'
+				'change:isReserved':'render'
 			},
 		});
 		

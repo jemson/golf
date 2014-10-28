@@ -1,5 +1,13 @@
 @import "../base/global";
 
+.position-absolute {
+	position: absolute;
+}
+
+.login {
+	left: 40%;
+}
+
 .padding-5 {
 	padding: 5px;
 }
@@ -175,4 +183,12 @@
 
 .border-bottom-gray {
 	border-bottom: 1px solid rgb(102, 102, 102);
+}
+
+.display-inline-flex {
+	display: inline-flex;
+}
+
+.background-green {
+	background: #82ca9c;
 }

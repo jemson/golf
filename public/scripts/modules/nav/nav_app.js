@@ -1,14 +1,14 @@
 define([
-	"app"
+	'app'
 ], function(App){
 
-	App.module("NavApp", function(NavApp, App, Backbone, Marionette, $, _){
+	App.module('NavApp', function(NavApp, App, Backbone, Marionette, $, _){
 	
 		// this.startWithParent = false;
 		
 		var API = {
 			showNav: function(){
-				require(["modules/nav/show/show_controller"], function(){
+				require(['modules/nav/show/show_controller'], function(){
 					new NavApp.Show.Controller();
 				});
 			}
