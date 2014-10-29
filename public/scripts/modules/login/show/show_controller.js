@@ -22,7 +22,7 @@ define([
 
 				this.test = App.request('username:entities', {username: username});
 
-				$.when(this.test).done(function(data){
+				this.test.done(function(data){
 					if ( data.length !== 0 ) { data.map(function(model){ App.vent.trigger('show:home:page', model); }); }
 				});
 			},

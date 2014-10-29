@@ -20,12 +20,6 @@ define([
 
 		List.ModalTemplate = Marionette.ItemView.extend({
 			template: ModalTemplate,
-			ui:{
-				input: 'input'
-			},
-			triggers: {
-				// 'click [data-save]': 'save:reservation'
-			}
 		});
 
 		List.Course = Marionette.ItemView.extend({
@@ -33,7 +27,7 @@ define([
 			className: 'padding-10 cursor-pointer text-align-center',
 			templateHelpers: {
 				selected: function(){
-					// return this.isSelected === true ? 'background: #82ca9c;' : 'background: white;';
+					// return this.isSelected ? 'background: #82ca9c;' : 'background: white;';
 				}
 			},
 			events: {
@@ -45,7 +39,8 @@ define([
 				this.trigger('show:schedules', this);	
 			},
 			modelEvents: {
-				'change:isSelected': 'render'
+				'change:isSelected': 'render',
+				'change:isPaid': 'render'
 			}
 		});
 		
@@ -59,7 +54,7 @@ define([
 			className: 'text-align-center padding-0-10-10',
 			templateHelpers: {
 				timeOfReservation: function(){
-					var parseDate = new Date(this.time.iso);				
+					var parseDate = new Date(this.time.iso);	
 					var hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours();
 					var minutes = parseDate.getMinutes() < 10 ? ( parseDate.getMinutes() + '0' ) : parseDate.getMinutes();
 					var newTime = hours + ':' + minutes;
@@ -76,15 +71,11 @@ define([
 			events: {
 				'click [data-button]': 'showDialog'
 			},
-			showDialog: function(){
-				// $('#header-region').addClass('scale margin');
-				// $('#nav-region').addClass('scale');
-				// $('#main-region').addClass('scale');
-				// $('body').addClass('body-color');					
+			showDialog: function(){					
 				this.trigger('show:dialog', this);
 			},
 			modelEvents: {
-				'change:isReserved':'render'
+				'change:isReserved':'render',
 			},
 		});
 		
@@ -94,6 +85,9 @@ define([
 			onDomRefresh: function(){
 				var pageHeight = $(document).height();
 				$('.sidebar').css('height', pageHeight);
+			},
+			collectionEvents: {
+				'change': 'render'
 			}						
 		});
 	

@@ -20,6 +20,9 @@ define([
 			events: {
 				'click [data-close]':'transitionOut',
 				'click [data-save]':'onSave',
+				'click [data-remove]': 'onRemove',
+				'click [data-pay]': 'onPay',
+				'click [data-refund]': 'onRefund'
 			},
 
 			// Merges passed options with default options
@@ -68,6 +71,23 @@ define([
 				this.trigger('modal:save');
 				this.transitionOut();
 			},
+
+			onRemove: function(){
+				this.trigger('modal:remove');
+				this.transitionOut();	
+			},
+
+			onPay: function(){
+				this.action = 'pay';
+				this.trigger('modal:update', this.action);
+				this.transitionOut();
+			},
+
+			onRefund: function(){
+				this.action = 'refund';
+				this.trigger('modal:update', this.action);
+				this.transitionOut();
+			}
 		});
 
 		Modal.Header = Marionette.ItemView.extend({
@@ -78,7 +98,27 @@ define([
 		});
 
 		Modal.Footer = Marionette.ItemView.extend({
-			template: _.template('<button data-close>Cancel</button><button data-save>Save</button>')
+			template: _.template('<button data-close>Cancel</button><%=reserved()%><%=paid()%>'),
+			templateHelpers: {
+				paid: function(){
+					if(this.isReserved){
+						if(this.isPaid){
+							return '<button data-refund>Refund!</button>'
+						}else{
+							return '<button data-pay>Pay now!</button>'
+						}
+					}else{
+						return ''
+					}
+				},
+				reserved: function(){
+					return this.isReserved ? '<button data-remove>Remove</button>' : '<button data-save>Reserve now!</button>';
+				}
+			},
+			modelEvents: {
+				'change:isPaid': 'render'
+			}
+
 		});
 
 	});

@@ -8,6 +8,7 @@ define([
 	Show.Controller = Marionette.Controller.extend({
 			initialize: function(options){
 				this.layout = this.getLayoutView();
+
 				this.day = options.day;
 
 				this.dates = options.model;
@@ -82,6 +83,8 @@ define([
 				if ( data.date ) {
 					this.day.changeDayCalendar(options.model)
 				}
+
+				App.vent.trigger('change:reservation:date', {model: this.dates});
 			},
 
 			//changing of months

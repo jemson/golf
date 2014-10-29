@@ -1,11 +1,8 @@
-define(["app"], function(App){
+define(['app'], function(App){
 
-	App.module("Entities", function(Entities, App, Backbone, Marionette, $, _){
+	App.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
 
 		Entities.Reservation = Backbone.Model.extend({
-			defaults: {
-				isBooked: false,
-			}
 		});
 
 		Entities.ReservationsCollection = Backbone.Collection.extend({
@@ -22,7 +19,6 @@ define(["app"], function(App){
 				var matches = this.filter(function(model){
 					return model.get("isBooked") === true;
 				});
-
 				return matches.length;
 			},
 			
@@ -52,6 +48,7 @@ define(["app"], function(App){
 					return reservation.get("time") > time;
 				});
 			}
+
 		});
 	
 		var API = {
@@ -101,7 +98,6 @@ define(["app"], function(App){
 
 				var times = [];
 				var time = new Date(2014,5,6,6);
-
 				do {
 
 					var reservationTime = ('0'+time.getHours()).slice(-2)+('0'+time.getMinutes()).slice(-2);
@@ -126,20 +122,17 @@ define(["app"], function(App){
 
 				return reservations;
 			},
+
 		};
 	
-		App.reqres.setHandler("reservations:entity", function(){
-		});
-	
-		App.reqres.setHandler("reservations:entities:empty", function(){
-			return API.getEmptyReservations();		
-		});	
+		App.reqres.setHandler('reservations:entity', function(){
+		});			
 
-		App.reqres.setHandler("reservation:entities", function(options){
+		App.reqres.setHandler('reservation:entities', function(options){
 			return API.getReservations(options);
 		});
 
-		App.reqres.setHandler("reservation:entities:recreate", function(options){
+		App.reqres.setHandler('reservation:entities:recreate', function(options){
 			return API.recreateReservations(options);
 		});
 	
