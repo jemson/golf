@@ -2,7 +2,6 @@
 
 module.exports = function(grunt){
 
-
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
@@ -14,10 +13,21 @@ module.exports = function(grunt){
         },
       }
     },
+    mocha: {
+      urls: ['http://localhost:8001/test.html'],
+      options: {
+        run: true,
+        log: true,
+      }
+    },
     watch: {
       css: {
         files: ['public/styles/**/*.scss'],
         tasks: ['compass']
+      },
+      test: {
+        files: ['tests/spec/**/*.js'],
+        tasks: ['test']
       },
     },
     clean: {
@@ -29,6 +39,19 @@ module.exports = function(grunt){
             port: 8000,
             hostname: 'localhost',
             // livereload: true,
+        },
+        test: {
+            options: {
+                port: 8001,
+                target: 'http://localhost:8001/test.html',
+                open: true,
+                middleware: function (connect) {
+                    return [
+                        connect.static('tests'),
+                        connect.static('public')
+                    ];
+                }
+            }
         },
         server: {
             options: {
@@ -48,7 +71,14 @@ module.exports = function(grunt){
   grunt.registerTask('server', [
     'clean:server',
     'compass',
+    'connect:server',
     'watch'
+  ]);
+
+  grunt.registerTask('test', [
+    // 'connect:test',
+    'mocha',
+    'watch:test'
   ]);
 
   grunt.registerTask('build', [
