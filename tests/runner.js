@@ -20,7 +20,7 @@ require([
 	
 	/** schedule test */
 	// 'spec/modules/schedule/show.js',
-	// 'spec/modules/schedule/list.js'
+	'spec/modules/schedule/list.js'
 ], function(){
 
 	mocha.run();

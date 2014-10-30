@@ -25,12 +25,23 @@ define([
 				App.dialogRegion.show(this.layout);
 				this.listenTo(this.layout, 'modal:escape', this.onEscape);
 				this.listenTo(this.layout, 'modal:save', this.reserveTime);
+				this.listenTo(this.layout, 'modal:remove', this.remove);
+				this.listenTo(this.layout, 'modal:update', this.update);
 				this.layoutTermination();
-				
 			},
 		
 			reserveTime: function(){
 				this.model.trigger('save:reservation');
+			},
+
+			remove: function(){
+				this.model.trigger('remove:reservation');
+			},
+
+			update: function(action){
+				var options = {};
+				options.action = action;
+				this.model.trigger('update:reservation', options);
 			},
 
 			getLayout: function(){
@@ -42,7 +53,7 @@ define([
 			},
 
 			getFooterView: function(){
-				return new View.Footer();
+				return new View.Footer({model: this.model});
 			},
 
 			// Uses Marionette's 'before:destroy' event to remove the layout

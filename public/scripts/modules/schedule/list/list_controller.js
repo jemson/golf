@@ -2,10 +2,9 @@ define([
 	'app',
 	'modules/schedule/list/list_view',
 	'components/modal/modal_controller',
-	'entities/reservation',
 	'entities/course',
 	'entities/date',
-	'entities/reservation',
+	'entities/reservation_parse'
 ], function(App, View, Modal){
 
 	App.module('ScheduleApp.List', function(List, App, Backbone, Marionette, $, _){
@@ -14,7 +13,19 @@ define([
 
 			initialize: function(options){
 				var that = this;
+					data = {
+						date: new Date(),
+					}
 				var fetchedCourses = App.request('courses:entities');
+
+				this.date = new Date();
+
+				this.id = options.id;
+
+				this.courseId = '';
+
+				this.day = App.request('date:entity', data);
+
 				this.dates = App.request('dates:entities:date');
 				
 				this.reservationCollection = App.request('reservations:entities:empty');
@@ -25,8 +36,6 @@ define([
 
 				this.listenTo(this.layout, 'show', function(){
 					this.calendarRegion();
-					// this.reservationsRegion();
-
 				});
 
 				App.mainRegion.show(this.layout);
@@ -34,13 +43,30 @@ define([
 				fetchedCourses.done(_.bind(function(courses){
 					this.courses = courses;
 					this.iterateCourses(courses);
-					// this.getReservationsCollection();
-
-					// that.courses = data;
-					// that.coursesRegion();
 					this.coursesRegion();
 				}, this));
 
+				App.vent.on('change:reservation:date', _.bind(function(options){
+					this.changeReservationDate(options.model);
+				}, this));
+
+			},
+
+			changeReservationDate: function(model){
+				var month = model.get('month_name') 
+					day = model.get('exact_date') 
+					year = model.get('year');
+				this.date = new Date(month + ' ' + day + ' ' + year);
+				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				this.reservationsRegion();
+			},
+
+
+			openSchedulePage: function(iv){
+				var that = this;
+				this.courseId = iv.model.id;
+				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				this.reservationsRegion();
 			},
 
 			// get courses
@@ -67,16 +93,6 @@ define([
 				this.layout.coursesRegion.show(this.courses);
 			},
 
-			openSchedulePage: function(iv){
-				var that = this;
-				var courseId = iv.model.id;
-				this.schedules = App.request('reservations:entities:full', {courseId:courseId});
-				this.listenTo(this.schedules, 'change', function(){
-					that.reservationsRegion();
-				});
-				this.reservationsRegion();
-			},
-
 			reservationsRegion: function(){
 				this.reservationsView = this.getReservationsView();
 				this.listenTo(this.reservationsView, 'childview:show:dialog', this.showDialog);
@@ -87,7 +103,7 @@ define([
 				var options = {};
 					options.region = this.layout.calendarRegion;
 					options.model = this.dates;
-					
+					options.day = this.day;
 					require(['modules/calendar/show/show_controller'], function(Show){
 						new Show.Controller(options);
 					});
@@ -109,35 +125,96 @@ define([
 				return new View.ModalTemplate();
 			},	
 
-			showDialog: function(iv){
-				var that = this;
-				var modalTemplate = this.getModalTemplate();
-					options = {};
-					options.header = true;
-					options.footer = true;
+			getNoCourseSelected: function(){
+				return new View.NoCourseSelectedTemplate();
+			},
 
+			showDialog: function(iv){
+				var that = this,
+					options = {};
+				if(iv.model.get('courseId') !== '') { 
+					var modalTemplate = this.getModalTemplate();
+						options.header = true;
+						options.footer = true;
+				}else{	 
+					var modalTemplate = this.getNoCourseSelected();
+						options.header = false;
+						options.footer = false;
+				}	
+
+				// save reservation
 				this.listenTo(iv.model, 'save:reservation', function(){
 					var time = iv.model.get('time')
-						name = modalTemplate.ui.input.val()
 						course = iv.model.get('courseId');
-						// console.log(courseId);
 
 					this.emptyReservation.save({
 						  courseId: {'__type':'Pointer','className':'Course','objectId':course},
-						  // memberId: 1234567,
+						  memberId: {'__type':'Pointer','className':'User','objectId':that.id},
 						  time: time
 						}, {
-						  success: function(model) {
+						wait: true,
+						success: function(model) {
 							iv.model.set('isReserved', true);
-						  	console.log(model);
-						  },
-						  error: function(model, error) {
-							console.log(model, error);
-						  }
-						});
+							iv.model.set('objectId', model.id)
+							that.emptyReservation = App.request('reservations:entity:empty');
+						},
+						error: function(model, error) {
+						// console.log(model, error);
+						}
+					});
 				});
 
-				new Modal.Controller({contentView: modalTemplate, options: options, model: iv.model});
+				// TODO: Move to entities file
+				// remove reservation
+				this.listenTo(iv.model, 'remove:reservation', function(){
+					var id = iv.model.id;
+					var test = Parse.Object.extend('Reservation');
+					var query = new Parse.Query(test);
+					query.get(id, {
+						wait: true,
+						success: function(model){
+							model.destroy({
+								wait: true,
+								success: function(model){
+									iv.model.set('isReserved', false); 
+									that.stopListening(iv.model); 
+								}
+							});
+						},
+						error: function(model, error){
+							console.log(model, error);
+						}
+					});
+				});
+
+				// TODO: Move to entities file
+				// update if user is paid
+				this.listenTo(iv.model, 'update:reservation', function(options){
+					var paid = true;
+					var id = iv.model.id;
+					options.action === 'pay' ? paid = true : paid = false;
+
+					var test1 = Parse.Object.extend('Reservation');
+					var query1 = new Parse.Query(test1);
+					query1.get(id, {
+						wait: true,
+						success: function(model){
+							model.save({'isPaid': paid}, {
+								wait: true,
+								success: function(model){
+									iv.model.set('isPaid', paid);
+									that.stopListening(iv.model); 
+								}
+							});
+						},
+						error: function(model, error){
+							console.log(model, error);
+						}
+					});
+
+				});
+
+				new Modal.Controller({contentView: modalTemplate , options: options, model: iv.model});
 
 			},
 

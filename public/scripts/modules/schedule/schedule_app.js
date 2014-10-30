@@ -6,7 +6,7 @@ define([
 
 		ScheduleApp.Router = Marionette.AppRouter.extend({
 			appRoutes: {
-				':uri/schedule': 'list'
+				'schedule/:uri': 'list'
 			}
 		});
 		
@@ -39,11 +39,11 @@ define([
 			API.show(options);		
 		});
 
-		App.vent.on('show:home:page', function(options){
+		App.vent.on('show:schedule:page', function(options){
 			var username = options.get('username'),
 				id = options.id;
 			var uri = username + '-' + id;	
-			Backbone.history.navigate('/'+uri+'/schedule');
+			Backbone.history.navigate('schedule/'+uri);
 			API.list(uri, {model: options})
 		});
 
