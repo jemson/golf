@@ -14,10 +14,21 @@ module.exports = function(grunt){
         },
       }
     },
+    mocha: {
+            urls: ['http://localhost:8001/test.html'],
+      options: {
+        run: true,
+        log: true,
+      }
+    },
     watch: {
       css: {
         files: ['public/styles/**/*.scss'],
         tasks: ['compass']
+      },
+      test: {
+        files: ['tests/spec/**/*.js'],
+        tasks: ['test']
       },
     },
     clean: {
@@ -49,6 +60,12 @@ module.exports = function(grunt){
     'clean:server',
     'compass',
     'watch'
+  ]);
+
+  grunt.registerTask('test', [
+    'connect:test',
+    'mocha',
+    'watch:test'
   ]);
 
   grunt.registerTask('build', [
