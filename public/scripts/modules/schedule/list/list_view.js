@@ -22,6 +22,10 @@ define([
 			template: ModalTemplate,
 		});
 
+		List.NoCourseSelectedTemplate = Marionette.ItemView.extend({
+			template: _.template('<button data-close class="text-align-center">Please select a Golf Course first</button>'),
+		});
+
 		List.Course = Marionette.ItemView.extend({
 			template: _.template('<div data-reservation class="reservation-time cursor-pointer margin-0-auto border-radius-2"><%=holes%> holes</div>'),
 			className: 'padding-10 cursor-pointer text-align-center',

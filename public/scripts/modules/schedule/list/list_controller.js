@@ -125,12 +125,22 @@ define([
 				return new View.ModalTemplate();
 			},	
 
+			getNoCourseSelected: function(){
+				return new View.NoCourseSelectedTemplate();
+			},
+
 			showDialog: function(iv){
-				var that = this;
-				var modalTemplate = this.getModalTemplate();
+				var that = this,
 					options = {};
-					options.header = true;
-					options.footer = true;
+				if(iv.model.get('courseId') !== '') { 
+					var modalTemplate = this.getModalTemplate();
+						options.header = true;
+						options.footer = true;
+				}else{	 
+					var modalTemplate = this.getNoCourseSelected();
+						options.header = false;
+						options.footer = false;
+				}	
 
 				// save reservation
 				this.listenTo(iv.model, 'save:reservation', function(){
@@ -204,7 +214,7 @@ define([
 
 				});
 
-				new Modal.Controller({contentView: modalTemplate, options: options, model: iv.model});
+				new Modal.Controller({contentView: modalTemplate , options: options, model: iv.model});
 
 			},
 
