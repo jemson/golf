@@ -29,11 +29,6 @@ define([
 		List.Course = Marionette.ItemView.extend({
 			template: _.template('<div data-reservation class="reservation-time cursor-pointer margin-0-auto border-radius-2"><%=holes%> holes</div>'),
 			className: 'padding-10 cursor-pointer text-align-center',
-			templateHelpers: {
-				selected: function(){
-					// return this.isSelected ? 'background: #82ca9c;' : 'background: white;';
-				}
-			},
 			events: {
 				'click [data-reservation]': 'showSchedules'
 			},
