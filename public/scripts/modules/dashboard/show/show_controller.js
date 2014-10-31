@@ -2,7 +2,7 @@ define([
 	'app',
 	'modules/dashboard/show/show_view',
 	'entities/date',
-	'entities/reservation'
+	'entities/reservation',
 ], function(App, View){
 
 		App.module('DashBoardApp.Show', function(Show, App, Backbone, Marionette, $, _){
@@ -17,7 +17,7 @@ define([
 					this.layout = this.getLayoutView();
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
-					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
+					this.reservations = App.request('reservation:entities:full', {date:this.day.get('date')});
 
 					this.listenTo(this.layout, 'show', function(){
 						this.dayRegion();

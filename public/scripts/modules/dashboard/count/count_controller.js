@@ -9,6 +9,7 @@ define([
 	
 				initialize: function(options){
 					this.collection = options.collection;
+					console.log(this.collection);
 					this.layout = this.getLayoutView();
 					options.region.show(this.layout);
 

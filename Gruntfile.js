@@ -64,8 +64,7 @@ module.exports = function(grunt){
             }
         },
     },
-
-
+    
   });
 
   grunt.registerTask('server', [
@@ -76,7 +75,7 @@ module.exports = function(grunt){
   ]);
 
   grunt.registerTask('test', [
-    // 'connect:test',
+    'connect:test',
     'mocha',
     'watch:test'
   ]);

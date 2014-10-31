@@ -17,7 +17,6 @@ define(['app'], function(App){
 		var ReservationsCollection = Parse.Collection.extend({
 			initialize: function(options){
 				// var courseId = options.courseId || {};
-
 				this.on('add', _.bind(function(model){
 					this.checkReservation(model);
 				}, this));
@@ -49,7 +48,15 @@ define(['app'], function(App){
 				// 		}
 				// 	});
 
-			}
+			},
+			countReservations: function(){
+				this.on('change', _.bind(function(){
+					var matches = this.filter(function(model){
+						return model.get('isReserved') === true;
+					});
+					return matches.length;
+				}, this));
+			},
 		});
 	
 		var API = {
@@ -72,10 +79,7 @@ define(['app'], function(App){
 			// TODO check reservation in Parse before returning the collection
 			getFullReservationsParse: function(options){
 				var reservationsCollection = new ReservationsCollection();
-				// var s = options.date;				
-				// s.setHours(05, 45, 0, 0);
-				// var f = options.date;				
-				// f.setHours(14, 0, 0, 0);
+
 				// set the time for the schedule today hh/mm/ss/ms
 				var startDate = new Date(options.date);				
 				startDate.setHours(05, 45, 0, 0);

@@ -61,11 +61,12 @@ define([
 				this.reservationsRegion();
 			},
 
-
 			openSchedulePage: function(iv){
 				var that = this;
 				this.courseId = iv.model.id;
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				// var x = this.schedules.countReservations();
+				// console.log(x);
 				this.reservationsRegion();
 			},
 

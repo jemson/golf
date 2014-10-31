@@ -51,7 +51,7 @@ define([
 			});
 
 			it('course region should show list of courses when click', function(){
-				console.log(courses.events.object);
+				// console.log(courses.events.propertyName);
 				expect(courses.events).to.be.an('object').and.to.have.ownProperty('click [data-reservation]');
 			});
 
