@@ -25,6 +25,7 @@ define([
 				this.test.done(function(data){
 					if ( data.length !== 0 ) { data.map(function(model){ App.vent.trigger('show:home:page', model); }); }
 				});
+				this.layout.destroy();
 			},
 
 			getLayoutView: function(){

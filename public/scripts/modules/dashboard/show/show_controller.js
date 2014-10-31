@@ -17,20 +17,23 @@ define([
 					this.layout = this.getLayoutView();
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
+					
+					//reservation not loading 
 					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
 
 					this.listenTo(this.layout, 'show', function(){
+						this.calendarRegion();
 						this.dayRegion();
 						this.countRegion();
 						this.nextRegion();
 						this.scheduleRegion();
-						this.calendarRegion();
 					});
 
 					this.listenTo(this.day, 'render:layout', function(){
 						this.nextRegion();
 						this.scheduleRegion();
 					});
+
 					App.mainRegion.show(this.layout);
 				},
 
@@ -85,7 +88,7 @@ define([
 
 				getLayoutView: function(){
 					return new View.Layout();					
-				},
+				}
 
 			});
 		

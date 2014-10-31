@@ -13,17 +13,22 @@
 	});
 
 	App.on('before:start', function(){
-
+		require([
+			'entities/user'
+		], function(){
+			App.user = App.request('username:static');
+		});
 	});
 
 	App.addInitializer(function(){
-		require(['modules/header/header_app', 'modules/nav/nav_app', 'modules/login/login_app']);
+		require(['modules/header/header_app']);//, 'modules/login/login_app']);
 	});
 
 	App.on('start', function() {
 		require([
 			// 'modules/home/home_app',
 			'modules/schedule/schedule_app',
+			'modules/nav/nav_app',
 			'modules/dashboard/dashboard_app',
 			// 'modules/calendar/calendar_app'
 		], function(){

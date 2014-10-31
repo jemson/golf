@@ -6,12 +6,7 @@ require.config({
 		jquery: '../bower_components/jquery/dist/jquery',
 		underscore: '../bower_components/lodash/dist/lodash',
 		expanding: 'libs/expanding',
-		text: '../bower_components/text/text',
-		'owl.carousel': 'libs/owl.carousel',
-		'moment': '../bower_components/moment/moment',
-		pusher: '//js.pusher.com/2.2/pusher.min',
-        filepicker: "//api.filepicker.io/v1/filepicker",
-        md5: '../bower_components/js-md5/js/md5',
+		text: '../bower_components/text/text'
 
 	},
 	shim: {
@@ -22,12 +17,7 @@ require.config({
 		marionette: {
 			deps: ['backbone'],
 			exports: 'Marionette'
-		},
-		expanding: ['jquery'],
-		'owl.carousel': ['jquery'],
-		pusher: {
-			exports: 'Pusher'
-		},
+		}
 	}
 });
 

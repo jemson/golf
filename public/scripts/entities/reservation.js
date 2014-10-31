@@ -94,10 +94,9 @@ define(['app'], function(App){
 					closeTime	= "1400";
 				var reservations = new Entities.ReservationsCollection();
 
-				// reservations.fetch();
-
 				var times = [];
 				var time = new Date(2014,5,6,6);
+
 				do {
 
 					var reservationTime = ('0'+time.getHours()).slice(-2)+('0'+time.getMinutes()).slice(-2);
@@ -113,7 +112,7 @@ define(['app'], function(App){
 				} while ( reservationTime < closeTime );
 
 				reservations.add(times);
-
+				
 				return reservations;
 			},
 

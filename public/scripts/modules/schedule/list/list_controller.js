@@ -53,11 +53,13 @@ define([
 			},
 
 			changeReservationDate: function(model){
+
 				var month = model.get('month_name') 
 					day = model.get('exact_date') 
 					year = model.get('year');
 				this.date = new Date(month + ' ' + day + ' ' + year);
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+			
 				this.reservationsRegion();
 			},
 
@@ -94,6 +96,7 @@ define([
 			},
 
 			reservationsRegion: function(){
+				//this.resevationsView is called even when dashboard is loaded
 				this.reservationsView = this.getReservationsView();
 				this.listenTo(this.reservationsView, 'childview:show:dialog', this.showDialog);
 				this.layout.reservationsRegion.show(this.reservationsView);

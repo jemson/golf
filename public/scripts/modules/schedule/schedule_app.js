@@ -6,22 +6,21 @@ define([
 
 		ScheduleApp.Router = Marionette.AppRouter.extend({
 			appRoutes: {
-				'schedule/:uri': 'list'
+				'schedule': 'list'
 			}
 		});
 		
 		var API = {
 			list: function(uri, options){
 
-				var controllerOptions = options || {};
-				controllerOptions.id = this.getIdFromUri(uri);
-				controllerOptions.uri = uri;
-
+				// var controllerOptions = options || {};
+				// controllerOptions.id = this.getIdFromUri(uri);
+				// controllerOptions.uri = uri;
 				require(['modules/schedule/list/list_controller'], function(){
-					new ScheduleApp.List.Controller(controllerOptions);
+					new ScheduleApp.List.Controller();
 				});
 
-				App.trigger('nav:active:change', '#schedule');
+				// App.trigger('nav:active:change', '#schedule');
 			},
 
 			show: function(options){
@@ -35,22 +34,27 @@ define([
 			},
 		};
 
-		App.vent.on('itemview:show:dialog', function(options){
-			API.show(options);		
-		});
+		// App.vent.on('itemview:show:dialog', function(options){
+		// 	API.show(options);		
+		// });
 
-		App.vent.on('show:schedule:page', function(options){
-			var username = options.get('username'),
-				id = options.id;
-			var uri = username + '-' + id;	
-			Backbone.history.navigate('schedule/'+uri);
-			API.list(uri, {model: options})
-		});
+		// App.vent.on('show:schedule:page', function(options){
+		// 	var username = options.get('username'),
+		// 		id = options.id;
+		// 	var uri = username + '-' + id;	
+		// 	Backbone.history.navigate('schedule/'+uri);
+		// 	API.list(uri, {model: options})
+		// });
 
 		App.addInitializer(function(){
 			new ScheduleApp.Router({
 				controller: API
 			});
+		});
+
+		App.vent.on("show:schedule:page", function(){
+			Backbone.history.navigate('schedule');
+			API.list();
 		});
 
 	});
