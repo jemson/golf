@@ -61,25 +61,11 @@ define(['app'], function(App){
 	
 		var API = {
 
-			getReservationsParse: function(){
-				// var query = new Parse.Query(Reservation)
-				// 	.include('courseId');
-				// var reservations = query.collection();
-				// var defer = $.Deferred();
-				// reservations.fetch({
-				// 	success: function(data){
-				// 		defer.resolve(data);
-				// 	}
-				// });
-
-				// return defer.promise();
-			},
-
 			// TODO change date according to selected date on calendar
 			// TODO check reservation in Parse before returning the collection
 			getFullReservationsParse: function(options){
 				var reservationsCollection = new ReservationsCollection();
-
+				// fMQIT0ix52 18 holes
 				// set the time for the schedule today hh/mm/ss/ms
 				var startDate = new Date(options.date);				
 				startDate.setHours(05, 45, 0, 0);
@@ -143,10 +129,6 @@ define(['app'], function(App){
 		App.reqres.setHandler('reservations:entity:empty', function(options){
 			return API.getEmptyReservationParse(options);		
 		});			
-
-		App.reqres.setHandler('reservation:entities', function(options){
-			return API.getReservationsParse(options);
-		});
 	
 	});
 

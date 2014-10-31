@@ -3,6 +3,7 @@ define([
 	'modules/dashboard/show/show_view',
 	'entities/date',
 	'entities/reservation',
+	'entities/reservation_parse'
 ], function(App, View){
 
 		App.module('DashBoardApp.Show', function(Show, App, Backbone, Marionette, $, _){
@@ -17,8 +18,13 @@ define([
 					this.layout = this.getLayoutView();
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
-					this.reservations = App.request('reservation:entities:full', {date:this.day.get('date')});
-
+					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
+					this.parseReservation = App.request('reservations:entities:full', {date:this.day.get('date'), courseId:'fMQIT0ix52'});
+					this.listenTo(this.parseReservation, 'change', _.bind(function(){
+						this.parseReservation.map(function(model){
+							console.log(model.get('isReserved'));
+						});
+					}, this));
 					this.listenTo(this.layout, 'show', function(){
 						this.dayRegion();
 						this.countRegion();
