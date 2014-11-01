@@ -1,11 +1,11 @@
 define([
-	"app",
-	"modules/dashboard/next/next_view",
-	"entities/reservation"
-
+	'app',
+	'modules/dashboard/next/next_view',
+	'entities/reservation',
+	'entities/reservation_parse'
 ], function(App, View){
 
-	App.module("NextApp.Next", function(Next, App, Backbone, Marionette, $, _){
+	App.module('NextApp.Next', function(Next, App, Backbone, Marionette, $, _){
 
 		Next.Controller = Marionette.Controller.extend({
 
@@ -16,8 +16,10 @@ define([
 				this.model = options.model;
 				this.dates = options.dates;
 
-				this.nextReservation = this.collection.getNextReservation(this.getCurrentTime());
-				
+				this.emptyReservation = App.request('reservations:entity:empty');
+
+				this.nextReservation = this.collection.getNextReservation(this.model.get('date'));
+
 				this.layout = this.getLayoutView();
 				options.region.show(this.layout);
 
@@ -25,7 +27,7 @@ define([
 				// 	this.resetCollection();
 				// });
 
-				this.listenTo(this.layout, "save:next:reservation", this.saveReservation);
+				this.listenTo(this.layout, 'save:next:reservation', this.saveReservation);
 			},
 
 			getLayoutView: function(){
@@ -42,14 +44,39 @@ define([
 				return time;
 			},
 
+			// saveReservation: function(iv){
+			// 	iv.model.set({isReserved:true});
+			// 	var time = iv.model.get('time');
+
+			// 	this.model.get('date').setHours(time.slice(0, -2), time.slice(-2), 00);
+
+			// 	this.model.trigger('render:layout');
+			// },
+
 			saveReservation: function(iv){
-				//this is where the save is placed
-				iv.model.set({isBooked:true});
+				// this.model.trigger('render:layout');
+				iv.model.set({isReserved:true});
 				var time = iv.model.get('time');
+					course = iv.model.get('courseId');
+					that = this;
 
-				this.model.get('date').setHours(time.slice(0, -2), time.slice(-2), 00);
+				this.emptyReservation.save({
+					  courseId: {'__type':'Pointer','className':'Course','objectId':course},
+					  memberId: {'__type':'Pointer','className':'User','objectId': 'gK63TY0vdZ'},
+					  time: time
+					}, {
+					wait: true,
+					success: function(model) {
+						console.log('success');
+						iv.model.set('isReserved', true);
+						iv.model.set('objectId', model.id);
+						that.model.trigger('render:layout');
+						that.emptyReservation = App.request('reservations:entity:empty');
+					},
+					error: function(model, error) {
 
-				this.model.trigger('render:layout');
+					}
+				});
 			},
 
 			// resetCollection: function(){

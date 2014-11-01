@@ -19,14 +19,7 @@ define([
 					this.day = App.request('date:entity', data);
 					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
 					this.parseReservation = App.request('reservations:entities:full', {date:this.day.get('date'), courseId:'fMQIT0ix52'});
-					this.listenTo(this.parseReservation, 'change', function(){
-						var x = this.parseReservation.map(function(model){
-							return model.attributes;
-						});
-
-						this.reservations.reset(x);
-						this.countRegion();
-					});
+					this.test();
 
 					this.layout = this.getLayoutView();
 					this.listenTo(this.layout, 'show', function(){
@@ -37,11 +30,27 @@ define([
 						this.calendarRegion();
 					});
 
+					App.mainRegion.show(this.layout);
+
 					this.listenTo(this.day, 'render:layout', function(){
+						console.log('hello');
+						this.countRegion();
 						this.nextRegion();
+						this.test();
 						this.scheduleRegion();
 					});
-					App.mainRegion.show(this.layout);
+				},
+
+				test: function(){
+					this.listenTo(this.parseReservation, 'change', function(){
+						var x = this.parseReservation.map(function(model){
+							return model.attributes;
+						});
+
+						this.reservations.reset(x);
+						this.countRegion();
+						this.nextRegion();
+					});
 				},
 
 				dayRegion: function(){
@@ -69,7 +78,7 @@ define([
 
 				nextRegion: function(){
 					var options = {};
-					// options.collection = this.reservations;
+					options.collection = this.reservations;
 					options.region = this.layout.nextRegion;
 					options.model = this.day;
 					options.dates = this.dates;

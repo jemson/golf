@@ -7,7 +7,7 @@ define(['app'], function(App){
 
 		Entities.ReservationsCollection = Backbone.Collection.extend({
 			model: Entities.Reservation,
-			comparator: "time",
+			comparator: 'time',
 
 			parse: function(response){
 				return response.results;
@@ -16,7 +16,7 @@ define(['app'], function(App){
 			// Filters reservations for isBooked: true and returns count
 			countReservations: function(){
 				var matches = this.filter(function(model){
-					return model.get("isReserved") === true;
+					return model.get('isReserved') === true;
 				});
 				return matches.length;
 			},
@@ -37,13 +37,13 @@ define(['app'], function(App){
 
 			getNextReservation: function(time){
 				return this.find(function(reservation){
-					return reservation.get("time") > time && reservation.get("isBooked") === false;
+					return reservation.get('time') > time && typeof reservation.get('isReserved') === 'undefined';
 				});
 			},
 			
 			getReservationsByTime: function(time){
 				return this.filter(function(reservation){
-					return reservation.get("time") > time;
+					return reservation.get('time') > time;
 				});
 			}
 
@@ -55,23 +55,23 @@ define(['app'], function(App){
 				var emptyReservations = new Entities.ReservationsCollection([]);	
 
 				var newReservations = [
-					{isBooked: true, time: "06:00", guestCount: "2", fullName: "Peter Parker" },			
-					{isBooked: true, time: "08:00", guestCount: "1", fullName: "Bruce Banner"},
-					{isBooked: true, time: "10:00", guestCount: "3", fullName: "Tony Stark"}					
+					{isBooked: true, time: '06:00', guestCount: '2', fullName: 'Peter Parker' },			
+					{isBooked: true, time: '08:00', guestCount: '1', fullName: 'Bruce Banner'},
+					{isBooked: true, time: '10:00', guestCount: '3', fullName: 'Tony Stark'}					
 				];
 				emptyReservations.add(newReservations, {merge: true});
 				
-					var startDate = new Date("May 5, 2014 06:00");
-					var endDate = new Date("May 5, 2014 14:00");
+					var startDate = new Date('May 5, 2014 06:00');
+					var endDate = new Date('May 5, 2014 14:00');
 
 					do {
-						var nowHours = startDate.getHours() < 10 ? ( "0" + startDate.getHours() ) : startDate.getHours();
-						var nowMinutes = startDate.getMinutes() < 10 ? ( "0" + startDate.getMinutes() ) : startDate.getMinutes();
+						var nowHours = startDate.getHours() < 10 ? ( '0' + startDate.getHours() ) : startDate.getHours();
+						var nowMinutes = startDate.getMinutes() < 10 ? ( '0' + startDate.getMinutes() ) : startDate.getMinutes();
 							
-							if (emptyReservations.findWhere( {time: nowHours+":"+nowMinutes} ) ){
+							if (emptyReservations.findWhere( {time: nowHours+':'+nowMinutes} ) ){
 								
 							}else{
-								now = nowHours+":"+nowMinutes;
+								now = nowHours+':'+nowMinutes;
 								emptyReservations.push({time:now});
 							}
 
@@ -88,8 +88,8 @@ define(['app'], function(App){
 				var now = options.date || new Date(),
 					tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
 
-				var openTime	= "0600",
-					closeTime	= "1400";
+				var openTime	= '0600',
+					closeTime	= '1400';
 				var reservations = new Entities.ReservationsCollection();
 
 				var times = [];
