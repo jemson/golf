@@ -32,12 +32,16 @@ define([
 
 					App.mainRegion.show(this.layout);
 
-					this.listenTo(this.day, 'render:layout', function(){
-						console.log('hello');
-						this.countRegion();
-						this.nextRegion();
-						this.test();
+					this.listenTo(this.day, 'render:layout', function(options){
+						console.log('success');
+						// this.countRegion();
+						// this.nextRegion();
+						this.parseReservation = App.request('reservations:entities:full', {date:options.time, courseId:'fMQIT0ix52'});
 						this.scheduleRegion();
+						this.test();
+						// this.parseReservation.map(function(model){
+						// 	console.log(model.get('isReserved'));
+						// });
 					});
 				},
 
@@ -50,6 +54,7 @@ define([
 						this.reservations.reset(x);
 						this.countRegion();
 						this.nextRegion();
+						// this.scheduleRegion();
 					});
 				},
 

@@ -22,7 +22,8 @@ define([
 					if ( Number(time)+15 > this.nextAvailableReservation ) {
 						return 'NOW';
 					} else {
-						return ( this.nextAvailableReservation.slice(0,2) - dHours ) * 60 + ( this.nextAvailableReservation.slice(3) - dMinutes ) + ' minutes';
+						var x = ( this.nextAvailableReservation.slice(0,2) - dHours ) * 60 + ( this.nextAvailableReservation.slice(3) - dMinutes );
+						return x > 1 ? x + ' minutes' : x + ' minute';
 					}
 				}
 			},

@@ -55,7 +55,7 @@ define([
 
 			saveReservation: function(iv){
 				// this.model.trigger('render:layout');
-				iv.model.set({isReserved:true});
+				iv.model.set('isReserved', true);
 				var time = iv.model.get('time');
 					course = iv.model.get('courseId');
 					that = this;
@@ -67,10 +67,12 @@ define([
 					}, {
 					wait: true,
 					success: function(model) {
-						console.log('success');
-						iv.model.set('isReserved', true);
+						// this.collection.map(function(model){
+						// 	console.log(model.get('isReserved'));
+						// });
+						// iv.model.set('isReserved', true);
 						iv.model.set('objectId', model.id);
-						that.model.trigger('render:layout');
+						that.model.trigger('render:layout', {time:time});
 						that.emptyReservation = App.request('reservations:entity:empty');
 					},
 					error: function(model, error) {
