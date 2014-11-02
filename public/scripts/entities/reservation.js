@@ -15,9 +15,8 @@ define(['app'], function(App){
 
 			// Filters reservations for isBooked: true and returns count
 			countReservations: function(){
-
 				var matches = this.filter(function(model){
-					return model.get("isBooked") === true;
+					return model.get("isReserved") === true;
 				});
 				return matches.length;
 			},

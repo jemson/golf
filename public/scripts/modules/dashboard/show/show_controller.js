@@ -2,7 +2,7 @@ define([
 	'app',
 	'modules/dashboard/show/show_view',
 	'entities/date',
-	// 'entities/reservation',
+	'entities/reservation',
 	'entities/reservation_parse'
 ], function(App, View){
 
@@ -15,12 +15,20 @@ define([
 						date: new Date(),
 					}
 
-					this.layout = this.getLayoutView();
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
-					// this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
+					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
 					this.parseReservation = App.request('reservations:entities:full', {date:this.day.get('date'), courseId:'fMQIT0ix52'});
+					this.listenTo(this.parseReservation, 'change', function(){
+						var x = this.parseReservation.map(function(model){
+							return model.attributes;
+						});
 
+						this.reservations.reset(x);
+						this.countRegion();
+					});
+
+					this.layout = this.getLayoutView();
 					this.listenTo(this.layout, 'show', function(){
 						this.dayRegion();
 						this.countRegion();
@@ -46,7 +54,7 @@ define([
 					});
 				},
 
-				countRegion: function(region){
+				countRegion: function(){
 					var options = {};
 					options.collection = this.reservations;
 					options.region = this.layout.countRegion;
