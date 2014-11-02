@@ -49,24 +49,34 @@ define(['app'], function(App){
 				// 		}
 				// 	});
 
-			}
+			},
+			countReservations: function(){
+				var matches = this.filter(function(model){
+					return model.get('isReserved') === true;
+				});
+				console.log(matches);
+				return matches.length;
+			},
+			countAvailableReservations: function(){
+				return this.length - this.countReservations();
+			},
+			getReservationsByTime: function(time){
+				return this.filter(function(reservation){
+					return reservation.get('time') > time;
+				});
+			},
+			scheduleFilter: function(){
+				this.on('change', _.bind(function(){
+					var matches = this.filter(function(model){
+						return typeof model.get('isReserved') === 'undefined';
+					});
+					return this.reset(matches);
+				}, this));
+			},
+
 		});
 	
 		var API = {
-
-			getReservationsParse: function(){
-				// var query = new Parse.Query(Reservation)
-				// 	.include('courseId');
-				// var reservations = query.collection();
-				// var defer = $.Deferred();
-				// reservations.fetch({
-				// 	success: function(data){
-				// 		defer.resolve(data);
-				// 	}
-				// });
-
-				// return defer.promise();
-			},
 
 			// TODO change date according to selected date on calendar
 			// TODO check reservation in Parse before returning the collection
@@ -123,8 +133,10 @@ define(['app'], function(App){
 				return emptyReservation;
 			},
 
-			test: function(options){
-				return options;
+			recreateReservations: function(options){
+				var reservations = new ReservationsCollection();
+				reservations.add(options.data);
+				return reservations;		
 			},
 
 		};
@@ -138,11 +150,11 @@ define(['app'], function(App){
 
 		App.reqres.setHandler('reservations:entity:empty', function(options){
 			return API.getEmptyReservationParse(options);		
-		});			
+		});	
 
-		App.reqres.setHandler('reservation:entities', function(options){
-			return API.getReservationsParse(options);
-		});
+		App.reqres.setHandler('reservation:entities:recreate:parse', function(options){
+			return API.recreateReservations(options);
+		});		
 	
 	});
 

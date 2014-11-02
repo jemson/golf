@@ -22,19 +22,17 @@ define([
 
 				// App.trigger('nav:active:change', '#schedule');
 			},
+			// loadCount: function(options){
+			// 	require(['modules/dashboard/_count/count_controller'], function(){
+			// 		new DashBoardApp.Count.Controller(options);
+			// 	});
+			// },
+
 
 			// getIdFromUri: function(uri){
 			// 	return _.last(uri.split('-'));
 			// },
 		};
-
-		// App.vent.on('show:home:page', function(options){
-		// 	var username = options.get('username'),
-		// 		id = options.id;
-		// 	var uri = username + '-' + id;	
-		// 	Backbone.history.navigate('dashboard/'+uri);
-		// 	API.show(uri, {model: options});
-		// });
 
 		App.addInitializer(function(){
 			new DashBoardApp.Router({
@@ -45,6 +43,10 @@ define([
 		App.vent.on("show:home:page", function(){
 			Backbone.history.navigate('dashboard');
 			API.show();
+		});
+
+		App.commands.setHandler('count:load:region', function(options){
+			API.loadCount(options);
 		});
 
 	});

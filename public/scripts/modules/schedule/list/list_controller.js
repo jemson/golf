@@ -53,21 +53,20 @@ define([
 			},
 
 			changeReservationDate: function(model){
-
 				var month = model.get('month_name') 
 					day = model.get('exact_date') 
 					year = model.get('year');
 				this.date = new Date(month + ' ' + day + ' ' + year);
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
-			
 				this.reservationsRegion();
 			},
-
 
 			openSchedulePage: function(iv){
 				var that = this;
 				this.courseId = iv.model.id;
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				// var x = this.schedules.countReservations();
+				// console.log(x);
 				this.reservationsRegion();
 			},
 
@@ -96,9 +95,9 @@ define([
 			},
 
 			reservationsRegion: function(){
-				//this.resevationsView is called even when dashboard is loaded
 				this.reservationsView = this.getReservationsView();
 				this.listenTo(this.reservationsView, 'childview:show:dialog', this.showDialog);
+				// console.log(this.layout.reservationsRegion, this.layout.calendarRegion, this.layout.coursesRegion);
 				this.layout.reservationsRegion.show(this.reservationsView);
 			},
 
@@ -152,7 +151,7 @@ define([
 
 					this.emptyReservation.save({
 						  courseId: {'__type':'Pointer','className':'Course','objectId':course},
-						  memberId: {'__type':'Pointer','className':'User','objectId':that.id},
+						  memberId: {'__type':'Pointer','className':'User','objectId': 'gK63TY0vdZ'},
 						  time: time
 						}, {
 						wait: true,

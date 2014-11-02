@@ -22,13 +22,7 @@ define([
 
 				// App.trigger('nav:active:change', '#schedule');
 			},
-
-			show: function(options){
-				require(['modules/schedule/show/show_controller'], function(){
-					new ScheduleApp.Show.Controller(options);
-				});
-			},
-
+			
 			getIdFromUri: function(uri){
 				return _.last(uri.split('-'));
 			},

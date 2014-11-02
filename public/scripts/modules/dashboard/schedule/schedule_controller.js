@@ -1,10 +1,11 @@
 define([
-	"app",
-	"modules/dashboard/schedule/schedule_view",
-	"entities/reservation"
+	'app',
+	'modules/dashboard/schedule/schedule_view',
+	'entities/reservation_parse',
+	'entities/reservation'
 ], function(App, View){
 
-		App.module("ScheduleApp.Schedule", function(Schedule, App, Backbone, Marionette, $, _){
+		App.module('ScheduleApp.Schedule', function(Schedule, App, Backbone, Marionette, $, _){
 	
 			Schedule.Controller = Marionette.Controller.extend({
 	
@@ -12,13 +13,14 @@ define([
 					this.optionCollection = options.collection;
 
 					var d = new Date();
+
 					var time = ('0'+d.getHours()).slice(-2)+('0'+d.getMinutes()).slice(-2);
 					
-					var filteredCollection = _.first(options.collection.getReservationsByTime(time), 10);
+					var filteredCollection = _.first(options.collection.getReservationsByTime(d), 10);
 
-					this.collection = App.request("reservation:entities:recreate", {data:filteredCollection});
+					this.collection = App.request('reservation:entities:recreate:parse', {data:filteredCollection});
 
-					this.collectionFilter()
+					this.collectionFilter();
 					this.layout = this.getLayoutView();
 					// this.listenTo(this.optionCollection, 'collection:change', function(){
 					// 	this.test();
@@ -33,16 +35,8 @@ define([
 
 				collectionFilter: function(){
 					var collection = this.collection.scheduleFilter();
-					this.collection.reset(collection);
+					// this.collection.reset(collection);
 				},
-
-				// test: function(){
-				// 	var time = '0600'
-				// 		filteredCollection = _.first(this.optionCollection.getReservationsByTime(time), 10);
-				// 	this.test = App.request("reservation:entities:recreate", {data:filteredCollection});
-				// 	console.log(this.test);
-				// 	// this.collection = this.test;
-				// }
 
 			});
 		

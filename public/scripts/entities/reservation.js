@@ -24,12 +24,11 @@ define(['app'], function(App){
 			
 
 			scheduleFilter: function(){
-
 				var matches = this.filter(function(model){
-					return model.get("isBooked") === false;
+					return typeof model.get('isReserved') === 'undefined';
 				});
-
-				return this.reset(matches);
+				console.log(matches);
+				// return this.reset(matches);
 			},
 
 			// Subtracts the size of how many booked reservations from the total amount of reservations
@@ -117,6 +116,7 @@ define(['app'], function(App){
 			},
 
 			recreateReservations: function(options){
+
 				var reservations = new Entities.ReservationsCollection(options.data)
 
 				return reservations;

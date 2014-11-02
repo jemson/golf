@@ -9,6 +9,15 @@ define([
 		Schedule.Reservation = Marionette.ItemView.extend({
 			template: ReservationTemplate,
 			className: "schedule-module",
+			templateHelpers: {
+				openTime: function(){
+					var parseDate = new Date(this.time.iso);	
+					var hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours();
+					var minutes = parseDate.getMinutes() < 10 ? ( parseDate.getMinutes() + '0' ) : parseDate.getMinutes();
+					var newTime = hours + ':' + minutes;
+					return newTime;
+				}
+			}
 		});
 
 		Schedule.Reservations = Marionette.CompositeView.extend({

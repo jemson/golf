@@ -1,16 +1,19 @@
 define([
-	"app",
-	"modules/dashboard/count/count_view",
+	'app',
+	'modules/dashboard/count/count_view',
+	'entities/reservation_parse'
 ], function(App, View){
 
-		App.module("CountApp.Count", function(Count, App, Backbone, Marionette, $, _){
+		App.module('DashBoardApp.Count', function(Count, App, Backbone, Marionette, $, _){
 	
 			Count.Controller = Marionette.Controller.extend({
 	
 				initialize: function(options){
 					this.collection = options.collection;
+					this.region = options.region;
+
 					this.layout = this.getLayoutView();
-					options.region.show(this.layout);
+					this.region.show(this.layout);
 
 				},
 
@@ -22,6 +25,6 @@ define([
 		
 		});
 	
-		return App.CountApp.Count;
+		return App.DashBoardApp.Count;
 		
 });
