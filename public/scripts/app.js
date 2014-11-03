@@ -1,4 +1,4 @@
-	define([
+define([
 	'marionette',
 	'config/settings'
 ], function(Marionette){
@@ -21,21 +21,23 @@
 	});
 
 	App.addInitializer(function(){
-		require(['modules/header/header_app']);//, 'modules/login/login_app']);
+		require([
+			'modules/header/header_app',
+			'modules/nav/nav_app'
+			],  function(){	
+			App.module("NavApp").start();
+			App.module("HeaderApp").start();
+		});
 	});
 
 	App.on('start', function() {
 		require([
-			// 'modules/home/home_app',
 			'modules/schedule/schedule_app',
 			'modules/nav/nav_app',
 			'modules/dashboard/dashboard_app',
 			// 'modules/calendar/calendar_app'
 		], function(){
-
-			if (Backbone.history) {
-				Backbone.history.start();
-			}
+			Backbone.history.start();
 
 			$(document).on('click', 'a:not([data-bypass])', function(e) {
 				var href = $(this).attr('href');
