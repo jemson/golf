@@ -27,7 +27,7 @@ define([
 				this.day = App.request('date:entity', data);
 
 				this.dates = App.request('dates:entities:date');
-				
+			
 				this.reservationCollection = App.request('reservations:entities:empty');
 
 				this.emptyReservation = App.request('reservations:entity:empty');
@@ -45,12 +45,16 @@ define([
 					this.coursesRegion();
 				}, this));
 
-				App.vent.on('change:reservation:date', _.bind(function(options){
+				App.commands.setHandler('change:reservation:date', _.bind(function(options){
 					this.changeReservationDate(options.model);
 				}, this));
-
+				// App.vent.on('change:reservation:date', _.bind(function(options){
+				// 	this.changeReservationDate(options.model);
+				// }, this));
 			},
 
+			// TODO: Set date when user selects a date on the calendar first
+			// before choosing a golf course
 			changeReservationDate: function(model){
 				var month = model.get('month_name') 
 					day = model.get('exact_date') 
@@ -64,9 +68,6 @@ define([
 				var that = this;
 				this.courseId = iv.model.id;
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
-				this.schedules.map(function(model){
-					console.log(model.get('isReserved'));
-				});
 				this.reservationsRegion();
 			},
 
@@ -79,7 +80,7 @@ define([
 			reservationsRegion: function(){
 				this.reservationsView = this.getReservationsView();
 				this.listenTo(this.reservationsView, 'childview:show:dialog', this.showDialog);
-				this.layout.reservationsRegion.show(this.reservationsView);
+				this.layout.reservationsRegion.show(this.reservationsView);	
 			},
 
 			calendarRegion: function(){
