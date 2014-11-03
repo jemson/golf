@@ -2,10 +2,10 @@
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
-@import "global";
-@import "grid";
-@import "buttons";
-@import "forms";
+@import "../base/global";
+@import "../layout/grid";
+@import "../components/buttons";
+@import "../components/forms";
 
 //
 // Top Bar Variables
@@ -13,7 +13,7 @@
 $include-html-top-bar-classes: $include-html-classes !default;
 
 // Background color for the top bar
-$topbar-bg-color: $oil !default;
+$topbar-bg-color: #82ca9c !default;
 $topbar-bg: $topbar-bg-color !default;
 
 // Height and margin

@@ -1,4 +1,4 @@
-define([
+	define([
 	'marionette',
 	'config/settings'
 ], function(Marionette){
@@ -8,20 +8,29 @@ define([
 	App.addRegions({
 		headerRegion: '#header-region',
 		navRegion: '#nav-region',
-		mainRegion:'#main-region'
+		mainRegion:'#main-region',
+		dialogRegion:'#dialog-region'
 	});
 
 	App.on('before:start', function(){
-
+		require([
+			'entities/user'
+		], function(){
+			App.user = App.request('username:static');
+		});
 	});
 
 	App.addInitializer(function(){
-		require(['modules/header/header_app','modules/nav/nav_app']);
+		require(['modules/header/header_app']);//, 'modules/login/login_app']);
 	});
 
 	App.on('start', function() {
 		require([
-
+			// 'modules/home/home_app',
+			'modules/schedule/schedule_app',
+			'modules/nav/nav_app',
+			'modules/dashboard/dashboard_app',
+			// 'modules/calendar/calendar_app'
 		], function(){
 
 			if (Backbone.history) {
