@@ -42,7 +42,6 @@ define([
 
 				fetchedCourses.done(_.bind(function(courses){
 					this.courses = courses;
-					this.iterateCourses(courses);
 					this.coursesRegion();
 				}, this));
 
