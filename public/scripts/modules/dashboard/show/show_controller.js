@@ -1,4 +1,4 @@
-define([
+ define([
 	'app',
 	'modules/dashboard/show/show_view',
 	'entities/date',
@@ -18,8 +18,8 @@ define([
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
 					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
-					this.parseReservation = App.request('reservations:entities:full', {date:this.day.get('date'), courseId:'fMQIT0ix52'});
-					this.test();
+					this.fetchCollection(this.day.get('date'));
+					this.resetReservation();
 
 					this.layout = this.getLayoutView();
 					this.listenTo(this.layout, 'show', function(){
@@ -36,16 +36,27 @@ define([
 						console.log('success');
 						// this.countRegion();
 						// this.nextRegion();
-						this.parseReservation = App.request('reservations:entities:full', {date:options.time, courseId:'fMQIT0ix52'});
+						this.fetchCollection(options.time);
 						this.scheduleRegion();
-						this.test();
-						// this.parseReservation.map(function(model){
-						// 	console.log(model.get('isReserved'));
-						// });
+						this.resetReservation();
+					});
+
+					this.listenTo(App.vent, 'change:reservation:date', function(options){
+						var month = options.model.get('month_name') || options.model.get('month') 
+							day = options.model.get('exact_date') || options.model.get('day') 
+							year = options.model.get('year');
+						this.date = new Date(month + ' ' + day + ' ' + year);
+						this.fetchCollection(this.date);
+						this.scheduleRegion();
+						this.resetReservation();	
 					});
 				},
 
-				test: function(){
+				fetchCollection: function(time){
+					this.parseReservation = App.request('reservations:entities:full', {date:time, courseId:'fMQIT0ix52'});
+				},
+
+				resetReservation: function(){
 					this.listenTo(this.parseReservation, 'change', function(){
 						var x = this.parseReservation.map(function(model){
 							return model.attributes;
@@ -54,7 +65,6 @@ define([
 						this.reservations.reset(x);
 						this.countRegion();
 						this.nextRegion();
-						// this.scheduleRegion();
 					});
 				},
 

@@ -26,8 +26,7 @@ define(['app'], function(App){
 				var matches = this.filter(function(model){
 					return typeof model.get('isReserved') === 'undefined';
 				});
-				console.log(matches);
-				// return this.reset(matches);
+				return this.reset(matches);
 			},
 
 			// Subtracts the size of how many booked reservations from the total amount of reservations
@@ -85,31 +84,47 @@ define(['app'], function(App){
 			},
 
 			getReservations: function(options){
-				var now = options.date || new Date(),
-					tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+				// var now = options.date || new Date(),
+				// 	tmw = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
 
-				var openTime	= '0600',
-					closeTime	= '1400';
+				// var openTime	= '0600',
+				// 	closeTime	= '1400';
+				// var reservations = new Entities.ReservationsCollection();
+
+				// var times = [];
+				// var time = new Date(2014,5,6,6);
+
+				// do {
+
+				// 	var reservationTime = ('0'+time.getHours()).slice(-2)+('0'+time.getMinutes()).slice(-2);
+
+				// 	if ( !reservations.findWhere({time:reservationTime}) ) {
+				// 	    times.push({
+				// 	        time: reservationTime,
+				// 	    });						
+				// 	}
+
+				//     time.setMinutes(time.getMinutes()+15);
+
+				// } while ( reservationTime < closeTime );
+
 				var reservations = new Entities.ReservationsCollection();
 
-				var times = [];
-				var time = new Date(2014,5,6,6);
+				var startDate = new Date();				
+				startDate.setHours(05, 45, 0, 0);
+				var endDate = new Date();
+				endDate.setHours(14, 0, 0, 0);
+				var timeOfCourse = [];
+				
+			  	while(startDate < endDate){
 
-				do {
+					timeOfCourse.push({time:startDate, courseId: options.courseId});         
 
-					var reservationTime = ('0'+time.getHours()).slice(-2)+('0'+time.getMinutes()).slice(-2);
+					var newDate = startDate.setMinutes( startDate.getMinutes() + 15 );
+					startDate = new Date(newDate);
+			    }
 
-					if ( !reservations.findWhere({time:reservationTime}) ) {
-					    times.push({
-					        time: reservationTime,
-					    });						
-					}
-
-				    time.setMinutes(time.getMinutes()+15);
-
-				} while ( reservationTime < closeTime );
-
-				reservations.add(times);
+				reservations.add(timeOfCourse);
 				
 				return reservations;
 			},

@@ -33,7 +33,9 @@ define([
 						hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours(),
 						minutes = parseDate.getMinutes() < 10 ? ( parseDate.getMinutes() + '0' ) : parseDate.getMinutes(),
 						newTime = hours + ':' + minutes;
-				}					
+
+				}		
+			
 				return {
 					nextAvailableReservation: (typeof this.model === 'undefined') ? 'Tomorrow' : newTime,
 				}

@@ -70,24 +70,6 @@ define([
 				this.reservationsRegion();
 			},
 
-			// get courses
-			// iterate through courses
-			// Create a collection full of time/date/course
-			// Use model initialize event to check if time/date/course has been reserved
-			// **get reservations after iteration
-			// **load reservation collection after reservations retrieved
-			// 
-			iterateCourses: function(courses){
-				// courses.map( _.bind(function(course){
-				// 	if (course.get('holes') === 18){
-				// 		this.courseOne = App.request('reservations:entities:full', {courseId:course.id});											
-				// 	}else{
-				// 		this.courseTwo = App.request('reservations:entities:full', {courseId:course.id});											
-				// 	}
-				// }, this));
-				// console.log(this.courseOne, this.courseTwo);
-			},
-
 			coursesRegion: function(){
 				this.courses = this.getCourses();
 				this.listenTo(this.courses, 'childview:show:schedules', this.openSchedulePage);
@@ -218,6 +200,24 @@ define([
 
 				new Modal.Controller({contentView: modalTemplate , options: options, model: iv.model});
 
+			},
+
+			// get courses
+			// iterate through courses
+			// Create a collection full of time/date/course
+			// Use model initialize event to check if time/date/course has been reserved
+			// **get reservations after iteration
+			// **load reservation collection after reservations retrieved
+			// 
+			iterateCourses: function(courses){
+				// courses.map( _.bind(function(course){
+				// 	if (course.get('holes') === 18){
+				// 		this.courseOne = App.request('reservations:entities:full', {courseId:course.id});											
+				// 	}else{
+				// 		this.courseTwo = App.request('reservations:entities:full', {courseId:course.id});											
+				// 	}
+				// }, this));
+				// console.log(this.courseOne, this.courseTwo);
 			},
 
 		});

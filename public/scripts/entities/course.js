@@ -15,14 +15,24 @@ define(["app"], function(App){
 			getCourses: function(){
 				var query = new Parse.Query(Entities.Course)
 					.include('clubId');
+					// query.get("DyVlZj5oQe", {
+					// 	success: function(model){
+					// 		model.destroy({
+					// 			wait: true,
+					// 			success: function(model){
+
+					// 			}
+					// 		});
+					// 	}
+					// });
 				var courses = query.collection();
 				var defer = $.Deferred();
 				courses.fetch({
 					success: function(data){
+						// console.log(data);
 						defer.resolve(data);
 					}
 				});
-
 				return defer.promise();
 			},
 

@@ -54,7 +54,6 @@ define(['app'], function(App){
 				var matches = this.filter(function(model){
 					return model.get('isReserved') === true;
 				});
-				console.log(matches);
 				return matches.length;
 			},
 			countAvailableReservations: function(){
@@ -82,10 +81,7 @@ define(['app'], function(App){
 			// TODO check reservation in Parse before returning the collection
 			getFullReservationsParse: function(options){
 				var reservationsCollection = new ReservationsCollection();
-				// var s = options.date;				
-				// s.setHours(05, 45, 0, 0);
-				// var f = options.date;				
-				// f.setHours(14, 0, 0, 0);
+
 				// set the time for the schedule today hh/mm/ss/ms
 				var startDate = new Date(options.date);				
 				startDate.setHours(05, 45, 0, 0);
