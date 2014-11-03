@@ -19,7 +19,7 @@ define([
 				this.emptyReservation = App.request('reservations:entity:empty');
 
 				this.nextReservation = this.collection.getNextReservation(this.model.get('date'));
-
+				
 				this.layout = this.getLayoutView();
 				options.region.show(this.layout);
 
@@ -60,7 +60,7 @@ define([
 					error: function(model, error) {}
 				});
 			},
-			
+
 		});
 	
 	});

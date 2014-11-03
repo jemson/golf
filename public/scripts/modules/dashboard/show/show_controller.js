@@ -21,6 +21,10 @@
 					this.fetchCollection(this.day.get('date'));
 					this.resetReservation();
 
+					var currMonth = this.day.get('date').getMonth(),
+						currDay = this.day.get('date').getDate(),
+						currYear = this.day.get('date').getFullYear();
+
 					this.layout = this.getLayoutView();
 					this.listenTo(this.layout, 'show', function(){
 						this.dayRegion();
@@ -38,13 +42,14 @@
 						this.resetReservation();
 					});
 
-					// TODO: Change time pass in next region according to date today
+					// TODO: Change time pass in next region according to date selected calendar
 					this.listenTo(App.vent, 'change:reservation:date', function(options){
 						var month = options.model.get('month_name') || options.model.get('month') 
 							day = options.model.get('exact_date') || options.model.get('day') 
 							year = options.model.get('year');
 						this.date = new Date(month + ' ' + day + ' ' + year);
-
+						this.currDate = new Date((currMonth + 1) + ' ' + currDay + ' ' + currYear);
+						if(+this.currDate === +this.date){ this.day.set('date', data.date); }
 						this.fetchCollection(this.date);
 						this.reservations.reset(this.mapCollection());
 						this.scheduleRegion();

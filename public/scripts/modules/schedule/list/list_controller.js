@@ -65,6 +65,9 @@ define([
 				var that = this;
 				this.courseId = iv.model.id;
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				this.schedules.map(function(model){
+					console.log(model.get('isReserved'));
+				});
 				this.reservationsRegion();
 			},
 
