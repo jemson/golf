@@ -64,18 +64,19 @@ define(['app'], function(App){
 					startDate = new Date(newDate);
 			    }
 
-				var d = new Date();
 				var s = new Date(options.date);				
 				s.setHours(05, 45, 0, 0);				
-				var dateTomorrow = new Date(d.getTime() + 24 * 60 * 60 * 1000);
-				var dateYesterDay = new Date(d - 1000 * 60 * 60 * 24);
+
+				var dateYesterDay = new Date(s.setDate(s.getDate() - 1));
+				var dateTomorrow = new Date(s.setDate(s.getDate() + 2));
 				// TODO: query data according to course id 
 				// and date selected in the calendar
 				var dateNow = new Date().getDate();				
 				var query = new Parse.Query(Reservation)
 					.include('courseId')
 					.equalTo('courseId', {'__type':'Pointer','className':'Course','objectId':options.courseId})
-					.greaterThanOrEqualTo('time', s)
+					.greaterThan('time', dateYesterDay)
+					.lessThan('time', dateTomorrow)
 					.find(function(data){
 					reservationsCollection.map(function(model){
 						for(var i = 0; i < data.length; ++i){
@@ -85,13 +86,13 @@ define(['app'], function(App){
 						}
 					});
 				});
-
-				reservationsCollection.on('change', function(){
-					reservationsCollection.add(timeOfCourse);
-					console.log(reservationsCollection);
-				});
+	
 				reservationsCollection.add(timeOfCourse);
 				return reservationsCollection;
+
+				// FOR REFERENCE: DONT DELETE
+				// var dateTomorrow = new Date(s.getTime() + 24 * 60 * 60 * 1000);
+				// var dateYesterDay = new Date(s - 1000 * 60 * 60 * 24);
 			},
 
 			getEmptyReservationParse: function(){
