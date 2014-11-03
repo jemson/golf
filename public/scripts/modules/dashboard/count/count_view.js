@@ -7,7 +7,12 @@ define([
 
 		Count.Layout = Marionette.LayoutView.extend({
 			collectionEvents: {
-				'change' : 'render'
+				'change:isReserved' : 'render'
+			},
+			initialize: function(){
+				this.collection.map(function(model){
+					// console.log(model.get('isReserved'));
+				});
 			},
 			className: 'row schedule-module',
 			template: LayoutTemplate,

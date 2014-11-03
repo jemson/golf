@@ -65,8 +65,6 @@ define([
 				var that = this;
 				this.courseId = iv.model.id;
 				this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
-				// var x = this.schedules.countReservations();
-				// console.log(x);
 				this.reservationsRegion();
 			},
 
@@ -79,7 +77,6 @@ define([
 			reservationsRegion: function(){
 				this.reservationsView = this.getReservationsView();
 				this.listenTo(this.reservationsView, 'childview:show:dialog', this.showDialog);
-				// console.log(this.layout.reservationsRegion, this.layout.calendarRegion, this.layout.coursesRegion);
 				this.layout.reservationsRegion.show(this.reservationsView);
 			},
 
@@ -142,9 +139,7 @@ define([
 							iv.model.set('objectId', model.id)
 							that.emptyReservation = App.request('reservations:entity:empty');
 						},
-						error: function(model, error) {
-						// console.log(model, error);
-						}
+						error: function(model, error) {}
 					});
 				});
 
@@ -165,9 +160,7 @@ define([
 								}
 							});
 						},
-						error: function(model, error){
-							console.log(model, error);
-						}
+						error: function(model, error){}
 					});
 				});
 
@@ -191,33 +184,13 @@ define([
 								}
 							});
 						},
-						error: function(model, error){
-							console.log(model, error);
-						}
+						error: function(model, error){}
 					});
 
 				});
 
 				new Modal.Controller({contentView: modalTemplate , options: options, model: iv.model});
 
-			},
-
-			// get courses
-			// iterate through courses
-			// Create a collection full of time/date/course
-			// Use model initialize event to check if time/date/course has been reserved
-			// **get reservations after iteration
-			// **load reservation collection after reservations retrieved
-			// 
-			iterateCourses: function(courses){
-				// courses.map( _.bind(function(course){
-				// 	if (course.get('holes') === 18){
-				// 		this.courseOne = App.request('reservations:entities:full', {courseId:course.id});											
-				// 	}else{
-				// 		this.courseTwo = App.request('reservations:entities:full', {courseId:course.id});											
-				// 	}
-				// }, this));
-				// console.log(this.courseOne, this.courseTwo);
 			},
 
 		});

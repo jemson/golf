@@ -23,10 +23,6 @@ define([
 				this.layout = this.getLayoutView();
 				options.region.show(this.layout);
 
-				// this.listenTo(this.model, 'change', function(){
-				// 	this.resetCollection();
-				// });
-
 				this.listenTo(this.layout, 'save:next:reservation', this.saveReservation);
 			},
 
@@ -43,15 +39,6 @@ define([
 
 				return time;
 			},
-
-			// saveReservation: function(iv){
-			// 	iv.model.set({isReserved:true});
-			// 	var time = iv.model.get('time');
-
-			// 	this.model.get('date').setHours(time.slice(0, -2), time.slice(-2), 00);
-
-			// 	this.model.trigger('render:layout');
-			// },
 
 			saveReservation: function(iv){
 				var time = iv.model.get('time');
@@ -70,23 +57,10 @@ define([
 						that.model.trigger('render:layout', {time:time});
 						that.emptyReservation = App.request('reservations:entity:empty');
 					},
-					error: function(model, error) {
-
-					}
+					error: function(model, error) {}
 				});
 			},
-
-			// resetCollection: function(){
-			// 	var temp = [];
-
-			// 	_.each(this.cloneCollection.models, function(model){
-			// 		temp.push(model)
-			// 	});
-			// 	this.collection.reset(temp);
-			// 	this.collection.trigger('collection:change')
-			// 	this.model.trigger('render:layout');
-			// }
-
+			
 		});
 	
 	});

@@ -15,10 +15,6 @@ define([
 				scheduleRegion: '#small-schedule-region',
 				calendarRegion: '#calendar-region'
 			},
-			onDomRefresh: function(){
-				var pageHeight = $(document).height();
-				$('.sidebar').css('height', pageHeight);
-			}
 		});
 
 	});

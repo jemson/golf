@@ -33,21 +33,23 @@
 					App.mainRegion.show(this.layout);
 
 					this.listenTo(this.day, 'render:layout', function(options){
-						console.log('success');
-						// this.countRegion();
-						// this.nextRegion();
 						this.fetchCollection(options.time);
 						this.scheduleRegion();
 						this.resetReservation();
 					});
 
+					// TODO: Change time pass in next region according to date today
 					this.listenTo(App.vent, 'change:reservation:date', function(options){
 						var month = options.model.get('month_name') || options.model.get('month') 
 							day = options.model.get('exact_date') || options.model.get('day') 
 							year = options.model.get('year');
 						this.date = new Date(month + ' ' + day + ' ' + year);
+
 						this.fetchCollection(this.date);
+						this.reservations.reset(this.mapCollection());
 						this.scheduleRegion();
+						this.countRegion();
+						this.nextRegion();
 						this.resetReservation();	
 					});
 				},
@@ -58,13 +60,16 @@
 
 				resetReservation: function(){
 					this.listenTo(this.parseReservation, 'change', function(){
-						var x = this.parseReservation.map(function(model){
-							return model.attributes;
-						});
 
-						this.reservations.reset(x);
+						this.reservations.reset(this.mapCollection());
 						this.countRegion();
 						this.nextRegion();
+					});
+				},
+
+				mapCollection: function(){
+					return this.parseReservation.map(function(model){
+						return model.attributes;
 					});
 				},
 

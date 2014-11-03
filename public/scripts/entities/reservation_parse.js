@@ -4,20 +4,10 @@ define(['app'], function(App){
 
 		var Reservation = Parse.Object.extend({
 			className: 'Reservation',
-			initialize: function(options){
-				// var courseId = options.courseId || {};
-
-				this.on('add', _.bind(function(model){
-					// console.log(model);
-				}, this));
-			
-			},
 		});
 
 		var ReservationsCollection = Parse.Collection.extend({
 			initialize: function(options){
-				// var courseId = options.courseId || {};
-
 				this.on('add', _.bind(function(model){
 					this.checkReservation(model);
 				}, this));
@@ -25,29 +15,6 @@ define(['app'], function(App){
 			},
 			model: Reservation,
 			checkReservation: function(model){
-				// var that = this;
-				// // check if model for a time has a reservation
-				// // var re = /^(\d{1,2})-(\d{1,2})-(\d{4})$/;
-				// // var todaysDate = new Date(d.getTime());
-				// var d = new Date();				
-				// var dateTomorrow = new Date(d.getTime() + 24 * 60 * 60 * 1000);
-				// var dateYesterDay = new Date(d - 1000 * 60 * 60 * 24);
-				
-				// // TODO: query data according to course id 
-				// // and date selected in the calendar
-				// var dateNow = new Date().getDate();				
-				// var query = new Parse.Query(Reservation)
-				// 	.include('courseId')
-				// 	.equalTo('courseId', {'__type':'Pointer','className':'Course','objectId':model.get('courseId')})
-				// 	.greaterThan('time', dateYesterDay)
-				// 	.lessThan('time', dateTomorrow)
-				// 	.find(function(data){
-				// 		for(var i = 0; i < data.length; ++i){							
-				// 			if (+model.get('time') === +data[i].get('time')) {
-				// 				model.set({'isReserved': true, 'isPaid': data[i].get('isPaid'), 'objectId': data[i].id});
-				// 			}
-				// 		}
-				// 	});
 
 			},
 			countReservations: function(){
@@ -109,7 +76,6 @@ define(['app'], function(App){
 					.include('courseId')
 					.equalTo('courseId', {'__type':'Pointer','className':'Course','objectId':options.courseId})
 					.greaterThanOrEqualTo('time', s)
-					// .lessThanOrEqualTo('time', endDate)
 					.find(function(data){
 					reservationsCollection.map(function(model){
 						for(var i = 0; i < data.length; ++i){

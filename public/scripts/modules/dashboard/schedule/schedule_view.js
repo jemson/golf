@@ -27,6 +27,10 @@ define([
 			collectionEvents: {
 				'change' : 'render'
 			},
+			onRender: function(){
+				var pageHeight = $(document).height();
+				$('.sidebar').css('height', pageHeight);
+			}
 		});
 
 	});

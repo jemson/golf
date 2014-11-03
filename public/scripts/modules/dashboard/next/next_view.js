@@ -23,19 +23,22 @@ define([
 						return 'NOW';
 					} else {
 						var x = ( this.nextAvailableReservation.slice(0,2) - dHours ) * 60 + ( this.nextAvailableReservation.slice(3) - dMinutes );
-						return x > 1 ? x + ' minutes' : x + ' minute';
+						if (x < 1){
+							return 'N/A';
+						}else{
+							return x > 1 ? x + ' minutes' : x + ' minute';
+						}
 					}
 				}
 			},
+			// TODO: Change time pass in next region according to date today
 			serializeData: function(){
 				if(typeof this.model !== 'undefined'){
 					var parseDate = this.model.get('time'),	
 						hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours(),
 						minutes = parseDate.getMinutes() < 10 ? ( parseDate.getMinutes() + '0' ) : parseDate.getMinutes(),
 						newTime = hours + ':' + minutes;
-
 				}		
-			
 				return {
 					nextAvailableReservation: (typeof this.model === 'undefined') ? 'Tomorrow' : newTime,
 				}

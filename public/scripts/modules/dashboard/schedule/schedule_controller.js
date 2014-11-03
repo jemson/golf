@@ -22,9 +22,6 @@ define([
 
 					this.collectionFilter();
 					this.layout = this.getLayoutView();
-					// this.listenTo(this.optionCollection, 'collection:change', function(){
-					// 	this.test();
-					// });
 					options.region.show(this.layout);
 					this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule)
 				},
