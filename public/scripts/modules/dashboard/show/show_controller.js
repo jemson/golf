@@ -42,8 +42,8 @@
 						this.resetReservation();
 					});
 
-					// TODO: Change time pass in next region according to date selected calendar
-					this.listenTo(App.vent, 'change:reservation:date', function(options){
+					// // TODO: Change time pass in next region according to date selected calendar
+					App.commands.setHandler('change:reservation:date', _.bind(function(options){
 						var month = options.model.get('month_name') || options.model.get('month') 
 							day = options.model.get('exact_date') || options.model.get('day') 
 							year = options.model.get('year');
@@ -56,7 +56,10 @@
 						this.countRegion();
 						this.nextRegion();
 						this.resetReservation();	
-					});
+					}, this));
+					// this.listenTo(App.vent, 'change:reservation:date', function(options){
+
+					// });
 				},
 
 				fetchCollection: function(time){
@@ -98,7 +101,7 @@
 				},
 
 				// countRegion: function(){
-				// 	App.execute("count:load:region", { region: this.layout.countRegion, collection: this.parseReservation} );
+				// 	App.execute("count:load:region", { region: this.layout.countRegion, collection: this.reservations} );
 				// },
 
 				nextRegion: function(){
@@ -115,7 +118,7 @@
 				scheduleRegion: function(){
 					var options = {};
 					options.collection = this.parseReservation;
-					options.region = this.layout.scheduleRegion
+					options.region = this.layout.scheduleRegion;
 					require(['modules/dashboard/schedule/schedule_controller'], function(Schedule){
 						new Schedule.Controller(options);
 					});

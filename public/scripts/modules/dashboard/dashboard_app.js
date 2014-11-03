@@ -23,7 +23,7 @@ define([
 				// App.trigger('nav:active:change', '#schedule');
 			},
 			// loadCount: function(options){
-			// 	require(['modules/dashboard/_count/count_controller'], function(){
+			// 	require(['modules/dashboard/count/count_controller'], function(){
 			// 		new DashBoardApp.Count.Controller(options);
 			// 	});
 			// },

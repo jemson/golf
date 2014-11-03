@@ -48,7 +48,7 @@ define(['app'], function(App){
 			// TODO check reservation in Parse before returning the collection
 			getFullReservationsParse: function(options){
 				var reservationsCollection = new ReservationsCollection();
-
+	
 				// set the time for the schedule today hh/mm/ss/ms
 				var startDate = new Date(options.date);				
 				startDate.setHours(05, 45, 0, 0);
