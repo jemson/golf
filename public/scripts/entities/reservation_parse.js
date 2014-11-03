@@ -86,6 +86,10 @@ define(['app'], function(App){
 					});
 				});
 
+				reservationsCollection.on('change', function(){
+					reservationsCollection.add(timeOfCourse);
+					console.log(reservationsCollection);
+				});
 				reservationsCollection.add(timeOfCourse);
 				return reservationsCollection;
 			},
