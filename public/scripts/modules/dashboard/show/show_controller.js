@@ -57,9 +57,6 @@
 						this.nextRegion();
 						this.resetReservation();	
 					}, this));
-					// this.listenTo(App.vent, 'change:reservation:date', function(options){
-
-					// });
 				},
 
 				fetchCollection: function(time){
