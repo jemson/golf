@@ -27,10 +27,10 @@ define([
 			collectionEvents: {
 				'change' : 'render'
 			},
-			onDOMRefresh: function(){
-				var pageHeight = $(document).height();
-				$('.sidebar').css('height', pageHeight);
-			}
+			// onDOMRefresh: function(){
+			// 	var pageHeight = $(document).height();
+			// 	$('.sidebar').css('height', pageHeight);
+			// }
 		});
 
 	});

@@ -4275,6 +4275,25 @@ th.hide-for-touch {
   opacity: 1;
 }
 
+/* line 5, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
+.login-container {
+  border-radius: 5px;
+  font-size: 14px;
+  border: solid 1px #ccc;
+  padding: 30px 30px 30px 30px;
+  position: absolute;
+  top: 20%;
+  width: 320px;
+  background-color: whitesmoke;
+}
+/* line 13, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
+.login-container button {
+  border-radius: 5px;
+  font-size: 14px;
+  float: right;
+  margin: 10px 0px -10px 0px;
+}
+
 /* line 21, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
 .dashboard-first {
   width: 30%;
