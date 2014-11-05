@@ -14,6 +14,19 @@ define(["app"], function(App){
 		});
 	
 		var API = {
+
+			getUserInfo: function(options){
+				var defer = $.Deferred()
+					memberId = options.model.get('memberId');
+				var query = new Parse.Query(Entities.Reservation)
+					.get(memberId, {
+						success: function(data){
+							defer.resolve(data);
+						}
+					});
+
+				return defer.promise();
+			},
 			
 			checkUserName: function(options){
 
@@ -45,6 +58,10 @@ define(["app"], function(App){
 				});
 			}
 		};
+
+		App.reqres.setHandler("username:entity", function(options){
+			return API.getUserInfo(options);
+		});
 
 		App.reqres.setHandler("username:entities", function(options){
 			return API.checkUserName(options);

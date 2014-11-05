@@ -97,10 +97,6 @@
 					});
 				},
 
-				// countRegion: function(){
-				// 	App.execute("count:load:region", { region: this.layout.countRegion, collection: this.reservations} );
-				// },
-
 				nextRegion: function(){
 					var options = {};
 					options.collection = this.reservations;
