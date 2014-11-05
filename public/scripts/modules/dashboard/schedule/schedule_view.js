@@ -27,7 +27,7 @@ define([
 			collectionEvents: {
 				'change' : 'render'
 			},
-			onRender: function(){
+			onDOMRefresh: function(){
 				var pageHeight = $(document).height();
 				$('.sidebar').css('height', pageHeight);
 			}
