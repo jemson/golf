@@ -31,9 +31,7 @@ define([
 					that.layout.destroy();
 				});
 			},
-
-
-
+			
 			getLayoutView: function(){
 				return new View.Layout();
 			}

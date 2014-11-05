@@ -59,9 +59,6 @@
 						this.nextRegion();
 						this.resetReservation();	
 					}, this));
-					// this.listenTo(App.vent, 'change:reservation:date', function(options){
-
-					// });
 				},
 
 				fetchCollection: function(time){
@@ -101,10 +98,6 @@
 						new Count.Controller(options);
 					});
 				},
-
-				// countRegion: function(){
-				// 	App.execute("count:load:region", { region: this.layout.countRegion, collection: this.reservations} );
-				// },
 
 				nextRegion: function(){
 					var options = {};
