@@ -64,10 +64,11 @@ define([
 			collectionEvents: {
 				'change' : 'render'
 			},
-			// onDOMRefresh: function(){
-			// 	var pageHeight = $(document).height();
-			// 	$('.sidebar').css('height', pageHeight);
-			// }
+			onRender: function(){
+				console.log('hello');
+				var pageHeight = $(document).height();
+				$('.sidebar').css('height', pageHeight);
+			}
 		});
 
 	});

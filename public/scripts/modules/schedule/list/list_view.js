@@ -23,16 +23,21 @@ define([
 			template: ModalTemplate
 		});
 
-		List.NoCourseSelectedTemplate = Marionette.ItemView.extend({
+		List.AlreadyReservedTemplate = Marionette.ItemView.extend({
 			className: 'padding-10 text-align-center',
-			template: _.template('<button data-close class="">Please select a Golf Course first</button>'),
+			template: _.template('<button data-close class="">This time has already been reserved by another member.</button>'),
 		});
 
 		List.Course = Marionette.ItemView.extend({
-			template: _.template('<div data-reservation class="reservation-time cursor-pointer margin-0-auto border-radius-2"><%=holes%> holes</div>'),
+			template: _.template('<div data-reservation class="border-box reservation-time cursor-pointer margin-0-auto border-radius-2 <%= defaultSelected()%>"><%=holes%> holes</div>'),
 			className: 'padding-10 cursor-pointer text-align-center',
 			events: {
 				'click [data-reservation]': 'showSchedules'
+			},
+			templateHelpers: {
+				defaultSelected: function(){
+					if(this.holes === 18) return 'background-green';
+				}	
 			},
 			showSchedules: function(){
 				$('.reservation-time').removeClass('background-green');
@@ -52,7 +57,7 @@ define([
 			className: 'display-inline-flex'
 		});		
 
-		List.ReservationsItemView = Marionette.ItemView.extend({
+		List.Reservation = Marionette.ItemView.extend({
 			template: ReservationTemplate,
 			className: 'large-8 columns text-align-center padding-0-10-10',
 			templateHelpers: {
@@ -78,7 +83,10 @@ define([
 					var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 						parseDate = new Date(this.time.iso);
 					return days[parseDate.getDay()];
-				}						
+				},
+				holes: function(){
+					return this.courseId === 'fMQIT0ix52' ? '18' : '9'
+				},					
 			},
 			events: {
 				'click [data-button]': 'showDialog'
@@ -91,13 +99,13 @@ define([
 			},
 		});
 		
-		List.ReservationsCollection = Marionette.CollectionView.extend({
-			childView: List.ReservationsItemView,
+		List.Reservations = Marionette.CollectionView.extend({
+			childView: List.Reservation,
 			className: 'padding-15 margin-15 background-color-white main-content',
-			// onRender: function(){
-			// 	var pageHeight = $(document).height();
-			// 	$('.sidebar').css('height', pageHeight);
-			// },
+			onRender: function(){
+				var pageHeight = $(document).height();
+				$('.sidebar').css('height', pageHeight);
+			},
 			collectionEvents: {
 				'change': 'render'
 			}						
