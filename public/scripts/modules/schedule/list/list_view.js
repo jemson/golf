@@ -19,8 +19,36 @@ define([
 		});
 
 		List.ModalTemplate = Marionette.ItemView.extend({
-			className: 'padding-10',
-			template: ModalTemplate
+			className: 'text-align-center padding-0-10-10',
+			template: ModalTemplate,
+			templateHelpers: {
+				timeOfReservation: function(){
+					var parseDate = new Date(this.time.iso);	
+					var hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours();
+					var minutes = parseDate.getMinutes() < 10 ? ( parseDate.getMinutes() + '0' ) : parseDate.getMinutes();
+					var newTime = hours + ':' + minutes;
+					return newTime;
+				},
+				changeBgColor: function(){
+					return this.isReserved ? 'background-color: yellow;' : 'background: #82ca9c;';
+				},
+				changeText: function(){
+					return this.isReserved ? 'Reserved' : 'Book';
+				},
+				month: function(){
+					var mos = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.', 'Jul.', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'],
+						parseDate = new Date(this.time.iso);
+					return mos[parseDate.getMonth()] + ' ' + parseDate.getDate();
+				},
+				day: function(){
+					var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+						parseDate = new Date(this.time.iso);
+					return days[parseDate.getDay()];
+				},
+				holes: function(){
+					return this.courseId === 'fMQIT0ix52' ? '18' : '9'
+				},
+			}						
 		});
 
 		List.AlreadyReservedTemplate = Marionette.ItemView.extend({

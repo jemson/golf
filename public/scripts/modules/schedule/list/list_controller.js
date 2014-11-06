@@ -105,7 +105,7 @@ define([
 			},
 
 			getModalTemplate: function(model){
-				return new View.ModalTemplate();
+				return new View.ModalTemplate({model: model});
 			},	
 
 			getAlreadyReservedView: function(){
@@ -113,11 +113,11 @@ define([
 			},
 
 			showDialog: function(iv){
-
 				var that = this,
 					options = {};
+
 				if(iv.model.get('memberId') === App.user.id || typeof iv.model.get('memberId') === 'undefined' ) { 
-					var modalTemplate = this.getModalTemplate();
+					var modalTemplate = this.getModalTemplate(iv.model);
 						options.header = true;
 						options.footer = true;
 				}else{	 
