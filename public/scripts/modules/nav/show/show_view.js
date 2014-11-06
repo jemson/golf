@@ -27,7 +27,8 @@ define([
 			},
 			triggers: {
 				'click [data-dashboard]' : 'data:dashboard',
-				'click [data-schedule]' : 'data:schedule'
+				'click [data-schedule]' : 'data:schedule',
+				'click [data-logout]' : 'data:logout'
 			},
 			modelEvents: {
 				'change' : 'render'

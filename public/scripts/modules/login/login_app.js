@@ -18,6 +18,13 @@ define([
 			API.showLogin();
 		});
 
+
+
+		App.vent.on('data:login:page', function(){
+			Backbone.history.navigate('login');
+			API.showLogin();
+		});
+
 	});
 
 	return App.LoginApp;

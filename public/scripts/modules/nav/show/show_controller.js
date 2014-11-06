@@ -18,6 +18,10 @@ define([
 				this.listenTo(App, "nav:active:change", this.changeActive);
 				this.listenTo(this.layout, 'data:dashboard', this.dashboard);
 				this.listenTo(this.layout, 'data:schedule', this.schedule);
+				this.listenTo(this.layout, 'data:logout', this.logout);
+				this.listenTo(this.user, 'destroy:layout', function(){
+					this.layout.destroy();
+				})
 			},
 
 			getLayout: function(){
@@ -35,6 +39,11 @@ define([
 
 			schedule: function(){
 				App.vent.trigger('show:schedule:page');
+			},
+
+			logout: function(){
+				App.vent.trigger('data:login:page');
+				this.user.trigger('destroy:layout');
 			}
 
 		});
