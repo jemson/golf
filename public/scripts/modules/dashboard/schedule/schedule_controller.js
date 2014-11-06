@@ -48,17 +48,18 @@ define([
 				this.layout.reservationsRegion.show(this.reservationsView);	
 			},
 
-			openSchedulePage: function(iv){
-				// var that = this;
-				// this.courseId = iv.model.id;
-				// this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
-				// this.reservationsRegion();
-			},
-
 			coursesRegion: function(){
 				this.courses = this.getCourses();
 				this.listenTo(this.courses, 'childview:show:schedules', this.openSchedulePage);
 				this.layout.coursesRegion.show(this.courses);
+			},
+
+			openSchedulePage: function(iv){
+				this.optionCollection.trigger('change:course', {model: iv.model});
+				// var that = this;
+				// this.courseId = iv.model.id;
+				// this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
+				// this.reservationsRegion();
 			},
 
 			getLayoutView: function(){
