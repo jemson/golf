@@ -93,11 +93,11 @@ define([
 		
 		List.ReservationsCollection = Marionette.CollectionView.extend({
 			childView: List.ReservationsItemView,
-			className: 'row padding-15 margin-15 background-color-white main-content',
-			onDomRefresh: function(){
-				var pageHeight = $(document).height();
-				$('.sidebar').css('height', pageHeight);
-			},
+			className: 'padding-15 margin-15 background-color-white main-content',
+			// onRender: function(){
+			// 	var pageHeight = $(document).height();
+			// 	$('.sidebar').css('height', pageHeight);
+			// },
 			collectionEvents: {
 				'change': 'render'
 			}						
