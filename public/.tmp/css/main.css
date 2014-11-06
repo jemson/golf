@@ -231,191 +231,196 @@ select {
 }
 
 /* line 65, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+.width-170 {
+  width: 170px;
+}
+
+/* line 69, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .test {
   width: 30%;
 }
 
-/* line 69, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 73, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .list-style-type-none {
   list-style-type: none;
 }
 
-/* line 73, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 77, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .cursor-pointer {
   cursor: pointer;
 }
 
-/* line 77, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 81, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-0 {
   padding: 0px;
 }
 
-/* line 81, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 85, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-0-10-10 {
   padding: 0 0.625rem 0.625rem;
 }
 
-/* line 85, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 89, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .margin-0 {
   margin: 0px;
 }
 
-/* line 89, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 93, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-10-0-10-30 {
   padding: 10 0 10px 30px;
 }
 
-/* line 93, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 97, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-30 {
   font-size: 1.875rem;
 }
 
-/* line 97, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 101, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-11 {
   font-size: 11px;
 }
 
-/* line 101, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 105, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-13 {
   font-size: 13px;
 }
 
-/* line 105, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 109, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-15 {
   font-size: 15px;
 }
 
-/* line 109, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 113, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-20 {
   font-size: 20px;
 }
 
-/* line 113, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 117, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .border-bottom-37 {
   border-bottom: 1px solid #252525;
 }
 
-/* line 117, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 121, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .sidebar-content:hover {
   background: #1c1c1c;
 }
 
-/* line 121, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 125, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-family-verdana {
   font-family: verdana,sans-serif;
 }
 
-/* line 125, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 129, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-family-arial {
   font-family: arial,sans-serif;
 }
 
-/* line 129, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 133, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .border-radius-2 {
   border-radius: 2px;
 }
 
-/* line 133, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 137, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .color-ccc {
   color: #ccc;
 }
 
-/* line 137, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 141, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .color-gray {
   color: #666666;
 }
 
-/* line 141, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 145, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-0-30 {
   padding: 0px 30px;
 }
 
-/* line 149, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 153, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-5-0-5-10 {
   padding: 5px 0px 5px 10px;
 }
 
-/* line 153, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 157, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-0-10-10 {
   padding: 0px 10px 10px;
 }
 
-/* line 157, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 161, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .text-align-center {
   text-align: center;
 }
 
-/* line 161, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 165, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .text-decoration-none {
   text-decoration: none;
 }
 
-/* line 165, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 169, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .float-left {
   float: left;
 }
 
-/* line 169, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 173, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-weight-bold {
   font-weight: bold;
 }
 
-/* line 173, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 177, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .width-auto {
   width: auto;
 }
 
-/* line 177, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 181, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .border-radius-2 {
   border-radius: 2px;
 }
 
-/* line 181, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 185, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-11 {
   font-size: 11px;
 }
 
-/* line 185, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 189, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .font-size-19 {
   font-size: 1.1875rem;
 }
 
-/* line 189, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 193, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .bg-color-17-17-17 {
   background-color: #111111;
 }
 
-/* line 193, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 197, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .bg-color-48-48-48 {
   background-color: #303030;
 }
 
-/* line 197, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 201, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .padding-top-5 {
   padding-top: 5px;
 }
 
-/* line 201, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 205, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .border-bottom-gray {
   border-bottom: 1px solid #666666;
 }
 
-/* line 205, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 209, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .display-inline-flex {
   display: inline-flex;
 }
 
-/* line 209, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 213, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .background-green {
   background: #82ca9c;
 }
 
-/* line 213, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 217, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .border-box {
   border: 1px solid #d5d4d0;
 }
 
-/* line 217, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
+/* line 221, c:/xampp/htdocs/golf/public/styles/helpers/_classes.scss */
 .circle {
   font-size: 13px;
   background-color: #bdbdb6;
@@ -4314,7 +4319,7 @@ th.hide-for-touch {
   opacity: 1;
 }
 
-/* line 5, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
+/* line 6, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
 .login-container {
   border-radius: 5px;
   font-size: 14px;
@@ -4325,12 +4330,21 @@ th.hide-for-touch {
   width: 320px;
   background-color: whitesmoke;
 }
-/* line 13, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
-.login-container button {
+/* line 14, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
+.login-container .login-button {
   border-radius: 5px;
   font-size: 14px;
   float: right;
   margin: 10px 0px -10px 0px;
+  background-color: #008cba;
+  border-color: #007095;
+  color: white;
+  padding: 10px;
+  border: 1px;
+}
+/* line 24, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
+.login-container .login-button:hover {
+  background-color: #007095;
 }
 
 /* line 21, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
