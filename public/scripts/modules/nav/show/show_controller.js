@@ -11,7 +11,7 @@ define([
 
 				this.layout = this.getLayout();
 
-				this.listenTo(this.user, 'change', function(){
+				this.listenTo(this.user, 'show:nav', function(){
 					App.navRegion.show(this.layout);
 				});
 				
@@ -21,7 +21,7 @@ define([
 				this.listenTo(this.layout, 'data:logout', this.logout);
 				this.listenTo(this.user, 'destroy:layout', function(){
 					this.layout.destroy();
-				})
+				});
 			},
 
 			getLayout: function(){
@@ -43,7 +43,7 @@ define([
 
 			logout: function(){
 				App.vent.trigger('data:login:page');
-				this.user.trigger('destroy:layout');
+				$(".sidebar").hide();
 			}
 
 		});

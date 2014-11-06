@@ -4326,11 +4326,20 @@ th.hide-for-touch {
   background-color: whitesmoke;
 }
 /* line 13, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
-.login-container button {
+.login-container .login-button {
   border-radius: 5px;
   font-size: 14px;
   float: right;
   margin: 10px 0px -10px 0px;
+  background-color: #008cba;
+  border-color: #007095;
+  color: white;
+  padding: 10px;
+  border: 1px;
+}
+/* line 23, c:/xampp/htdocs/golf/public/styles/modules/_login.scss */
+.login-container .login-button:hover {
+  background-color: #007095;
 }
 
 /* line 21, c:/xampp/htdocs/golf/public/styles/modules/_dashboard.scss */
