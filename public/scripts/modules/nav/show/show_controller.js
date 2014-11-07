@@ -12,7 +12,7 @@ define([
 				this.layout = this.getLayout();
 
 				this.listenTo(this.user, 'show:nav', function(){
-					App.navRegion.show(this.layout);
+					// App.navRegion.show(this.layout);
 				});
 				
 				this.listenTo(App, "nav:active:change", this.changeActive);

@@ -115,7 +115,6 @@ define([
 
 				this.dates.set({
 					month_name: this.dates.get("month")[newMonth],
-					year: this.day.get('date').getFullYear(),
 					number_of_month: newMonth,
 					exact_date: exact_date,
 				});
@@ -124,11 +123,17 @@ define([
 				switch ( model.get('month_name') ) {
 					case 'Dec':
 						var number = model.get('number_of_month') + integer;
-						var month = date.setMonth(number);
+						date.setMonth(number);
+						this.dates.set({
+							year: date.getFullYear()-1
+						});
 					break;
 					case 'Jan':
 						var number = model.get('number_of_month') + integer;
-						var month = date.setMonth(number);
+						date.setMonth(number);
+						this.dates.set({
+							year: date.getFullYear()
+						});
 					break;
 				}
 
