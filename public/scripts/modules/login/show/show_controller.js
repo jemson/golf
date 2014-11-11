@@ -17,6 +17,7 @@ define([
 				this.collection = App.request("login:test")
 
 				this.listenTo(this.layout, 'user:login', this.userLogIn);
+				this.listenTo(this.layout, 'user:sign:up', this.signUp)
 			},
 			
 			userLogIn: function(){
@@ -34,6 +35,33 @@ define([
 			
 			getLayoutView: function(){
 				return new View.Layout();
+			},
+
+			getModalView: function(){
+				return new View.ModalLayout();
+			},
+
+			signUp: function(){
+				var modalTemplate = this.getModalView()
+					options = {}
+					options.header = false
+					options.footer = false
+					// model = {};
+
+				require(['components/modal/modal_controller'], function(Modal){
+					new Modal.Controller({contentView:modalTemplate , options: options})//, model: model});
+				});
+
+				this.listenTo(modalTemplate, 'data:sign:up', function(iv){
+					var options = {}
+						options.fname = iv.view.ui.fname.val()
+						options.lname = iv.view.ui.lname.val()
+						options.uname = iv.view.ui.uname.val()
+						options.pword = iv.view.ui.pword.val()
+						options.vpword = iv.view.ui.vpword.val()
+						options.phone = iv.view.ui.phone.val()
+						options.email = iv.view.ui.email.val()
+				})
 			}
 
 		});

@@ -8,6 +8,7 @@ define([
 	
 		Modal.Controller = Marionette.Controller.extend({
 			initialize: function(options){
+				console.log(options);
 				var that = this;
 				this.options = _.defaults(options, this.defaults);
 				this.collection = options.collection;
