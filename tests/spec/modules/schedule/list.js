@@ -14,7 +14,6 @@ define([
 			beforeEach(function(){
 				pl = new View.Layout();
 				ml = new View.ModalTemplate();
-				mln = new View.NoCourseSelectedTemplate();
 				courses = new View.Course();
 				pl.render();
 			});	
@@ -42,16 +41,11 @@ define([
 				expect(ml.template).to.be.a('string');
 			});	
 
-			it('no course selected should have a template', function(){
-				expect(mln.template).to.be.a('function');
-			});
-
 			it('course region should show list of courses', function(){
 				expect(courses.template).to.be.a('function');
 			});
 
 			it('course region should show list of courses when click', function(){
-				console.log(courses.events.object);
 				expect(courses.events).to.be.an('object').and.to.have.ownProperty('click [data-reservation]');
 			});
 
