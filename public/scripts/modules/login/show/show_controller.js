@@ -53,14 +53,13 @@ define([
 				});
 
 				this.listenTo(modalTemplate, 'data:sign:up', function(iv){
-					var options = {}
-						options.fname = iv.view.ui.fname.val()
-						options.lname = iv.view.ui.lname.val()
-						options.uname = iv.view.ui.uname.val()
-						options.pword = iv.view.ui.pword.val()
-						options.vpword = iv.view.ui.vpword.val()
-						options.phone = iv.view.ui.phone.val()
-						options.email = iv.view.ui.email.val()
+					//if verify password is correct
+					if ( iv.view.ui.pword.val() == iv.view.ui.vpword.val() ) {
+						App.request('username:static').signingUp(iv);
+					} else {
+						
+						console.log("wrong");
+					}
 				})
 			}
 
