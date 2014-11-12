@@ -6,7 +6,7 @@ require([
 	// 'spec/modules/dashboard/count.js',
 	// 'spec/modules/dashboard/day.js',
 	// 'spec/modules/dashboard/next.js',
-	// 'spec/modules/dashboard/schedule.js',
+	'spec/modules/dashboard/schedule.js',
 	// 'spec/modules/dashboard/show.js',
 	
 	/** header test */
