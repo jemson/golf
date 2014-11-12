@@ -17,7 +17,7 @@ define([
 
 			it('should have a template', function(){
 				expect(pl.template).to.be.a('string');
-			});			
+			});
 
 			it('should show a course region', function(){
 				expect(pl.regions).to.be.an('object').and.to.have.ownProperty('coursesRegion');

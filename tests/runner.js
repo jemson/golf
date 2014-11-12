@@ -1,6 +1,6 @@
 require([
 	/** calendar test */
-	// 'spec/modules/calendar/show.js',
+	'spec/modules/calendar/show.js',
 	 
 	/** dashboard test */
 	// 'spec/modules/dashboard/count.js',
@@ -13,7 +13,7 @@ require([
 	'spec/modules/header/show.js',
 	
 	/** login test */
-	// 'spec/modules/login/count.js',
+	'spec/modules/login/show.js',
 	
 	/** nav test */
 	// 'spec/modules/nav/show.js',
