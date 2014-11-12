@@ -14,7 +14,6 @@ define(["app"], function(App){
 
 				this.signUp(null, {
 					success: function(user) {
-						console.log(user);
 					  // Hooray! Let them use the app now.
 					},
 					error: function(user, error) {
