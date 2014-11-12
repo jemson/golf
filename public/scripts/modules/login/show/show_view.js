@@ -2,7 +2,8 @@ define([
 	'app',
 	'text!modules/login/show/templates/layout.html',	
 	'text!modules/login/show/templates/sign-up.html',
-], function(App, LayoutTemplate, SignUpTemplate){
+	'text!modules/login/show/templates/success.html',
+], function(App, LayoutTemplate, SignUpTemplate, SuccessTemplate){
 
 	App.module('Login.Show', function(Show, App, Backbone, Marionette, $, _){
 
@@ -39,6 +40,13 @@ define([
 			},
 			triggers: {
 				'click [data-sign-up]' : 'data:sign:up'
+			}
+		});
+
+		Show.Success = Marionette.ItemView.extend({
+			template: SuccessTemplate,
+			triggers: {
+				'click [data-close]' : 'data:close'
 			}
 		});
 		

@@ -41,6 +41,10 @@ define([
 				return new View.ModalLayout();
 			},
 
+			getSuccessView: function(){
+				return new View.Success();
+			},
+
 			signUp: function(){
 				var modalTemplate = this.getModalView()
 					options = {}
@@ -48,17 +52,25 @@ define([
 					options.footer = false
 					// model = {};
 
-				this.test = require(['components/modal/modal_controller'], function(Modal){
-					new Modal.Controller({contentView:modalTemplate , options: options})//, model: model});
+				require(['components/modal/modal_controller'], function(Modal){
+					new Modal.Controller({contentView:modalTemplate , options: options});
 				});
 
 				this.listenTo(modalTemplate, 'data:sign:up', function(iv){
 					//if verify password is correct
 					if ( iv.view.ui.pword.val() == iv.view.ui.vpword.val() ) {
 						App.request('username:static').signingUp(iv);
-						_.delay(function(){
-							modalTemplate.trigger('layout:destroy');
-						}, 1500);
+
+						var modalTemplate = this.getSuccessView();
+						require(['components/modal/modal_controller'], function(Modal){
+							new Modal.Controller({contentView:modalTemplate , options: options});
+						});
+
+						this.listenTo(modalTemplate, 'data:close', function(){
+							_.delay(function(){
+								modalTemplate.trigger('layout:destroy');
+							}, 1500);
+						});
 					} else {
 						console.log("wrong");
 					}
