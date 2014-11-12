@@ -2,7 +2,7 @@ define([
 	'modules/schedule/list/list_view'
 ], function(View){
 
-	describe('ScheduleApp.List', function(){
+	describe('Schedule List View', function(){
 
 		describe('Layout', function(){
 			var fixture, pl;
