@@ -17,6 +17,8 @@ define([
 
 				var contentView = options.contentView;
 				var footerView = options.footerView;
+
+				this.listenTo(contentView, 'layout:destroy', this.onBeforeDestroy)
 				this.listenTo(this.layout, 'show', function(){
 					this.layout.modalContent.show(contentView);
 					this.modalHeader();
@@ -29,7 +31,7 @@ define([
 				this.listenTo(this.layout, 'modal:remove', this.remove);
 				this.listenTo(this.layout, 'modal:update', this.update);
 				this.layoutTermination();
-			},
+				},
 		
 			reserveTime: function(){
 				this.model.trigger('save:reservation');

@@ -48,7 +48,7 @@ define([
 					options.footer = false
 					// model = {};
 
-				require(['components/modal/modal_controller'], function(Modal){
+				this.test = require(['components/modal/modal_controller'], function(Modal){
 					new Modal.Controller({contentView:modalTemplate , options: options})//, model: model});
 				});
 
@@ -56,8 +56,10 @@ define([
 					//if verify password is correct
 					if ( iv.view.ui.pword.val() == iv.view.ui.vpword.val() ) {
 						App.request('username:static').signingUp(iv);
+						_.delay(function(){
+							modalTemplate.trigger('layout:destroy');
+						}, 1500);
 					} else {
-						
 						console.log("wrong");
 					}
 				})
