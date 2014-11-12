@@ -5,7 +5,7 @@ define([
 	describe('ScheduleApp.List', function(){
 
 		describe('Layout', function(){
-			var fixture, pl, ml, mln, courses;
+			var fixture, pl, ml, mln, courses, res;
 		
 			before(function(){
 				fixture = $("#test");
@@ -15,6 +15,7 @@ define([
 				pl = new View.Layout();
 				ml = new View.ModalTemplate();
 				courses = new View.Course();
+				res = new View.Reservation();
 				pl.render();
 			});	
 
@@ -45,8 +46,29 @@ define([
 				expect(courses.template).to.be.a('function');
 			});
 
-			it('course region should show list of courses when click', function(){
+			it('course region should show list of schedules when click', function(){
 				expect(courses.events).to.be.an('object').and.to.have.ownProperty('click [data-reservation]');
+			});
+
+			it('course region should render if isSelected attribute has change', function(){
+				expect(courses.modelEvents).to.be.an('object').and.to.have.ownProperty('change:isSelected');
+			});			
+
+			it('course region should render if isPaid attribute has change', function(){
+				expect(courses.modelEvents).to.be.an('object').and.to.have.ownProperty('change:isPaid');
+			});			
+
+			it('reservation region should have a template', function(){
+				expect(res.template).to.be.a('string');
+			});
+
+			it('reservation region should show a list of schedule', function(){
+				expect(res.template).to.be.a('string');
+			});
+
+			it('reservation region should show dialog when click on a schedule button', function(){
+				expect(res.showDialog).to.be.a('function');
+				expect(res.events).to.be.an('object').and.to.have.ownProperty('click [data-button]').and.to.include.keys('click [data-button]');
 			});
 
 		});	
