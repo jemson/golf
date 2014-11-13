@@ -16,7 +16,7 @@ require([
 	'spec/modules/login/show.js',
 	
 	/** nav test */
-	// 'spec/modules/nav/show.js',
+	'spec/modules/nav/show.js',
 	
 	/** schedule test */
 	'spec/modules/schedule/list.js'
