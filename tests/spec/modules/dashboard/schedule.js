@@ -29,7 +29,6 @@ define([
 				expect(pl.regions.reservationsRegion).to.equal('#reservations-region').and.to.be.a('string');
 			});
 
-
 		});
 
 		describe('Courses region', function(){

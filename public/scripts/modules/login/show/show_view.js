@@ -17,7 +17,6 @@ define([
 			},
 			template: LayoutTemplate,
 			triggers: {
-				'click [data-login]': 'user:login',
 				'click [data-sign-up]' : 'user:sign:up'
 			},
 			loginEnter: function(e){
