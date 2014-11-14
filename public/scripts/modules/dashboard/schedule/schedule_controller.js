@@ -13,6 +13,8 @@ define([
 			initialize: function(options){
 				var fetchedCourses = App.request('courses:entities');
 
+				this.model = options.model;
+
 				this.region = options.region;
 
 				this.optionCollection = options.collection;
@@ -40,7 +42,10 @@ define([
 					this.coursesRegion();
 				}, this));
 
-				this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule)
+				this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule);
+				this.listenTo(this.model, 'render:schedule:region', function(){
+					this.reservationsRegion.render;
+				});
 			},
 
 			reservationsRegion: function(){
@@ -56,10 +61,6 @@ define([
 
 			openSchedulePage: function(iv){
 				this.optionCollection.trigger('change:course', {model: iv.model});
-				// var that = this;
-				// this.courseId = iv.model.id;
-				// this.schedules = App.request('reservations:entities:full', {courseId:this.courseId, date:this.date});
-				// this.reservationsRegion();
 			},
 
 			getLayoutView: function(){

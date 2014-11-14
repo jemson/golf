@@ -15,13 +15,14 @@
 					var data = {
 						date: new Date(),
 					}
+
 					this.date = new Date();
 					this.courseId = 'fMQIT0ix52';
 					this.id = options.id;
 					this.dates = App.request('dates:entities:date');
 					this.day = App.request('date:entity', data);
 					this.reservations = App.request('reservation:entities', {date:this.day.get('date')});
-					this.fetchCollection(this.day.get('date'), 'fMQIT0ix52');
+					this.fetchCollection(this.day.get('date'));
 					this.resetReservation();
 
 					var currMonth = this.day.get('date').getMonth(),
@@ -45,6 +46,7 @@
 						this.resetReservation();
 					});
 
+					// // TODO: Change time pass in next region according to date selected calendar
 					App.commands.setHandler('change:reservation:date', _.bind(function(options){
 						var month = options.model.get('month_name') || options.model.get('month') 
 							day = options.model.get('exact_date') || options.model.get('day') 
@@ -52,27 +54,29 @@
 						this.date = new Date(month + ' ' + day + ' ' + year);
 						this.currDate = new Date((currMonth + 1) + ' ' + currDay + ' ' + currYear);
 						if(+this.currDate === +this.date){ this.day.set('date', data.date); }
-						this.renderDashboardPage(this.date, this.courseId)
+						this.renderDashboardPage(this.date);
+						// to change schedules according to date selected
+						// this.scheduleRegion();	
 					}, this));
-
 				},
 
-				renderDashboardPage: function(date, courseId){
-					this.fetchCollection(date, courseId);
+				renderDashboardPage: function(date){
+					this.fetchCollection(date);
 					this.reservations.reset(this.mapCollection());
 					this.countRegion();
 					this.nextRegion();
 					this.resetReservation();						
 				},
 
-				fetchCollection: function(time, id){
-					this.parseReservation = App.request('reservations:entities:full', {date:time, courseId:id});
-					this.listenTo(this.parseReservation, 'change:course', this.changeCourse);
-				},
-
 				changeCourse: function(iv){
 					this.courseId = iv.model.id;
-					this.renderDashboardPage(this.date, this.courseId);
+					this.renderDashboardPage(this.date);
+					this.day.trigger('render:schedule:region');
+				},
+
+				fetchCollection: function(time){
+					this.parseReservation = App.request('reservations:entities:full', {date:time, courseId:this.courseId});
+					this.listenTo(this.parseReservation, 'change:course', this.changeCourse);
 				},
 
 				resetReservation: function(){
@@ -123,6 +127,7 @@
 					var options = {};
 					options.collection = this.parseReservation;
 					options.region = this.layout.scheduleRegion;
+					options.model = this.day;
 					require(['modules/dashboard/schedule/schedule_controller'], function(Schedule){
 						new Schedule.Controller(options);
 					});

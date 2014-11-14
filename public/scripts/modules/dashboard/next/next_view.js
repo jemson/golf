@@ -32,7 +32,6 @@ define([
 				}
 			},
 			serializeData: function(){
-				console.log(this.model.attributes);
 				if(typeof this.model !== 'undefined'){
 					var parseDate = this.model.get('time'),	
 						hours = parseDate.getHours() < 10 ? ( '0' + parseDate.getHours() ) : parseDate.getHours(),
