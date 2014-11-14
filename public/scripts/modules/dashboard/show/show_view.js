@@ -12,7 +12,7 @@ define([
 				dayRegion: '#day-region',
 				countRegion: '#reserve-count-region',
 				nextRegion: '#reserve-next-region',
-				coursesRegion: '#course-region'
+				courseRegion: '#course-region',
 				scheduleRegion: '#small-schedule-region',
 				calendarRegion: '#calendar-region'
 			},

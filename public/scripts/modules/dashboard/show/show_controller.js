@@ -4,6 +4,7 @@
 	'entities/date',
 	'entities/reservation',
 	'entities/reservation_parse',
+	'entities/course'
 ], function(App, View){
 
 		App.module('DashBoardApp.Show', function(Show, App, Backbone, Marionette, $, _){
@@ -15,7 +16,8 @@
 					var data = {
 						date: new Date(),
 					}
-
+					var fetchedCourses = App.request('courses:entities');
+	
 					this.date = new Date();
 					this.courseId = 'fMQIT0ix52';
 					this.id = options.id;
@@ -34,6 +36,7 @@
 						this.dayRegion();
 						this.countRegion();
 						this.nextRegion();
+						// this.courseRegion();
 						this.scheduleRegion();
 						this.calendarRegion();
 					});
@@ -46,6 +49,12 @@
 						this.resetReservation();
 					});
 
+					fetchedCourses.done(_.bind(function(courses){
+						this.courses = courses;
+						this.courseRegion();
+						this.listenTo(this.courses, 'change:course', this.changeCourse);
+					}, this));
+
 					// // TODO: Change time pass in next region according to date selected calendar
 					App.commands.setHandler('change:reservation:date', _.bind(function(options){
 						var month = options.model.get('month_name') || options.model.get('month') 
@@ -56,7 +65,7 @@
 						if(+this.currDate === +this.date){ this.day.set('date', data.date); }
 						this.renderDashboardPage(this.date);
 						// to change schedules according to date selected
-						// this.scheduleRegion();	
+						this.scheduleRegion();	
 					}, this));
 				},
 
@@ -71,12 +80,11 @@
 				changeCourse: function(iv){
 					this.courseId = iv.model.id;
 					this.renderDashboardPage(this.date);
-					this.day.trigger('render:schedule:region');
+					this.scheduleRegion();
 				},
 
 				fetchCollection: function(time){
 					this.parseReservation = App.request('reservations:entities:full', {date:time, courseId:this.courseId});
-					this.listenTo(this.parseReservation, 'change:course', this.changeCourse);
 				},
 
 				resetReservation: function(){
@@ -121,6 +129,15 @@
 					require(['modules/dashboard/next/next_controller'], function(Next){
 						new Next.Controller(options);
 					});
+				},
+
+				courseRegion: function(){
+					var options = {};
+					options.collection = this.courses;
+					options.region = this.layout.courseRegion;
+					require(['modules/dashboard/course/course_controller'], function(Course){
+						new Course.Controller(options);
+					});					
 				},
 
 				scheduleRegion: function(){

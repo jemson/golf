@@ -2,8 +2,7 @@ define([
 	'app',
 	'modules/dashboard/schedule/schedule_view',
 	'entities/reservation_parse',
-	'entities/reservation',
-	'entities/course'
+	'entities/reservation'
 ], function(App, View){
 
 	App.module('ScheduleApp.Schedule', function(Schedule, App, Backbone, Marionette, $, _){
@@ -11,7 +10,6 @@ define([
 		Schedule.Controller = Marionette.Controller.extend({
 
 			initialize: function(options){
-				var fetchedCourses = App.request('courses:entities');
 
 				this.model = options.model;
 
@@ -37,11 +35,6 @@ define([
 
 				this.region.show(this.layout);
 
-				fetchedCourses.done(_.bind(function(courses){
-					this.coursesCollection = courses;
-					this.coursesRegion();
-				}, this));
-
 				this.listenTo(this.layout, 'childview:reserve:schedule', this.reserveSchedule);
 				this.listenTo(this.model, 'render:schedule:region', function(){
 					this.reservationsRegion.render;
@@ -53,16 +46,6 @@ define([
 				this.layout.reservationsRegion.show(this.reservationsView);	
 			},
 
-			coursesRegion: function(){
-				this.courses = this.getCourses();
-				this.listenTo(this.courses, 'childview:show:schedules', this.openSchedulePage);
-				this.layout.coursesRegion.show(this.courses);
-			},
-
-			openSchedulePage: function(iv){
-				this.optionCollection.trigger('change:course', {model: iv.model});
-			},
-
 			getLayoutView: function(){
 				return new View.Layout();					
 			},
@@ -71,9 +54,6 @@ define([
 				return new View.Reservations({collection: this.collection});					
 			},
 
-			getCourses: function(){
-				return new View.Courses({collection: this.coursesCollection});
-			},
 
 			collectionFilter: function(){
 				var collection = this.collection.scheduleFilter();
